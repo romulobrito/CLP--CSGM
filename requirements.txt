@@ -6,6 +6,7 @@ scikit-learn>=1.0
 torch>=2.0
 PyWavelets>=1.4
 
-# Optional: legacy SPGL1 profiles in sir_cs_pipeline_optimized.py (not needed for --run-csgm-m2 --no-lfista)
+# Optional: legacy SPGL1 profiles in sir_cs_pipeline_optimized.py
+# (not needed for --run-csgm-m2 --no-lfista)
 # pylops>=2.0
 # spgl1>=2.0

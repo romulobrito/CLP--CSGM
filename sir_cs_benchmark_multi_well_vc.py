@@ -39,6 +39,7 @@ from sklearn.exceptions import ConvergenceWarning
 
 import direct_ub_baselines as dub
 import multi_well_vc as mwv
+import real_well_f03 as rwf03
 from sir_cs_benchmark_direct_ub import (
     _Tee,
     _log,
@@ -228,6 +229,24 @@ def parse_args() -> argparse.Namespace:
     )
     p.add_argument("--no-plots", action="store_true", help="Skip dashboard figures.")
     p.add_argument("--no-parity", action="store_true", help="Skip parity scatter and parity npz.")
+    p.add_argument(
+        "--profile-overlap-agg",
+        type=str,
+        default=rwf03.PROFILE_OVERLAP_AGG_UNIFORM_MEAN,
+        choices=rwf03.PROFILE_OVERLAP_AGG_CHOICES,
+        help=(
+            "How overlapping test-window predictions are fused into a full-depth profile "
+            "for depth figures: uniform_mean (default) or center_weighted_mean."
+        ),
+    )
+    p.add_argument(
+        "--save-profile-overlap-compare",
+        action="store_true",
+        help=(
+            "Write overlap_profile_agg/ with tables and figures comparing "
+            "uniform_mean vs center_weighted_mean stitching (visualization path only)."
+        ),
+    )
     p.add_argument(
         "--fast",
         action="store_true",
@@ -527,6 +546,7 @@ def main() -> None:
             include_lfista,
         )
         plot_paths: List[str] = []
+        overlap_paths: List[str] = []
         if not bool(args.no_plots):
             plot_paths = save_all_comparison_plots(cfg, summary, per_seed)
             _log(tee, "Figures: {} files under {}".format(
@@ -573,12 +593,17 @@ def main() -> None:
                     "hybrid_fista",
                     "hybrid_lfista_joint",
                 ]
+                overlap_primary = rwf03.validate_profile_overlap_agg(str(args.profile_overlap_agg))
                 profiles: Dict[str, np.ndarray] = {}
                 obs_stack = np.asarray(
                     first_parity_fragment["y_true"], dtype=np.float64
                 ).reshape(n_te, l)
-                obs_profile, _ = _reconstruct_profile(
-                    obs_stack, absolute_starts, l, nrows_total
+                obs_profile, _ = rwf03.reconstruct_depth_profile(
+                    obs_stack,
+                    absolute_starts,
+                    l,
+                    nrows_total,
+                    overlap_agg=overlap_primary,
                 )
                 profiles["observed"] = obs_profile
                 for k in known_model_keys:
@@ -588,8 +613,28 @@ def main() -> None:
                     if arr.size != n_te * l:
                         continue
                     stack = arr.reshape(n_te, l)
-                    prof, _ = _reconstruct_profile(stack, absolute_starts, l, nrows_total)
+                    prof, _ = rwf03.reconstruct_depth_profile(
+                        stack,
+                        absolute_starts,
+                        l,
+                        nrows_total,
+                        overlap_agg=overlap_primary,
+                    )
                     profiles[k] = prof
+                if bool(args.save_profile_overlap_compare):
+                    overlap_paths = rwf03.save_overlap_profile_agg_bundle(
+                        run_root,
+                        overlap_primary,
+                        depth_axis,
+                        absolute_starts,
+                        l,
+                        nrows_total,
+                        obs_stack,
+                        first_parity_fragment,
+                        known_model_keys,
+                        log_line=lambda s: _log(tee, s),
+                        profile_x_label=str(meta["target"]).upper(),
+                    )
 
                 title = (
                     "{} {} profile (test block: {}) | rho={:.2f}, seed={}".format(
@@ -617,6 +662,7 @@ def main() -> None:
                     **{("profile_" + k): v for k, v in profiles.items()},
                 )
                 plot_paths.append(prof_npz)
+                plot_paths.extend(overlap_paths)
             except (ValueError, KeyError, RuntimeError) as ex:
                 _log(tee, "Warning: depth-profile plot skipped: " + str(ex))
         if (not bool(args.no_plots)) and (not bool(args.no_parity)) and parity_bundles:
@@ -651,6 +697,8 @@ def main() -> None:
             "protocol_txt": proto_path,
             "tables_dir": tables_dir,
             "figures_dir": os.path.join(run_root, "figures"),
+            "profile_overlap_agg": str(args.profile_overlap_agg),
+            "save_profile_overlap_compare": bool(args.save_profile_overlap_compare),
         }
         with open(os.path.join(run_root, "config.json"), "w", encoding="utf-8") as f:
             json.dump(cfg_dump, f, indent=2)
@@ -674,38 +722,6 @@ def main() -> None:
         sys.stdout = old_stdout
         tee.close()
     print("Artifacts: " + run_root, flush=True)
-
-
-def _reconstruct_profile(
-    window_preds: np.ndarray,
-    window_starts: np.ndarray,
-    window_len: int,
-    n_rows_total: int,
-) -> Tuple[np.ndarray, np.ndarray]:
-    """Averaged overlap reconstruction, same semantics as
-    real_well_f03.reconstruct_depth_profile. Duplicated here to avoid importing
-    that module from a multi-well context.
-    """
-    wp = np.asarray(window_preds, dtype=np.float64)
-    ws = np.asarray(window_starts, dtype=np.int64).ravel()
-    l = int(window_len)
-    nr = int(n_rows_total)
-    if wp.ndim != 2 or wp.shape[1] != l:
-        raise ValueError("window_preds shape must be (n_win, L).")
-    if ws.shape[0] != wp.shape[0]:
-        raise ValueError("window_starts must align with window_preds.")
-    acc = np.zeros(nr, dtype=np.float64)
-    cov = np.zeros(nr, dtype=np.int64)
-    for j in range(wp.shape[0]):
-        t = int(ws[j])
-        if t < 0 or t + l > nr:
-            continue
-        acc[t : t + l] += wp[j]
-        cov[t : t + l] += 1
-    profile = np.full(nr, np.nan, dtype=np.float64)
-    mask = cov > 0
-    profile[mask] = acc[mask] / cov[mask].astype(np.float64)
-    return profile, cov
 
 
 if __name__ == "__main__":

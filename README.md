@@ -7,6 +7,11 @@ measurements.
 This repository contains the code needed to reproduce CLP-CSGM experiments.
 It intentionally excludes private raw data and heavy experiment outputs.
 
+## License
+
+Source code in this repository is distributed under the MIT License.
+See the `LICENSE` file for the full text.
+
 ## 1) What this repository contains
 
 - Core CLP-CSGM implementation:

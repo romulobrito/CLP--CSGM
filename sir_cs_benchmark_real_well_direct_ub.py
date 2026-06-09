@@ -225,6 +225,25 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--no-plots", action="store_true", help="Skip dashboard figures.")
     p.add_argument("--no-parity", action="store_true", help="Skip parity scatter and parity npz.")
     p.add_argument(
+        "--profile-overlap-agg",
+        type=str,
+        default=rwf.PROFILE_OVERLAP_AGG_UNIFORM_MEAN,
+        choices=rwf.PROFILE_OVERLAP_AGG_CHOICES,
+        help=(
+            "How overlapping test-window predictions are fused into a full-depth profile "
+            "for depth figures and npz exports: uniform_mean (default) or "
+            "center_weighted_mean (triangular weights peaking at window center)."
+        ),
+    )
+    p.add_argument(
+        "--save-profile-overlap-compare",
+        action="store_true",
+        help=(
+            "Write overlap_profile_agg/ with tables and figures comparing "
+            "uniform_mean vs center_weighted_mean stitching (visualization path only)."
+        ),
+    )
+    p.add_argument(
         "--fast",
         action="store_true",
         help="Shorter run: one seed, two rhos (0.3, 0.5).",
@@ -449,6 +468,7 @@ def main() -> None:
             include_lfista,
         )
         plot_paths: List[str] = []
+        overlap_paths: List[str] = []
         if not bool(args.no_plots):
             plot_paths = save_all_comparison_plots(cfg, summary, per_seed)
             _log(tee, "Figures: {} files under {}".format(
@@ -475,9 +495,12 @@ def main() -> None:
                     "hybrid_fista",
                     "hybrid_lfista_joint",
                 ]
+                overlap_primary = rwf.validate_profile_overlap_agg(str(args.profile_overlap_agg))
                 profiles: Dict[str, np.ndarray] = {}
                 obs_stack = np.asarray(first_parity_fragment["y_true"], dtype=np.float64).reshape(n_te, l)
-                obs_profile, _ = rwf.reconstruct_depth_profile(obs_stack, row_starts, l, nrows)
+                obs_profile, _ = rwf.reconstruct_depth_profile(
+                    obs_stack, row_starts, l, nrows, overlap_agg=overlap_primary
+                )
                 profiles["observed"] = obs_profile
                 for k in known_model_keys:
                     if k not in first_parity_fragment:
@@ -486,8 +509,24 @@ def main() -> None:
                     if arr.size != n_te * l:
                         continue
                     stack = arr.reshape(n_te, l)
-                    prof, _ = rwf.reconstruct_depth_profile(stack, row_starts, l, nrows)
+                    prof, _ = rwf.reconstruct_depth_profile(
+                        stack, row_starts, l, nrows, overlap_agg=overlap_primary
+                    )
                     profiles[k] = prof
+                if bool(args.save_profile_overlap_compare):
+                    overlap_paths = rwf.save_overlap_profile_agg_bundle(
+                        run_root,
+                        overlap_primary,
+                        depth_axis,
+                        row_starts,
+                        l,
+                        nrows,
+                        obs_stack,
+                        first_parity_fragment,
+                        known_model_keys,
+                        log_line=lambda s: _log(tee, s),
+                        profile_x_label="porosity",
+                    )
                 tt_boundary = 0.5 * (depth_axis[int(row_starts[0]) - 1] + depth_axis[int(row_starts[0])]) \
                     if int(row_starts[0]) - 1 >= 0 and int(row_starts[0]) < nrows else float("nan")
                 title = (
@@ -513,6 +552,7 @@ def main() -> None:
                     **{("profile_" + k): v for k, v in profiles.items()},
                 )
                 plot_paths.append(prof_npz)
+                plot_paths.extend(overlap_paths)
             except (ValueError, KeyError) as ex:
                 _log(tee, "Warning: depth-profile plot skipped: " + str(ex))
         if (not bool(args.no_plots)) and (not bool(args.no_parity)) and parity_bundles:
@@ -550,6 +590,8 @@ def main() -> None:
             "protocol_txt": proto_path,
             "tables_dir": tables_dir,
             "figures_dir": os.path.join(run_root, "figures"),
+            "profile_overlap_agg": str(args.profile_overlap_agg),
+            "save_profile_overlap_compare": bool(args.save_profile_overlap_compare),
         }
         with open(os.path.join(run_root, "config.json"), "w", encoding="utf-8") as f:
             json.dump(cfg_dump, f, indent=2)
