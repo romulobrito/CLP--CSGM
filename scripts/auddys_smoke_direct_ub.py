@@ -9,9 +9,14 @@ This script keeps the benchmark protocol close to the existing repository flow:
 - Run direct [u,b]->y baselines plus optional CLP-CSGM branch via
   sir_cs_benchmark_direct_ub.run_direct_ub_from_data.
 
-Artifacts:
+Artifacts (aligned with sir_cs_benchmark_real_well_direct_ub.py):
   <base_dir>/runs/<run_id>/
-    tables/{detailed_results.csv,summary_by_seed.csv,summary.csv,...}
+    tables/{detailed_results.csv,summary_by_seed.csv,summary.csv,
+            summary_focus_clp_csgm_vs_ub.csv,parity_pooled.npz,
+            depth_profile_test_block.npz}
+    figures/{01..07}_*.png,08_example_ground_truth_vs_models.png,
+            09_parity_ground_truth_vs_prediction.png,
+            10_depth_profile_porosity.png}
     logs/run_console.log
     PROTOCOL.txt
     DATASET_MANIFEST.txt
@@ -28,7 +33,7 @@ import shutil
 import sys
 import time
 from dataclasses import asdict
-from typing import Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import numpy as np
 import pandas as pd
@@ -52,10 +57,36 @@ from sir_cs_pipeline_optimized import (
     apply_config_profile,
     get_basis,
     merge_gt_pred_bundles,
+    plot_direct_ub_ground_truth_vs_models,
     plot_parity_ground_truth_vs_predictions,
+    plot_real_well_depth_profile,
     save_all_comparison_plots,
     summarize_results_across_seeds,
     summarize_results_per_seed,
+)
+
+_LINE_EXAMPLE_BASE_KEYS = frozenset(
+    {
+        "Y_true",
+        "ml_only",
+        "mlp_concat_ub",
+        "pca_regression_ub",
+        "ae_regression_ub",
+        "hybrid_fista",
+        "hybrid_lfista_joint",
+        "hybrid_lfista_frozen",
+    }
+)
+
+_DEPTH_PROFILE_KNOWN_MODEL_KEYS = (
+    "ml_only",
+    "mlp_concat_ub",
+    "pca_regression_ub",
+    "ae_regression_ub",
+    "ridge_prior_csgm",
+    "mlp_prior_csgm",
+    "hybrid_fista",
+    "hybrid_lfista_joint",
 )
 
 
@@ -138,6 +169,77 @@ def _merge_parity_fragments_csgm(
     return out
 
 
+def _parse_optional_float(text: str) -> Optional[float]:
+    """Parse CLI optional float; empty string -> None."""
+    q = str(text).strip()
+    if not q:
+        return None
+    val = float(q)
+    if not np.isfinite(val):
+        raise ValueError("Non-finite float: {!r}".format(q))
+    return val
+
+
+def apply_depth_bounds(
+    df: pd.DataFrame,
+    depth_min_m: Optional[float],
+    depth_max_m: Optional[float],
+) -> pd.DataFrame:
+    """Filter rows by depth before windowing (inclusive bounds)."""
+    out = df
+    if depth_min_m is not None:
+        out = out[out["depth_m"] >= float(depth_min_m)]
+    if depth_max_m is not None:
+        out = out[out["depth_m"] <= float(depth_max_m)]
+    out = out.sort_values("depth_m").reset_index(drop=True)
+    if out.empty:
+        raise ValueError(
+            "Depth filter removed all rows (depth_min_m={}, depth_max_m={}).".format(
+                depth_min_m, depth_max_m
+            )
+        )
+    return out
+
+
+def split_depth_summary_table(
+    df: pd.DataFrame,
+    starts: np.ndarray,
+    sl_tr: slice,
+    sl_va: slice,
+    sl_te: slice,
+    window_len: int,
+    target: str,
+) -> pd.DataFrame:
+    """Per-split depth and target statistics for audit tables."""
+    rows: List[Dict[str, object]] = []
+    for name, sl in [("train", sl_tr), ("val", sl_va), ("test", sl_te)]:
+        n_win = int(sl.stop - sl.start)
+        if n_win <= 0:
+            continue
+        idx: List[int] = []
+        for wi in range(sl.start, sl.stop):
+            s = int(starts[wi])
+            idx.extend(range(s, s + int(window_len)))
+        band = df.iloc[idx]
+        corr = band[["depth_m", target]].corr().iloc[0, 1]
+        rows.append(
+            {
+                "split": name,
+                "n_windows": n_win,
+                "depth_min_m": float(band["depth_m"].min()),
+                "depth_max_m": float(band["depth_m"].max()),
+                "y_mean": float(band[target].mean()),
+                "y_std": float(band[target].std()),
+                "abs_corr_gr_y": float("nan"),
+            }
+        )
+        if "gr" in band.columns:
+            c = band[["gr", target]].corr().iloc[0, 1]
+            if np.isfinite(c):
+                rows[-1]["abs_corr_gr_y"] = float(abs(c))
+    return pd.DataFrame(rows)
+
+
 def _parse_channels(s: str) -> Tuple[str, ...]:
     out: List[str] = []
     for p in str(s).split(","):
@@ -164,7 +266,13 @@ def parse_args() -> argparse.Namespace:
         default="density,gr,res_deep,res_shallow",
         help="Comma-separated channels from Logs sheet after canonical rename.",
     )
-    p.add_argument("--target", type=str, default="k_lab", choices=("k_lab", "phi_lab"))
+    p.add_argument(
+        "--target",
+        type=str,
+        default="k_lab",
+        choices=("k_lab", "phi_lab", "phi_neutron", "phi_sonic", "phi_nd"),
+        help="Target column after canonical rename (e.g. phi_neutron for NMR-CMR export).",
+    )
     p.add_argument("--target-log10", action="store_true", help="Apply log10 transform to target before windowing.")
     p.add_argument("--window-len", type=int, default=16)
     p.add_argument("--step", type=int, default=1)
@@ -208,7 +316,186 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--csgm-opt-lr", type=float, default=0.05)
     p.add_argument("--csgm-lambda-grid", type=str, default="0.0001,0.0003,0.001,0.003,0.01,0.03,0.1")
     p.add_argument("--no-ae", action="store_true", help="Skip AE baseline for faster smoke.")
+    p.add_argument("--no-plots", action="store_true", help="Skip all dashboard figures (01-10).")
+    p.add_argument("--no-parity", action="store_true", help="Skip parity scatter and parity_pooled.npz.")
+    p.add_argument(
+        "--profile-overlap-agg",
+        type=str,
+        default=rwf.PROFILE_OVERLAP_AGG_UNIFORM_MEAN,
+        choices=rwf.PROFILE_OVERLAP_AGG_CHOICES,
+        help="Overlap fusion for depth-profile stitching (same as real_well_f03 runner).",
+    )
+    p.add_argument(
+        "--save-profile-overlap-compare",
+        action="store_true",
+        help="Export uniform_mean vs center_weighted_mean overlap comparison bundle.",
+    )
+    p.add_argument(
+        "--well-label",
+        type=str,
+        default="",
+        help="Title label for depth-profile figure (default: derived from excel path).",
+    )
+    p.add_argument(
+        "--benchmark-scenario",
+        type=str,
+        default="nmr_cmr_full",
+        help="Scenario id for manifests (e.g. nmr_cmr_full, nmr_cmr_variable).",
+    )
+    p.add_argument(
+        "--depth-min-m",
+        type=str,
+        default="",
+        help="Inclusive lower depth bound (m) applied before windowing.",
+    )
+    p.add_argument(
+        "--depth-max-m",
+        type=str,
+        default="",
+        help="Inclusive upper depth bound (m) applied before windowing.",
+    )
+    p.add_argument(
+        "--min-windows",
+        type=int,
+        default=30,
+        help="Minimum sliding windows required after depth filter.",
+    )
     return p.parse_args()
+
+
+def _merge_line_examples_csgm(
+    base: Optional[Dict[str, np.ndarray]],
+    extra: Optional[Dict[str, np.ndarray]],
+) -> Optional[Dict[str, np.ndarray]]:
+    """Merge CSGM / ablation keys from a second prior run into line examples."""
+    if extra is None:
+        return base
+    if base is None:
+        return dict(extra)
+    out = dict(base)
+    for key, val in extra.items():
+        if key not in _LINE_EXAMPLE_BASE_KEYS:
+            out[key] = val
+    return out
+
+
+def _profile_x_label_for_target(target: str, target_log10: bool = False) -> str:
+    if target in ("phi_neutron", "phi_lab", "phi_sonic", "phi_nd"):
+        return "porosity (pu)"
+    if target == "k_lab":
+        if target_log10:
+            return "log10 permeability (mD)"
+        return "permeability (mD)"
+    return str(target)
+
+
+def _depth_profile_figure_name(target: str) -> str:
+    if target in ("phi_neutron", "phi_lab", "phi_sonic", "phi_nd"):
+        return "10_depth_profile_porosity.png"
+    if target == "k_lab":
+        return "10_depth_profile_permeability.png"
+    return "10_depth_profile_{}.png".format(target)
+
+
+def _well_label_from_excel(excel_path: str, override: str) -> str:
+    if str(override).strip():
+        return str(override).strip()
+    base = os.path.basename(str(excel_path))
+    if "1045" in base:
+        return "1-BRSA-1045-SPS"
+    stem = os.path.splitext(base)[0]
+    return stem if stem else "Auddys Excel"
+
+
+def _save_depth_profile_artifacts(
+    run_root: str,
+    figures_dir: str,
+    tables_dir: str,
+    parity_fragment: Dict[str, np.ndarray],
+    depth_axis: np.ndarray,
+    row_starts_test: np.ndarray,
+    window_len: int,
+    n_te: int,
+    overlap_agg: str,
+    save_overlap_compare: bool,
+    profile_x_label: str,
+    depth_profile_name: str,
+    profile_title: str,
+    log_fn: Any,
+) -> List[str]:
+    """Build figure 10 and depth_profile_test_block.npz (F03 real-well protocol)."""
+    paths: List[str] = []
+    l = int(window_len)
+    d = np.asarray(depth_axis, dtype=np.float64).ravel()
+    nrows = int(d.shape[0])
+    rs = np.asarray(row_starts_test, dtype=np.int64).ravel()
+    if rs.shape[0] != int(n_te):
+        raise ValueError("row_starts_test length must match n_test windows.")
+
+    overlap_primary = rwf.validate_profile_overlap_agg(str(overlap_agg))
+    profiles: Dict[str, np.ndarray] = {}
+    obs_stack = np.asarray(parity_fragment["y_true"], dtype=np.float64).reshape(int(n_te), l)
+    obs_profile, _ = rwf.reconstruct_depth_profile(
+        obs_stack, rs, l, nrows, overlap_agg=overlap_primary
+    )
+    profiles["observed"] = obs_profile
+    for key in _DEPTH_PROFILE_KNOWN_MODEL_KEYS:
+        if key not in parity_fragment:
+            continue
+        arr = np.asarray(parity_fragment[key], dtype=np.float64)
+        if arr.size != int(n_te) * l:
+            continue
+        stack = arr.reshape(int(n_te), l)
+        prof, _ = rwf.reconstruct_depth_profile(
+            stack, rs, l, nrows, overlap_agg=overlap_primary
+        )
+        profiles[key] = prof
+
+    overlap_paths: List[str] = []
+    if bool(save_overlap_compare):
+        overlap_paths = rwf.save_overlap_profile_agg_bundle(
+            run_root,
+            overlap_primary,
+            d,
+            rs,
+            l,
+            nrows,
+            obs_stack,
+            parity_fragment,
+            list(_DEPTH_PROFILE_KNOWN_MODEL_KEYS),
+            log_line=log_fn,
+            profile_x_label=str(profile_x_label),
+        )
+        paths.extend(overlap_paths)
+
+    rs0 = int(rs[0]) if rs.size > 0 else 0
+    if rs0 > 0 and rs0 < nrows:
+        tt_boundary = 0.5 * (float(d[rs0 - 1]) + float(d[rs0]))
+    else:
+        tt_boundary = float("nan")
+
+    p10 = os.path.join(figures_dir, depth_profile_name)
+    plot_real_well_depth_profile(
+        d,
+        profiles,
+        p10,
+        train_test_boundary=float(tt_boundary) if np.isfinite(tt_boundary) else None,
+        title=str(profile_title),
+        profile_x_label=str(profile_x_label),
+    )
+    paths.append(p10)
+    log_fn("Figure: " + p10)
+
+    prof_npz = os.path.join(tables_dir, "depth_profile_test_block.npz")
+    np.savez_compressed(
+        prof_npz,
+        depth_axis=d,
+        row_starts_test=rs,
+        **{("profile_" + k): v for k, v in profiles.items()},
+    )
+    paths.append(prof_npz)
+    log_fn("Table: " + prof_npz)
+    return paths
 
 
 def load_logs_table(excel_path: str, sheet_name: str) -> pd.DataFrame:
@@ -303,6 +590,10 @@ def write_dataset_manifest(
     target: str,
     target_log10: bool,
     n_rows_raw: int,
+    n_rows_after_depth_filter: int,
+    depth_min_m: Optional[float],
+    depth_max_m: Optional[float],
+    benchmark_scenario: str,
     n_windows: int,
     n_tr: int,
     n_va: int,
@@ -310,15 +601,20 @@ def write_dataset_manifest(
     window_len: int,
     step: int,
     paper_strict_paired_b: bool,
+    split_depth_csv: str,
 ) -> str:
     lines = [
-        "Auddys Excel smoke dataset manifest.",
+        "Auddys Excel CLP-CSGM benchmark dataset manifest.",
         "",
+        "benchmark_scenario: {}".format(benchmark_scenario),
         "excel_path: {}".format(excel_path),
         "u_channels: {}".format(", ".join(channels)),
         "target: {}".format(target),
         "target_log10: {}".format(target_log10),
-        "n_rows_raw: {}".format(n_rows_raw),
+        "depth_min_m: {}".format(depth_min_m if depth_min_m is not None else "none"),
+        "depth_max_m: {}".format(depth_max_m if depth_max_m is not None else "none"),
+        "n_rows_excel: {}".format(n_rows_raw),
+        "n_rows_after_depth_filter: {}".format(n_rows_after_depth_filter),
         "n_windows: {}".format(n_windows),
         "window_len: {}".format(window_len),
         "step: {}".format(step),
@@ -326,11 +622,13 @@ def write_dataset_manifest(
         "split_windows_n_val: {}".format(n_va),
         "split_windows_n_test: {}".format(n_te),
         "paper_strict_paired_b: {}".format(bool(paper_strict_paired_b)),
+        "split_depth_summary_csv: {}".format(split_depth_csv),
         "",
         "Protocol notes:",
-        "  - Windows follow depth order (contiguous split).",
+        "  - Depth filter applied before sliding windows (if depth_min/max set).",
+        "  - Windows follow depth order (contiguous split; no random split).",
         "  - Alpha arrays are built as Y @ Psi.",
-        "  - Intended for smoke validation of model response only.",
+        "  - See experiments/nmr_cmr_variable/PROTOCOL_NMR_CMR_variable.md when scenario is nmr_cmr_variable.",
     ]
     path = os.path.join(run_root, "DATASET_MANIFEST.txt")
     with open(path, "w", encoding="utf-8") as f:
@@ -359,6 +657,7 @@ def main() -> None:
         rhos = _parse_float_list(args.rhos)
 
         df = load_logs_table(args.excel_path, args.sheet)
+        n_rows_excel = int(df.shape[0])
         y_col = str(args.target)
         if bool(args.target_log10):
             y_raw = np.clip(df[y_col].to_numpy(dtype=np.float64), 1e-6, None)
@@ -366,10 +665,36 @@ def main() -> None:
             df[y_col] = np.log10(y_raw)
             _log(tee, "Target log10 transform applied to {}".format(y_col))
 
+        depth_min_m = _parse_optional_float(str(args.depth_min_m))
+        depth_max_m = _parse_optional_float(str(args.depth_max_m))
+        benchmark_scenario = str(args.benchmark_scenario).strip() or "nmr_cmr_full"
+        if depth_min_m is not None or depth_max_m is not None:
+            df = apply_depth_bounds(df, depth_min_m, depth_max_m)
+            _log(
+                tee,
+                "Depth filter: min={} max={} -> {} rows".format(
+                    depth_min_m, depth_max_m, int(df.shape[0])
+                ),
+            )
+        n_rows_filtered = int(df.shape[0])
+
         x_all, y_all, starts = build_windows(df, channels, y_col, int(args.window_len), int(args.step))
+        min_windows = int(args.min_windows)
+        if int(x_all.shape[0]) < min_windows:
+            raise ValueError(
+                "Only {} windows after depth filter; need >= {} (min-windows).".format(
+                    int(x_all.shape[0]), min_windows
+                )
+            )
         sl_tr, sl_va, sl_te, n_tr, n_va, n_te = rwf.contiguous_split(
             int(x_all.shape[0]), float(args.train_frac), float(args.val_frac)
         )
+        split_depth_df = split_depth_summary_table(
+            df, starts, sl_tr, sl_va, sl_te, int(args.window_len), y_col
+        )
+        split_depth_path = os.path.join(tables_dir, "split_depth_summary.csv")
+        split_depth_df.to_csv(split_depth_path, index=False)
+        _log(tee, "Wrote split depth summary: " + split_depth_path)
         data = build_data_dict(x_all, y_all, sl_tr, sl_va, sl_te, str(args.residual_basis))
 
         cfg = Config(config_profile="real_well_f03_direct_ub")
@@ -407,13 +732,17 @@ def main() -> None:
 
         detailed_parts: List[pd.DataFrame] = []
         parity_bundles: List[Dict[str, np.ndarray]] = []
+        first_line_examples: Optional[Dict[str, np.ndarray]] = None
+        first_parity_fragment: Optional[Dict[str, np.ndarray]] = None
+        first_job_info: Dict[str, float] = {}
         for seed in seeds:
             for rho in rhos:
                 frags_this_rho: List[Dict[str, np.ndarray]] = []
+                line_ex_this_rho: Optional[Dict[str, np.ndarray]] = None
                 for pt in prior_types:
                     cfg.csgm_prior_type = str(pt)
                     _log(tee, "[run] seed={} rho={} csgm_prior={}".format(seed, rho, pt))
-                    df_res, parity_fragment, _examples = run_direct_ub_from_data(
+                    df_res, parity_fragment, line_ex = run_direct_ub_from_data(
                         cfg=cfg,
                         dub_cfg=dub_cfg,
                         data=data,
@@ -426,7 +755,12 @@ def main() -> None:
                     )
                     detailed_parts.append(df_res)
                     frags_this_rho.append(parity_fragment)
+                    line_ex_this_rho = _merge_line_examples_csgm(line_ex_this_rho, line_ex)
                 parity_bundles.append(_merge_parity_fragments_csgm(frags_this_rho))
+                if first_parity_fragment is None:
+                    first_parity_fragment = _merge_parity_fragments_csgm(frags_this_rho)
+                    first_line_examples = line_ex_this_rho
+                    first_job_info = {"seed": float(seed), "rho": float(rho)}
 
         cfg.csgm_prior_type = str(prior_types[0])
 
@@ -447,13 +781,59 @@ def main() -> None:
 
         cfg.save_dir = run_root
         cfg.plots_subdir = "figures"
-        plot_paths = save_all_comparison_plots(cfg, summary, per_seed)
-        merged = merge_gt_pred_bundles(parity_bundles)
-        if "y_true" in merged:
-            parity_path = os.path.join(figures_dir, "09_parity_ground_truth_vs_prediction.png")
-            plot_parity_ground_truth_vs_predictions(cfg, merged, parity_path)
-            plot_paths.append(parity_path)
-            np.savez_compressed(os.path.join(tables_dir, "parity_pooled.npz"), **merged)
+        plot_paths: List[str] = []
+        if not bool(args.no_plots):
+            plot_paths = save_all_comparison_plots(cfg, summary, per_seed)
+            if first_line_examples is not None:
+                p08 = os.path.join(figures_dir, "08_example_ground_truth_vs_models.png")
+                plot_direct_ub_ground_truth_vs_models(first_line_examples, p08)
+                plot_paths.append(p08)
+                _log(tee, "Figure: " + p08)
+
+        if (not bool(args.no_plots)) and first_parity_fragment is not None:
+            try:
+                row_starts_test = np.asarray(starts[sl_te], dtype=np.int64)
+                depth_axis = df["depth_m"].to_numpy(dtype=np.float64)
+                well_label = _well_label_from_excel(args.excel_path, str(args.well_label))
+                profile_x_label = _profile_x_label_for_target(y_col, bool(args.target_log10))
+                depth_profile_name = _depth_profile_figure_name(y_col)
+                profile_title = (
+                    "{} {} profile (test block) | rho={:.2f}, seed={}".format(
+                        well_label,
+                        y_col,
+                        float(first_job_info.get("rho", float("nan"))),
+                        int(first_job_info.get("seed", 0)),
+                    )
+                )
+                plot_paths.extend(
+                    _save_depth_profile_artifacts(
+                        run_root=run_root,
+                        figures_dir=figures_dir,
+                        tables_dir=tables_dir,
+                        parity_fragment=first_parity_fragment,
+                        depth_axis=depth_axis,
+                        row_starts_test=row_starts_test,
+                        window_len=int(args.window_len),
+                        n_te=int(n_te),
+                        overlap_agg=str(args.profile_overlap_agg),
+                        save_overlap_compare=bool(args.save_profile_overlap_compare),
+                        profile_x_label=profile_x_label,
+                        depth_profile_name=depth_profile_name,
+                        profile_title=profile_title,
+                        log_fn=lambda msg: _log(tee, msg),
+                    )
+                )
+            except (ValueError, KeyError) as ex:
+                _log(tee, "Warning: depth-profile plot skipped: " + str(ex))
+
+        if (not bool(args.no_parity)) and parity_bundles:
+            merged = merge_gt_pred_bundles(parity_bundles)
+            if "y_true" in merged:
+                if not bool(args.no_plots):
+                    parity_path = os.path.join(figures_dir, "09_parity_ground_truth_vs_prediction.png")
+                    plot_parity_ground_truth_vs_predictions(cfg, merged, parity_path)
+                    plot_paths.append(parity_path)
+                np.savez_compressed(os.path.join(tables_dir, "parity_pooled.npz"), **merged)
 
         copied_plot_paths: List[str] = []
         if str(args.copy_figures_to).strip():
@@ -483,6 +863,11 @@ def main() -> None:
                     "dub_cfg": asdict(dub_cfg),
                     "args": vars(args),
                     "resolved": {
+                        "benchmark_scenario": benchmark_scenario,
+                        "depth_min_m": depth_min_m,
+                        "depth_max_m": depth_max_m,
+                        "n_rows_excel": n_rows_excel,
+                        "n_rows_after_depth_filter": n_rows_filtered,
                         "csgm_prior_types": list(prior_types),
                         "channels": list(channels),
                         "seeds": list(seeds),
@@ -491,6 +876,7 @@ def main() -> None:
                         "n_train": int(n_tr),
                         "n_val": int(n_va),
                         "n_test": int(n_te),
+                        "split_depth_summary_csv": split_depth_path,
                     },
                 },
                 f,
@@ -513,7 +899,11 @@ def main() -> None:
             channels=channels,
             target=y_col,
             target_log10=bool(args.target_log10),
-            n_rows_raw=int(df.shape[0]),
+            n_rows_raw=n_rows_excel,
+            n_rows_after_depth_filter=n_rows_filtered,
+            depth_min_m=depth_min_m,
+            depth_max_m=depth_max_m,
+            benchmark_scenario=benchmark_scenario,
             n_windows=int(x_all.shape[0]),
             n_tr=int(n_tr),
             n_va=int(n_va),
@@ -521,6 +911,7 @@ def main() -> None:
             window_len=int(args.window_len),
             step=int(args.step),
             paper_strict_paired_b=bool(cfg.paper_strict_paired_b),
+            split_depth_csv=split_depth_path,
         )
         elapsed = float(time.time() - t0)
         run_manifest_path = write_run_manifest(

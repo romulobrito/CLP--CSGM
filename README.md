@@ -106,7 +106,7 @@ pip install -r requirements.txt
 ```
 
 Main dependencies are listed in `requirements.txt`:
-`numpy`, `pandas`, `matplotlib`, `scikit-learn`, `torch`, `PyWavelets`.
+`numpy`, `pandas`, `matplotlib`, `scikit-learn`, `torch`, `PyWavelets`, `scipy`.
 
 ## 5) Main reproducibility runs
 
@@ -211,6 +211,9 @@ Scripts commonly used for paper supplementary analyses:
 - `scripts/clp_csgm_ablation_assets.py`
 - `scripts/clp_csgm_paper_assets.py`
 - `scripts/clp_csgm_quick_figures.py`
+- `scripts/clp_csgm_uncertainty_assets.py`
+
+Student-t seed-level intervals and paired Delta-RMSE tables/figures for the manuscript are regenerated with `scripts/clp_csgm_uncertainty_assets.py` (requires local `outputs/` summaries from the main benchmarks).
 
 ## 8) Embargo boundary check (anti-leakage)
 

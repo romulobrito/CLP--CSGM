@@ -5,6 +5,7 @@ matplotlib>=3.4
 scikit-learn>=1.0
 torch>=2.0
 PyWavelets>=1.4
+scipy>=1.7
 
 # Optional: legacy SPGL1 profiles in sir_cs_pipeline_optimized.py
 # (not needed for --run-csgm-m2 --no-lfista)

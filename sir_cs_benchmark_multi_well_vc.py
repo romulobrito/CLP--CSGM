@@ -646,12 +646,18 @@ def main() -> None:
                     )
                 )
                 p10 = os.path.join(run_root, cfg.plots_subdir, "10_depth_profile_target.png")
+                target_plot_label = (
+                    "V_c"
+                    if str(meta.get("target", "")).strip().lower() == "vc"
+                    else str(meta.get("target", "target"))
+                )
                 plot_real_well_depth_profile(
                     depth_axis,
                     profiles,
                     p10,
                     train_test_boundary=None,
                     title=title,
+                    profile_x_label=target_plot_label,
                 )
                 plot_paths.append(p10)
                 _log(tee, "Figure: " + p10)

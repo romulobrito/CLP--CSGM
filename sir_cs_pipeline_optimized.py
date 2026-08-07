@@ -1867,7 +1867,27 @@ def summarize_results_across_seeds(per_seed: pd.DataFrame) -> pd.DataFrame:
         )
         .reset_index()
     )
-    g["rmse_ci95_half"] = 1.96 * g["rmse_sem"]
+    # Student-t 95% half-width with df = n_seeds - 1 (not the normal z=1.96 factor).
+    # For n_seeds=3 this uses t_{2,0.975} ~= 4.303.
+    def _t95_half(row: pd.Series) -> float:
+        n = int(row["n_seeds"])
+        if n <= 1:
+            return 0.0
+        # Critical values for common small df; asymptotic 1.96 for large n.
+        tcrit = {
+            1: 12.706204736432095,
+            2: 4.302652729911275,
+            3: 3.182446305284263,
+            4: 2.7764451051977987,
+            5: 2.57058183563631,
+            6: 2.4469118511449682,
+            7: 2.3646242515927846,
+            8: 2.306004135204166,
+            9: 2.2621571627982046,
+        }.get(n - 1, 1.96)
+        return float(tcrit) * float(row["rmse_sem"])
+
+    g["rmse_ci95_half"] = g.apply(_t95_half, axis=1)
     return g.sort_values(["measurement_ratio", "method"]).reset_index(drop=True)
 
 
@@ -2573,12 +2593,13 @@ def plot_real_well_depth_profile(
     train_test_boundary: Optional[float] = None,
     title: str = "F03-4 porosity profile (test block reconstruction)",
     methods_to_plot: Optional[List[str]] = None,
+    profile_x_label: str = "porosity",
 ) -> None:
     """
-    Depth profile: porosity (x-axis) vs depth (y-axis, increasing downward), matching
-    the external-report convention. profiles must contain key 'observed' (required);
-    any other keys are treated as model predictions (point-wise, aligned with
-    depth_axis via overlapping-window averaging). NaN-safe: NaNs are left as gaps.
+    Depth profile: target property (x-axis) vs depth (y-axis, increasing downward),
+    matching the external-report convention. profiles must contain key 'observed'
+    (required); any other keys are treated as model predictions (point-wise, aligned
+    with depth_axis via overlapping-window averaging). NaN-safe: NaNs are left as gaps.
     """
     import matplotlib.pyplot as plt
 
@@ -2621,11 +2642,11 @@ def plot_real_well_depth_profile(
     if train_test_boundary is not None and np.isfinite(float(train_test_boundary)):
         ax0.axhline(float(train_test_boundary), color="#d62728", linestyle="--", linewidth=1.0,
                     label="train/test limit")
-    ax0.set_xlabel("porosity")
+    ax0.set_xlabel(str(profile_x_label))
     ax0.set_ylabel("depth (m)")
     ax0.grid(True, alpha=0.3)
-    ax0.legend(loc="best", fontsize=8)
-    ax0.set_title("observed")
+    ax0.legend(loc="best", fontsize=10)
+    ax0.set_title("observed", fontsize=11)
 
     for ax_i, k in enumerate(present, start=1):
         ax = axes[ax_i]
@@ -2639,20 +2660,20 @@ def plot_real_well_depth_profile(
         ax.plot(pr[m_pr], d[m_pr], color=col, linewidth=1.2, label=label)
         if train_test_boundary is not None and np.isfinite(float(train_test_boundary)):
             ax.axhline(float(train_test_boundary), color="#d62728", linestyle="--", linewidth=1.0)
-        ax.set_xlabel("porosity")
+        ax.set_xlabel(str(profile_x_label))
         ax.grid(True, alpha=0.3)
-        ax.legend(loc="best", fontsize=8)
-        ax.set_title(label)
+        ax.legend(loc="best", fontsize=10)
+        ax.set_title(label, fontsize=11)
 
     for ax in axes:
         ax.invert_yaxis()
 
-    fig.suptitle(title, fontsize=12, y=1.0)
+    fig.suptitle(title, fontsize=13, y=1.0)
     pdir = os.path.dirname(os.path.abspath(save_path))
     if pdir:
         os.makedirs(pdir, exist_ok=True)
     plt.tight_layout()
-    fig.savefig(save_path, dpi=180, bbox_inches="tight")
+    fig.savefig(save_path, dpi=300, bbox_inches="tight")
     plt.close(fig)
 
 
