@@ -20,7 +20,7 @@ for step in 8 16 32; do
   python sir_cs_benchmark_multi_well_vc.py \
     --train-path "data/F02-1,F03-2,F06-1_6logs_30dB.txt" \
     --test-path "data/F03-4_6logs_30dB.txt" \
-    --channels sonic,rhob,gr,ai,vp \
+    --channels sonic,rhob,ai,vp \
     --target vc \
     --step "${step}" \
     --measurement-ratios 0.05,0.10,0.20 \
@@ -34,7 +34,7 @@ for step in 8 16 32; do
   python sir_cs_benchmark_multi_well_vc.py \
     --train-path "data/F02-1,F03-2,F06-1_6logs_30dB.txt" \
     --test-path "data/F03-4_6logs_30dB.txt" \
-    --channels sonic,rhob,gr,ai,vp \
+    --channels sonic,rhob,ai,vp \
     --target vc \
     --step "${step}" \
     --measurement-ratios 0.05,0.10,0.20 \

@@ -110,13 +110,20 @@ Main dependencies are listed in `requirements.txt`:
 
 ## 5) Main reproducibility runs
 
-### 5.1 Cross-well Vc (Ridge prior + CLP-CSGM ablations)
+The main cross-well Vc benchmark excludes gamma ray from the dense input
+`u`. Use `--channels sonic,rhob,ai,vp` (sonic, bulk density, acoustic
+impedance, and Vp). This matches the manuscript protocol and the default of
+`sir_cs_benchmark_multi_well_vc.py`. GR is omitted to avoid the trivial
+GR -> Vc shortcut (Larionov-derived target). The GR-inclusive setting is
+only a sensitivity check (Appendix B.7); see Section 8 below.
+
+### 5.1 Cross-well Vc, main no-GR protocol (Ridge prior + CLP-CSGM ablations)
 
 ```bash
 python sir_cs_benchmark_multi_well_vc.py \
   --train-path data/F02-1,F03-2,F06-1_6logs_30dB.txt \
   --test-path data/F03-4_6logs_30dB.txt \
-  --channels sonic,rhob,gr,ai,vp \
+  --channels sonic,rhob,ai,vp \
   --target vc \
   --step 8 \
   --rhos 0.05,0.10,0.20 \
@@ -129,13 +136,13 @@ python sir_cs_benchmark_multi_well_vc.py \
 
 Repeat with `--step 16` and `--step 32`.
 
-### 5.2 Cross-well Vc (MLP prior sensitivity)
+### 5.2 Cross-well Vc, main no-GR protocol (MLP prior sensitivity)
 
 ```bash
 python sir_cs_benchmark_multi_well_vc.py \
   --train-path data/F02-1,F03-2,F06-1_6logs_30dB.txt \
   --test-path data/F03-4_6logs_30dB.txt \
-  --channels sonic,rhob,gr,ai,vp \
+  --channels sonic,rhob,ai,vp \
   --target vc \
   --step 8 \
   --rhos 0.05,0.10,0.20 \
@@ -176,11 +183,13 @@ python sir_cs_benchmark_real_well_direct_ub.py \
 
 ## 6) Fast smoke tests
 
+Smoke tests use the same main no-GR cross-well channels as Section 5.1.
+
 ```bash
 python sir_cs_benchmark_multi_well_vc.py \
   --train-path data/F02-1,F03-2,F06-1_6logs_30dB.txt \
   --test-path data/F03-4_6logs_30dB.txt \
-  --channels sonic,rhob,gr,ai,vp \
+  --channels sonic,rhob,ai,vp \
   --target vc \
   --step 32 \
   --run-csgm-m2 \
@@ -215,13 +224,51 @@ Scripts commonly used for paper supplementary analyses:
 
 Student-t seed-level intervals and paired Delta-RMSE tables/figures for the manuscript are regenerated with `scripts/clp_csgm_uncertainty_assets.py` (requires local `outputs/` summaries from the main benchmarks).
 
-## 8) Embargo boundary check (anti-leakage)
+## 8) Appendix B.7: GR-inclusive sensitivity and embargo boundary check
 
-For cross-well train/validation overlap diagnostics, use:
+These commands are **not** the main cross-well benchmark. They reproduce the
+Appendix B.7 channel-ablation / embargo-style checks: reintroducing GR into
+`u` (stronger dense context) and optionally dropping overlap-prone
+train/validation boundary windows.
 
-- `--val-embargo-windows <k>` in `sir_cs_benchmark_multi_well_vc.py`
+GR-inclusive sensitivity (step 16 example; do not treat as the main result):
 
-This drops overlap-prone boundary windows between train and validation tails.
+```bash
+python sir_cs_benchmark_multi_well_vc.py \
+  --train-path data/F02-1,F03-2,F06-1_6logs_30dB.txt \
+  --test-path data/F03-4_6logs_30dB.txt \
+  --channels sonic,rhob,gr,ai,vp \
+  --target vc \
+  --step 16 \
+  --rhos 0.05,0.10,0.20 \
+  --seeds 7,23,41 \
+  --run-csgm-m2 \
+  --run-csgm-ablations \
+  --csgm-prior-type ridge \
+  --no-lfista
+```
+
+Embargo-style boundary check (main no-GR channels + boundary-window removal):
+
+```bash
+python sir_cs_benchmark_multi_well_vc.py \
+  --train-path data/F02-1,F03-2,F06-1_6logs_30dB.txt \
+  --test-path data/F03-4_6logs_30dB.txt \
+  --channels sonic,rhob,ai,vp \
+  --target vc \
+  --step 16 \
+  --rhos 0.05,0.10,0.20 \
+  --seeds 7,23,41 \
+  --val-embargo-windows 4 \
+  --run-csgm-m2 \
+  --run-csgm-ablations \
+  --csgm-prior-type ridge \
+  --no-lfista
+```
+
+`--val-embargo-windows <k>` drops overlap-prone boundary windows between the
+training and validation tails. Combine with `--channels sonic,rhob,gr,ai,vp`
+only when reproducing the GR-inclusive embargo row of Appendix B.7.
 
 ## 9) Outputs and repository policy
 
@@ -236,6 +283,8 @@ This repository should remain lightweight:
 - Main seeds: `7,23,41`
 - Cross-well low-data steps: `8,16,32`
 - Cross-well rhos: `0.05,0.10,0.20`
+- Cross-well dense channels (main): `sonic,rhob,ai,vp` (GR excluded)
+- Cross-well GR-inclusive channels (Appendix B.7 only): `sonic,rhob,gr,ai,vp`
 - F03-4 rhos: `0.20,0.30,0.40,0.50,0.60`
 - Main method: CLP-CSGM Ridge
 - Sensitivity method: CLP-CSGM MLP prior
