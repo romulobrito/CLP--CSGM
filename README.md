@@ -59,15 +59,17 @@ where:
 
 ### 3.1 Repository policy
 
-This repository ships **code only**. It does **not** commit processed well-log
-tables or field datasets. Reasons:
+This repository ships **code plus a small synthetic smoke dataset**. It does
+**not** redistribute the processed F3 paper tables or private field datasets.
 
+- **Synthetic smoke (included):** `data/synthetic/` provides dummy well-log
+  tables so reviewers can install dependencies and execute CLP-CSGM smoke tests
+  with no external download. See Section 6.1 and `data/README.md`.
 - **F3 / Zhang et al. (Sensors):** the study publishes scripts and data via an
   external archive and cites industry/academic data access (see their Data
-  Availability Statement). Redistribution here would require checking **their**
-  archive license and any **third-party** data terms (e.g., F3 demo projects).
-  Users should obtain files from the sources linked in that paper and place them
-  locally under `data/`.
+  Availability Statement). Users should obtain the tabulated inputs from the
+  sources linked in that paper and place them locally under `data/` for full
+  paper reproduction (Section 5).
 - **Lapa / Alvarez et al. (Journal of Applied Geophysics):** the article states
   that the authors **do not have permission to share the data**. Do **not**
   expect a public drop-in dataset for those supplementary scripts; keep any local
@@ -85,10 +87,13 @@ current terms:
 
 ### 3.3 Local layout expected by the benchmarks
 
-Create `data/` at the repository root and place required files there after you
-obtain them under the applicable licenses.
+Synthetic tables already present for offline tests:
 
-Required files for the **main paper** benchmark commands:
+- `data/synthetic/SYN-A,SYN-B,SYN-C_6logs.txt`
+- `data/synthetic/SYN-D_6logs.txt`
+- `data/synthetic/SYN-D_AC+GR+Porosity.txt`
+
+For the **main paper** benchmark commands (Section 5), also place:
 
 - `data/F02-1,F03-2,F06-1_6logs_30dB.txt`
 - `data/F03-4_6logs_30dB.txt`
@@ -181,9 +186,67 @@ python sir_cs_benchmark_real_well_direct_ub.py \
   --no-lfista
 ```
 
-## 6) Fast smoke tests
+## 6) Smoke tests
 
-Smoke tests use the same main no-GR cross-well channels as Section 5.1.
+### 6.1 Offline synthetic smoke (no external data; recommended first check)
+
+Uses only the committed tables under `data/synthetic/`. This path is intended
+for CAGEO/code evaluation when the paper F3 files are not yet available locally.
+It exercises CLP-CSGM Ridge, structural ablations, and both benchmark launchers
+with reduced epochs/iterations.
+
+```bash
+bash scripts/run_synthetic_smoke.sh
+```
+
+Equivalent explicit commands:
+
+```bash
+python scripts/make_synthetic_smoke_data.py   # optional regenerate
+
+python sir_cs_benchmark_multi_well_vc.py \
+  --train-path data/synthetic/SYN-A,SYN-B,SYN-C_6logs.txt \
+  --test-path data/synthetic/SYN-D_6logs.txt \
+  --channels sonic,rhob,ai,vp \
+  --target vc \
+  --window-len 64 \
+  --step 16 \
+  --fast \
+  --run-csgm-m2 \
+  --run-csgm-ablations \
+  --csgm-prior-type ridge \
+  --csgm-ae-epochs 8 \
+  --csgm-iters 20 \
+  --csgm-restarts 1 \
+  --csgm-lambda-grid 0.01 \
+  --no-lfista \
+  --base-dir outputs/synthetic_smoke/cross_well_vc \
+  --run-id synthetic_crosswell_smoke
+
+python sir_cs_benchmark_real_well_direct_ub.py \
+  --data-path data/synthetic/SYN-D_AC+GR+Porosity.txt \
+  --u-channels gr \
+  --window-len 64 \
+  --step 8 \
+  --fast \
+  --run-csgm-m2 \
+  --run-csgm-ablations \
+  --csgm-prior-type ridge \
+  --csgm-ae-epochs 8 \
+  --csgm-iters 20 \
+  --csgm-restarts 1 \
+  --csgm-lambda-grid 0.01 \
+  --no-lfista \
+  --base-dir outputs/synthetic_smoke/real_well \
+  --run-id synthetic_porosity_smoke
+```
+
+Synthetic RMSE values are **not** comparable to the manuscript tables.
+
+### 6.2 Fast smoke on paper F3 files (requires local data)
+
+Same main no-GR channels as Section 5.1, but needs the F3 tables listed in
+Section 3.3.
 
 ```bash
 python sir_cs_benchmark_multi_well_vc.py \
@@ -212,6 +275,8 @@ python sir_cs_benchmark_real_well_direct_ub.py \
 
 Scripts commonly used for paper supplementary analyses:
 
+- `scripts/make_synthetic_smoke_data.py`
+- `scripts/run_synthetic_smoke.sh`
 - `scripts/auddys_smoke_direct_ub.py`
 - `scripts/auddys_clp_csgm_eda.py`
 - `scripts/clp_csgm_diagnostic_assets.py`

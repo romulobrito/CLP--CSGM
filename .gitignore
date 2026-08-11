@@ -10,11 +10,14 @@ __pycache__/
 venv/
 env/
 
-# Private/local data
+# Private/local data (real F3 / field tables stay local)
 data/*.txt
 data/*.csv
 data/*.npz
 !data/README.md
+# Public synthetic smoke tables are tracked
+!data/synthetic/
+!data/synthetic/**
 
 # Experiment outputs
 outputs/
