@@ -36,3 +36,7 @@ Status: implementation pending independent fixture tests and end-to-end field ex
 ## Functional validation (05d.2b)
 
 Run `python scripts/test_manuscript_adapters.py`. Independent artificial producer fixtures cover Tables 04–24, check expected numeric transformations, and require the comparator to reject the artificial results as manuscript reproduction. Negative cases include missing/duplicate rows, missing columns, nonfinite metrics, invalid counts where applicable, and unexpected F03 compact-table ratios. The CLI checks complete normalization, absent producer classification, reference directory rejection and nonempty destination rejection. Results are saved to outputs/validation/adapter_fixtures.json. The technical workflow runs this suite; approval requires an actual successful execution. These fixtures do not establish the validity of historical run selection or field data.
+
+## Executed fixture validation
+
+At commit `b4f05405a30566a33f650288d9345b8876725ee1`, [technical run 45902028961](https://github.com/romulobrito/CLP--CSGM/actions/runs/45902028961) passed 110 static, 169 total technical and 124 adapter checks across all 21 tables. [Synthetic run 45902029001](https://github.com/romulobrito/CLP--CSGM/actions/runs/45902029001) passed both benchmarks and 28 method cells. No field data was executed. See LOCAL_FIELD_REPRODUCTION.md for the local execution gate.

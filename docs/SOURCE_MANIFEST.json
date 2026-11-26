@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "ADAPTER_FIXTURES_CONFIGURED_EXECUTION_PENDING",
+  "status": "FIELD_REPRODUCTION_PREPARED_AWAITING_AUTHORIZED_LOCAL_INPUTS",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -1028,7 +1028,7 @@
     }
   },
   "release05d2b": {
-    "status": "CONFIGURED_PENDING_EXECUTION",
+    "status": "PASS_INDEPENDENT_ARTIFICIAL_FIXTURES",
     "test": "scripts/test_manuscript_adapters.py",
     "scope": "Independent artificial fixtures for all tables; adversarial missing/duplicate rows, missing columns, nonfinite metrics, selected invalid counts and CLI safeguards; no field data.",
     "changes": [
@@ -1038,8 +1038,38 @@
       "Remove invalid normalized output on failure"
     ],
     "pending": [
-      "CI fixture result",
       "Real producer and protocol checks"
-    ]
+    ],
+    "validation": {
+      "tested_commit": "b4f05405a30566a33f650288d9345b8876725ee1",
+      "technical_run": 45902028961,
+      "technical_job": 140189845252,
+      "static_checks": 110,
+      "technical_checks": 169,
+      "adapter_tables": 21,
+      "adapter_fixture_checks": 124,
+      "failures": 0,
+      "technical_artifact": 15156457528,
+      "synthetic_run": 45902029001,
+      "synthetic_job": 140189845394,
+      "synthetic_benchmarks": 2,
+      "synthetic_method_cells": 28,
+      "synthetic_artifact": 15155573479
+    }
+  },
+  "release05d2c": {
+    "status": "NOT_RUN_AWAITING_LOCAL_INPUTS",
+    "runbook": "docs/LOCAL_FIELD_REPRODUCTION.md",
+    "first_gate": "Table 4, ten paired seeds, nine step/rho cells; independent fresh checkout",
+    "tested_code_commit": "b4f05405a30566a33f650288d9345b8876725ee1",
+    "field_runs_executed": 0,
+    "required_input_roles": [
+      "F3 development",
+      "F3 held-out Vc",
+      "F3 GR-only porosity",
+      "Lapa workbook",
+      "Well 861 enriched workbook"
+    ],
+    "scope": "Local execution only; no restricted inputs or outputs committed. Verify historical settings before Lapa and exact profile claims."
   }
 }
