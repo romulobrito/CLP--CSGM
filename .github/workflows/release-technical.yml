@@ -50,6 +50,8 @@ jobs:
           python scripts/aggregate_861_tables.py --self-test
       - name: Published reference integrity and comparison fixture
         run: python scripts/compare_manuscript_results.py --self-test
+      - name: Validate all 21 producer adapters
+        run: python scripts/test_manuscript_adapters.py
       - name: Preserve technical evidence
         if: always()
         uses: actions/upload-artifact@v4

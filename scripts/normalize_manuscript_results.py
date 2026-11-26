@@ -7,6 +7,7 @@ are used solely to check coverage. No training or field-data reads.
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
 import json
 from pathlib import Path
@@ -94,6 +95,7 @@ def adapt(table, source):
     if table in {"05","12","22"}:
         d=summary(d,LAPA_METHODS if table=="22" else F03_METHODS)
         if table=="05":
+            grid(d,["method"],"rho",{0.2,0.3,0.4,0.5,0.6})
             wide=d.pivot(index="method",columns="rho",values="rmse").reset_index()
             return wide.rename(columns={rho:f"rmse_rho{int(round(rho*100)):03d}" for rho in (0.2,0.3,0.4,0.5,0.6)})
         if table=="12":
@@ -189,7 +191,11 @@ def normalize(spec, source, destination):
     path=source.resolve()
     require(not path.is_relative_to(cmp.REF.resolve()),"Reference directory cannot be a producer")
     h=file_hash(path)
+    with path.open(newline="", encoding="utf-8-sig") as handle:
+        header=next(csv.reader(handle), [])
+    require(header and len(header)==len(set(header)),"Missing or duplicate producer columns")
     d=adapt(table,pd.read_csv(path))
+    require(not d.columns.duplicated().any(),"Ambiguous normalized columns")
     columns=spec["keys"]+spec["metrics"]
     d=d[columns].copy()
     unique(d,spec["keys"])
@@ -197,11 +203,20 @@ def normalize(spec, source, destination):
         if m not in spec["categorical_metrics"]:
             d[m]=pd.to_numeric(d[m],errors="raise")
             require(np.isfinite(d[m]).all(),f"Nonfinite metric {m}")
+            if m in spec["exact_metrics"]:
+                require(((d[m]>=0) & (d[m]%1==0)).all(),f"Invalid integer count {m}")
+            if "rmse" in m and "delta" not in m and "gain" not in m or m in {"mae","relative_l2","clp","ae","prior_only","time_per_window_sec","relative_time_vs_ae"}:
+                require((d[m]>=0).all(),f"Negative error or time: {m}")
     require(file_hash(path)==h,"Producer changed during read")
-    d.to_csv(destination,index=False)
-    observed=cmp.read(destination,spec)
-    expected=cmp.read(ROOT/spec["file"],spec)
-    require(set(observed)==set(expected),"Missing/unexpected published row keys")
+    require(not destination.exists(),"Destination already exists")
+    try:
+        d.to_csv(destination,index=False)
+        observed=cmp.read(destination,spec)
+        expected=cmp.read(ROOT/spec["file"],spec)
+        require(set(observed)==set(expected),"Missing/unexpected published row keys")
+    except Exception:
+        destination.unlink(missing_ok=True)
+        raise
     return {"table":table,"status":"NORMALIZED","producer":str(path),"producer_sha256":h,
             "observed_sha256":file_hash(destination),"rows":len(d),
             "protocol_verification":"NOT_PERFORMED"}
