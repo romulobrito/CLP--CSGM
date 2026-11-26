@@ -1,0 +1,449 @@
+{
+  "schema_version": 1,
+  "status": "PLANNED_NOT_VALIDATED",
+  "source_repository": "romulobrito/CS-ML",
+  "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
+  "destination_repository": "romulobrito/CLP--CSGM",
+  "public_base_commit": "bba1423eac98d1f93375905e9d7e974fcd3a8261",
+  "manuscript_revision": "CAGEO-D-26-01398; 89-page revised manuscript; ten paired seeds primary",
+  "policy": "Explicit allowlist; no raw/processed well data, trained models, unpublished outputs, reviewer correspondence, credentials, or unrelated research. All candidate code must be reviewed for embedded data and paths before transfer. Dependency review entries are not approved for automatic transfer. No claim of numerical reproduction.",
+  "entries": [
+    {
+      "group": "preserve",
+      "source_path": "csgm_m2_module.py",
+      "destination_path": "csgm_m2_module.py",
+      "source_blob": "396fe9d16bf3f95aa5c170a65e9ee3dc1f0cabc8",
+      "public_base_blob": "396fe9d16bf3f95aa5c170a65e9ee3dc1f0cabc8",
+      "status": "identical"
+    },
+    {
+      "group": "preserve",
+      "source_path": "external_benchmarks.py",
+      "destination_path": "external_benchmarks.py",
+      "source_blob": "2d9153d6e74f23112894303ef53eaffbe9fc3f14",
+      "public_base_blob": "2d9153d6e74f23112894303ef53eaffbe9fc3f14",
+      "status": "identical"
+    },
+    {
+      "group": "preserve",
+      "source_path": "real_well_f03.py",
+      "destination_path": "real_well_f03.py",
+      "source_blob": "2234e380f9b0820f9818f8a2c36f43ba344fef9f",
+      "public_base_blob": "2234e380f9b0820f9818f8a2c36f43ba344fef9f",
+      "status": "identical"
+    },
+    {
+      "group": "preserve",
+      "source_path": "sir_cs_benchmark_real_well_direct_ub.py",
+      "destination_path": "sir_cs_benchmark_real_well_direct_ub.py",
+      "source_blob": "e07bb068295fecd30352c098b5767d22c7ff6ca9",
+      "public_base_blob": "e07bb068295fecd30352c098b5767d22c7ff6ca9",
+      "status": "identical"
+    },
+    {
+      "group": "preserve",
+      "source_path": "scripts/auddys_clp_csgm_eda.py",
+      "destination_path": "scripts/auddys_clp_csgm_eda.py",
+      "source_blob": "2f523a069f92efe64fe8a9f7bf714316486132bd",
+      "public_base_blob": "2f523a069f92efe64fe8a9f7bf714316486132bd",
+      "status": "identical"
+    },
+    {
+      "group": "preserve",
+      "source_path": "scripts/clp_csgm_diagnostic_assets.py",
+      "destination_path": "scripts/clp_csgm_diagnostic_assets.py",
+      "source_blob": "bec28127cd616489a5b8dad6496c7d68fb5dd3ea",
+      "public_base_blob": "bec28127cd616489a5b8dad6496c7d68fb5dd3ea",
+      "status": "identical"
+    },
+    {
+      "group": "preserve",
+      "source_path": "scripts/clp_csgm_quick_figures.py",
+      "destination_path": "scripts/clp_csgm_quick_figures.py",
+      "source_blob": "9501f2a52b1347f58b95d379a7c675a0e1a26bc5",
+      "public_base_blob": "9501f2a52b1347f58b95d379a7c675a0e1a26bc5",
+      "status": "identical"
+    },
+    {
+      "group": "preserve",
+      "source_path": "scripts/clp_csgm_runtime_study.py",
+      "destination_path": "scripts/clp_csgm_runtime_study.py",
+      "source_blob": "d2d977fb01b1681c767954c32d25c2d5911079a4",
+      "public_base_blob": "d2d977fb01b1681c767954c32d25c2d5911079a4",
+      "status": "identical"
+    },
+    {
+      "group": "preserve",
+      "source_path": "scripts/clp_csgm_srec_diagnostics.py",
+      "destination_path": "scripts/clp_csgm_srec_diagnostics.py",
+      "source_blob": "34b02432e803fc8ba4c875e83676d9fbe6e6e6ea",
+      "public_base_blob": "34b02432e803fc8ba4c875e83676d9fbe6e6e6ea",
+      "status": "identical"
+    },
+    {
+      "group": "preserve",
+      "source_path": "scripts/clp_csgm_uncertainty_assets.py",
+      "destination_path": "scripts/clp_csgm_uncertainty_assets.py",
+      "source_blob": "14737fb5e9857070c15573aa945830c20378d1b4",
+      "public_base_blob": "14737fb5e9857070c15573aa945830c20378d1b4",
+      "status": "identical"
+    },
+    {
+      "group": "preserve",
+      "source_path": "scripts/f03_stress_benchmark_bundle.py",
+      "destination_path": "scripts/f03_stress_benchmark_bundle.py",
+      "source_blob": "4e1be64e38b77aeeb6f12a7273cca698d0b66304",
+      "public_base_blob": "4e1be64e38b77aeeb6f12a7273cca698d0b66304",
+      "status": "identical"
+    },
+    {
+      "group": "preserve",
+      "source_path": "scripts/paper_sparse_reconstruction_figures.py",
+      "destination_path": "scripts/paper_sparse_reconstruction_figures.py",
+      "source_blob": "7afffb895e640115b121444e540980127c999d28",
+      "public_base_blob": "7afffb895e640115b121444e540980127c999d28",
+      "status": "identical"
+    },
+    {
+      "group": "release01",
+      "source_path": "direct_ub_baselines.py",
+      "destination_path": "direct_ub_baselines.py",
+      "source_blob": "8a049f51542a858c30d5152203ee4584fad5c614",
+      "public_base_blob": "f8c93f403b3ca6acc5f2595df5448afa94b39ced",
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release01",
+      "source_path": "multi_well_vc.py",
+      "destination_path": "multi_well_vc.py",
+      "source_blob": "1542470fe21efa2cf7d4cd00116320d38662d702",
+      "public_base_blob": "37b1d156089dcab63c4374ac2b43a7105c6fa9bc",
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release01",
+      "source_path": "sir_cs_benchmark_direct_ub.py",
+      "destination_path": "sir_cs_benchmark_direct_ub.py",
+      "source_blob": "55a097b1b9b1c2ec46232cdfc0ee55a26625e6a6",
+      "public_base_blob": "600bbc2545aebb51de1b6c6a85726c25a352981e",
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release01",
+      "source_path": "sir_cs_benchmark_multi_well_vc.py",
+      "destination_path": "sir_cs_benchmark_multi_well_vc.py",
+      "source_blob": "f2eda168b331f3e537dd2170cbc032f0224e2f93",
+      "public_base_blob": "6cbaf9e97dd7c9efb9ce58fd96135142f13f6e39",
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release01",
+      "source_path": "sir_cs_pipeline_optimized.py",
+      "destination_path": "sir_cs_pipeline_optimized.py",
+      "source_blob": "d5baf707cc3f8cbe7fcee6d627c84fe28ac6aeb9",
+      "public_base_blob": "a3de0338034ceb6d566fce806c9491b73606ad70",
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release01",
+      "source_path": "sir_cs_pipeline.py",
+      "destination_path": "sir_cs_pipeline.py",
+      "source_blob": "d5e41eb89997b3506c06ddcdc68265a743ca0eea",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release01",
+      "source_path": "bases_extra.py",
+      "destination_path": "bases_extra.py",
+      "source_blob": "15f718df49becdb624224320b6b9813d11d9aeb5",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/run_r1m04_seed_panel.sh",
+      "destination_path": "scripts/run_r1m04_seed_panel.sh",
+      "source_blob": "559d23e734642db1c25fc601f664a3cf2a29c977",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/clp_csgm_r1m04_seed_panel_assets.py",
+      "destination_path": "scripts/clp_csgm_r1m04_seed_panel_assets.py",
+      "source_blob": "57b0104c3d04bce13e9b6291018bc29aa9328896",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/run_r1m03_step32_dev_splits.sh",
+      "destination_path": "scripts/run_r1m03_step32_dev_splits.sh",
+      "source_blob": "b7cec989c24494319dd0a99f2544ed65e4de1971",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/clp_csgm_r1m03_step32_split_assets.py",
+      "destination_path": "scripts/clp_csgm_r1m03_step32_split_assets.py",
+      "source_blob": "425482701148c3de91437b7f1184adcaade5b75b",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/run_r1m08_explicit_mask.sh",
+      "destination_path": "scripts/run_r1m08_explicit_mask.sh",
+      "source_blob": "6b46217c972c4e1e6c358d942039cc72e87a7551",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/clp_csgm_r1m08_explicit_mask_assets.py",
+      "destination_path": "scripts/clp_csgm_r1m08_explicit_mask_assets.py",
+      "source_blob": "86e066074c65748dd71a593f1a52dc95f8f1fa36",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/run_r2m04_omega_placement.sh",
+      "destination_path": "scripts/run_r2m04_omega_placement.sh",
+      "source_blob": "141350771e903e50631713b02b5a23af15188190",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/clp_csgm_r2m04_omega_assets.py",
+      "destination_path": "scripts/clp_csgm_r2m04_omega_assets.py",
+      "source_blob": "84dd6de90aa7b07e6be5f486b1af9c2c2a60ea98",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/run_r3m03_simple_baselines.py",
+      "destination_path": "scripts/run_r3m03_simple_baselines.py",
+      "source_blob": "77e27ea9ad02e61c2ba45bca15e2c5f79ebccb24",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/run_r3m03_noise_sweep.py",
+      "destination_path": "scripts/run_r3m03_noise_sweep.py",
+      "source_blob": "c386280393750c90932aa6260f18b36658a2702e",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/run_r3m03_smooth_audit.py",
+      "destination_path": "scripts/run_r3m03_smooth_audit.py",
+      "source_blob": "30a1db89fa0562a18c069800945b9a099ac7cfaf",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/run_r3m03_affine_limit_audit.py",
+      "destination_path": "scripts/run_r3m03_affine_limit_audit.py",
+      "source_blob": "2d220910b3d6dfdaf3fdb236599370b3838bdeed",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/auddys_smoke_direct_ub.py",
+      "destination_path": "scripts/auddys_smoke_direct_ub.py",
+      "source_blob": "4d8ce4e0cc138c4bd063a66b0af08f92fa452abd",
+      "public_base_blob": "8e4ed0e1ab975e1c168d2c605b21e8088e0aab61",
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/run_r1m11_861_phi_lab.py",
+      "destination_path": "scripts/run_r1m11_861_phi_lab.py",
+      "source_blob": "90a3c4c9ed4544042af003cd5d37a3ed0c3e88e1",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/clp_csgm_r1m06_controlled_assets.py",
+      "destination_path": "scripts/clp_csgm_r1m06_controlled_assets.py",
+      "source_blob": "42d650c2028d9013b381bf0751c237dd84a21be9",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/clp_csgm_ablation_assets.py",
+      "destination_path": "scripts/clp_csgm_ablation_assets.py",
+      "source_blob": "cddf0c946e5733a1202872dc95ee611713bf7631",
+      "public_base_blob": "f15d5e2abc8552c481fd951bbe67ff28a968a125",
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/clp_csgm_paper_assets.py",
+      "destination_path": "scripts/clp_csgm_paper_assets.py",
+      "source_blob": "8ea0b470dac7d7d8cd9997d5442ca9d135848735",
+      "public_base_blob": "9f52fb06379409173b3c46596008b207c15b1da5",
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/paper_figure_style.py",
+      "destination_path": "scripts/paper_figure_style.py",
+      "source_blob": "e0007528c5919ce4da97528047a1dad7fdcf4521",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/plot_r3m03_depth_profiles.py",
+      "destination_path": "scripts/plot_r3m03_depth_profiles.py",
+      "source_blob": "a1c0e3f50420b4b8d808042c8db877f002fb8a2a",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/plot_r3m03_noise_panels.py",
+      "destination_path": "scripts/plot_r3m03_noise_panels.py",
+      "source_blob": "0539c42c09aa692ebd393fcbd5cc818c8e12bbfa",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/plot_r3m03_rmse_vs_noise.py",
+      "destination_path": "scripts/plot_r3m03_rmse_vs_noise.py",
+      "source_blob": "03959755d659b0850f5d4caf3f6c93d3a524877b",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/plot_r3m06_manuscript_figures.py",
+      "destination_path": "scripts/plot_r3m06_manuscript_figures.py",
+      "source_blob": "071d310fb2e4d65e66f10bf1309eda104046a80e",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "protocol_candidates",
+      "source_path": "paper_clp_csgm/docs/revision/PROTOCOL_R1M03_step32_dev_splits.md",
+      "destination_path": "docs/protocols/PROTOCOL_R1M03_step32_dev_splits.md",
+      "source_blob": "9fc89c1a980ad68fec97f206555386a5f3d2f002",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "protocol_candidates",
+      "source_path": "paper_clp_csgm/docs/revision/PROTOCOL_R1M04_seed_panel.md",
+      "destination_path": "docs/protocols/PROTOCOL_R1M04_seed_panel.md",
+      "source_blob": "4b17894914d332327958f5ef1d40d5c90fc4858c",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "protocol_candidates",
+      "source_path": "paper_clp_csgm/docs/revision/PROTOCOL_R1M08_explicit_mask.md",
+      "destination_path": "docs/protocols/PROTOCOL_R1M08_explicit_mask.md",
+      "source_blob": "cdc613f1b9852a93db40bb6ddc15d3e017c30311",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "protocol_candidates",
+      "source_path": "paper_clp_csgm/docs/revision/PROTOCOL_R2M04_omega_placement.md",
+      "destination_path": "docs/protocols/PROTOCOL_R2M04_omega_placement.md",
+      "source_blob": "9bcd64d1859d45977c9a21474c395dac6891cf57",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "dependency_review",
+      "source_path": "lfista_module.py",
+      "destination_path": "lfista_module.py",
+      "source_blob": "f9da03483147db26c3c537454398f11d4d9233d8",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "dependency_review",
+      "source_path": "sir_cs_lfista.py",
+      "destination_path": "sir_cs_lfista.py",
+      "source_blob": "0d97c2abb2c981421144310035cbdfefc36e543c",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "dependency_review",
+      "source_path": "scripts/csgm_m2_grid.py",
+      "destination_path": "scripts/csgm_m2_grid.py",
+      "source_blob": "2a55b564b0c98cc0634a09097d35be033ed7d0bd",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "dependency_review",
+      "source_path": "scripts/regenerate_paper_eda_figures.py",
+      "destination_path": "scripts/regenerate_paper_eda_figures.py",
+      "source_blob": "c3998afbbeb05d274ef3771eca9b07b60bb9a48a",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "dependency_review",
+      "source_path": "scripts/audit_r1m11_861_depth_masking.py",
+      "destination_path": "scripts/audit_r1m11_861_depth_masking.py",
+      "source_blob": "923de4647db9379319a2722ee95a2ea2303436c6",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "dependency_review",
+      "source_path": "scripts/run_r1m11_861_global_depth_mask.py",
+      "destination_path": "scripts/run_r1m11_861_global_depth_mask.py",
+      "source_blob": "285de849e946917966b617ed7ff62343b78c4ae1",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "dependency_review",
+      "source_path": "scripts/diagnose_r3m03_smooth_edges.py",
+      "destination_path": "scripts/diagnose_r3m03_smooth_edges.py",
+      "source_blob": "68eddfa93ac2746bd32d13dbd15f26b073deffed",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    }
+  ],
+  "preserve_public_only": [
+    "LICENSE",
+    ".gitignore",
+    "README.md",
+    "requirements.txt",
+    "data/README.md",
+    "data/synthetic/",
+    "scripts/make_synthetic_smoke_data.py",
+    "scripts/run_synthetic_smoke.sh",
+    "scripts/run_reproduce_clp_csgm.sh"
+  ],
+  "adaptation_required": [
+    "README and launchers: primary ten seeds vs three-seed ablations; fix --measurement-ratios versus --rhos",
+    "Review runtime imports and legacy optional LFISTA dependencies",
+    "Make protocol and output paths standalone; do not import manuscript/reviewer correspondence",
+    "Review spreadsheet dependencies and Well 861 local authorized input",
+    "Pin versions only after actual environment verification",
+    "Verify figure/table source provenance, including old three-seed assets and final ten-seed Table 4",
+    "Run clean imports and synthetic smoke, then compare authorized data results to reference values"
+  ],
+  "release_gate": "Not ready for tag/release until transfer, standalone validation, and reproducibility limitations are documented. Full scientific reproduction is not claimed without authorized data and matching results."
+}
