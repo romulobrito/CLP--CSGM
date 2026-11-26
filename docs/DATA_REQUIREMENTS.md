@@ -25,7 +25,7 @@ The main driver and four revision shell drivers accept CLP_CROSS_TRAIN and CLP_C
 
 ## Lapa permeability (Appendix D)
 
-The data source is Alvarez et al. (2025). The original README records restrictions on redistribution. The launcher accepts --excel-path and --sheet Logs; the default workbook name is data/Auddys_table.xlsx. Required source columns: Depth(m), Density (g/cc), GR (API), Res_Deep, Res_Shallow, Phi_Neutron (pu), Phi_Sonic (pu), Phi_ND (pu), Phi_lab (pu), k_lab (mD), RQI, FZI_lab, Lithotype, HFU. The loader maps these to canonical names. The manuscript uses seven auxiliary channels, length 16, step 4 and log10 permeability; the exact historical channel list and preprocessing/run configuration must be verified before a paper-equivalent command can be certified.
+The data source is Alvarez et al. (2025). The original README records restrictions on redistribution. The launcher accepts --excel-path and --sheet Logs; the default workbook name is data/Auddys_table.xlsx. Required source columns: Depth(m), Density (g/cc), GR (API), Res_Deep, Res_Shallow, Phi_Neutron (pu), Phi_Sonic (pu), Phi_ND (pu), Phi_lab (pu), k_lab (mD), RQI, FZI_lab, Lithotype, HFU. The loader maps these to canonical names. The manuscript uses seven auxiliary channels, length 16, step 4 and log10 permeability; the EDA screens density,gr,res_deep,res_shallow,phi_neutron,phi_sonic,phi_nd, a candidate list; the exact historical channel list and preprocessing/run configuration must be verified before a paper-equivalent command can be certified.
 
 ## Well 861 (Appendix E)
 

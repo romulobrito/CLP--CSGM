@@ -38,10 +38,10 @@ The legacy three-seed cross-well paired tables and figures carry distinct filena
 | B.11, Table 16 | bash scripts/run_r2m04_omega_placement.sh | Five observation/noise draws, model seeds fixed |
 | B.12, Tables 17–19 | See sequence below | Separate reference-noise and noise-sensitivity experiments |
 | B.13 | bash scripts/run_regenerate_figure_inputs.sh | Dedicated profile; historical overlap mode still unverified |
-| B.14, Table 20 | python scripts/clp_csgm_runtime_study.py | Hardware-dependent timing |
+| B.14, Table 20 | python scripts/clp_csgm_runtime_study.py | Historical GR-inclusive cross-well timing diagnostic; see HISTORICAL_PROVENANCE.md |
 | C, Table 21 | python scripts/f03_stress_benchmark_bundle.py | Inspect --dry-run first |
 | D, Table 22 | scripts/auddys_smoke_direct_ub.py | Authorized Lapa data and exact historical config needed |
-| E, Tables 23–24 | python scripts/run_r1m11_861_phi_lab.py --excel-path /path/to/authorized.xlsx | Authorized 87-row workbook; within-window withheld score |
+| E, Tables 23–24 | python scripts/run_r1m11_861_phi_lab.py --excel-path /path/to/authorized.xlsx | Authorized 87-row workbook; then python scripts/aggregate_861_tables.py; within-window withheld score |
 
 For B.7, retain L=64, step 16, rho grid 0.05,0.10,0.20, seeds 7,23,41, tail validation 0.1, noise 0.01, Ridge and the same train/test wells. Run the cross-well launcher four times, with channels sonic,rhob,ai,vp or sonic,rhob,gr,ai,vp and embargo 0 or 4. Use distinct run IDs and a separate base directory; compare with Table 13. The new B.7 driver generates table13.csv and figure20.png; numerical agreement is pending.
 
@@ -67,3 +67,5 @@ Well 861: three depth-held-out blocks, length 8, step 1, 16 validation rows, thr
 ## Known gaps
 
 See COVERAGE_AUDIT.md for evidence-by-evidence status. The scripts exist for the listed experiments, but command coverage for all figures, exact historical profile/configuration equivalence, Lapa settings, and all table-level numerical agreement remain open. The theoretical proofs in Appendix A are not executable experiments.
+
+For recovered source lineage and outstanding local metadata, see [HISTORICAL_PROVENANCE.md](HISTORICAL_PROVENANCE.md).

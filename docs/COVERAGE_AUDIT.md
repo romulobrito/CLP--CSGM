@@ -16,7 +16,7 @@ Basis: revised 89-page manuscript, 26 Nov 2026; public preparation branch at b0b
 | Fig. 10 | F03 launcher depth-profile NPZ | Dedicated rho 0.20 profile and exact seed/figure selection |
 | Tables 7–8 | clp_csgm_ablation_assets.py | Three-seed structural ablations |
 | Tables 9–10 | clp_csgm_r1m06_controlled_assets.py | Controlled Ridge vs MLP, no uncontrolled historical MLP |
-| Table 11; Fig. 11 | clp_csgm_srec_diagnostics.py | Shares runtime case builder; verify historical setup and percentiles |
+| Table 11; Fig. 11 | clp_csgm_srec_diagnostics.py | Historical source/table lineage recovered; numerical check pending |
 | Figs. 14–15 | paper_sparse_reconstruction_figures.py | Use F03 rho 0.20 and cross-well step 16 rho 0.10, seed 7, example 0; validate selections |
 | Figs. 16–17 | F03 launcher qualitative and parity artifacts | Exact windows, pooled correlations and plot selection |
 | Figs. 18–19 | clp_csgm_diagnostic_assets.py | Compare plots/metrics to manuscript |
@@ -28,10 +28,10 @@ Basis: revised 89-page manuscript, 26 Nov 2026; public preparation branch at b0b
 | Table 19; Fig. 21 | run_r3m03_smooth_audit.py | Seven-candidate grid, validation-only, no CLP refit |
 | Fig. 22 | run_r3m03_affine_limit_audit.py | Same seven-candidate smoother, ceiling 1e6 |
 | Fig. 23 | plot_r3m03_noise_panels.py | Step 32 seed 7 rho 0.20, noise 0.01/0.05 |
-| Table 20; Fig. 25 | clp_csgm_runtime_study.py | Historical GR-inclusive cross-well and noise 0.02 in code; confirm published provenance, hardware-specific timing |
+| Table 20; Fig. 25 | clp_csgm_runtime_study.py | Historical source/table lineage recovered; GR-inclusive, noise 0.02; hardware-specific timing |
 | Table 21 | f03_stress_benchmark_bundle.py | Four scenarios, exact outputs and values |
-| Table 22; Figs. 26–29 | auddys_smoke_direct_ub.py | BLOCKED for exact reproduction: seven-channel configuration and export lineage not located in source tree; authorized workbook required |
-| Tables 23–24 | run_r1m11_861_phi_lab.py | Authorized 87-row workbook; detail/summary outputs available, paired/fold exporter and numerical comparison pending |
+| Table 22; Figs. 26–29 | auddys_smoke_direct_ub.py | BLOCKED for exact reproduction: EDA identifies a candidate seven-channel list; exact run config not tracked; authorized workbook required |
+| Tables 23–24 | run_r1m11_861_phi_lab.py | Authorized 87-row workbook; new aggregate_861_tables.py produces paired/fold CSVs; numerical comparison pending |
 | Appendix E overlap diagnostic | New audit_861_depth_indices.py | Exact index formula; no field values required for row-count mode |
 
 Figures 1, 2, 5 are conceptual diagrams; Appendix A is theoretical, not a numerical reproduction workflow.
@@ -48,3 +48,7 @@ Figures 1, 2, 5 are conceptual diagrams; Appendix A is theoretical, not a numeri
 ## Execution evidence and gate
 
 RELEASE-05a recheck: [run 45896373226](https://github.com/romulobrito/CLP--CSGM/actions/runs/45896373226), 98 static and 151 total checks, zero failures. RELEASE-05b: [run 45896373313](https://github.com/romulobrito/CLP--CSGM/actions/runs/45896373313), two synthetic benchmarks and 28 required method cells, zero failures. Both tested b0bc692. New coverage tools have not yet run on the GitHub runner. No field outputs were copied or generated. Coverage audit delivered with open items, not a declaration of full reproduction.
+
+## Follow-up audit (05c.2)
+
+See [HISTORICAL_PROVENANCE.md](HISTORICAL_PROVENANCE.md) for the matching source-table blob evidence, Lapa candidate channels, remaining local metadata requests and the 861 table exporter. No field-data equivalence is claimed.

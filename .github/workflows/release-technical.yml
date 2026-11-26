@@ -43,6 +43,11 @@ jobs:
           python -m pip freeze > outputs/validation/pip-freeze.txt
       - name: Runtime module and CLI validation
         run: python scripts/check_release.py --report outputs/validation/technical.json
+      - name: Coverage tool checks without field inputs
+        run: |
+          python scripts/run_b7_gr_embargo.py --dry-run
+          python scripts/audit_861_depth_indices.py --row-count 87
+          python scripts/aggregate_861_tables.py --self-test
       - name: Preserve technical evidence
         if: always()
         uses: actions/upload-artifact@v4

@@ -16,7 +16,7 @@ python sir_cs_benchmark_multi_well_vc.py \
   --target vc --window-len 64 --step 16 --rhos 0.20 --seeds 7 \
   --val-frac 0.1 --val-split-mode tail --measurement-kind subsample \
   --measurement-noise-std 0.01 --run-csgm-m2 --csgm-prior-type ridge \
-  --no-lfista --profile-overlap-agg uniform_mean \
+  --no-lfista --profile-overlap-agg uniform_mean --save-profile-overlap-compare \
   --base-dir outputs/paper_regen/crosswell_depth_profile --run-id step16_seed7_rho0p2
 python scripts/build_regenerated_figure_inputs.py
 python scripts/plot_r3m06_manuscript_figures.py

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "SYNTHETIC_VALIDATION_PASSED_COVERAGE_AUDITED_WITH_OPEN_ITEMS",
+  "status": "COVERAGE_FOLLOWUP_PARTIAL_LOCAL_PROVENANCE_REQUIRED",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -848,6 +848,39 @@
       "Confirm historical Figure 8/24 overlap aggregation and profile source.",
       "Confirm all figure selections and table exporters; especially F03 qualitative views, Lapa and Well 861 paired tables.",
       "Run new scripts and compare field outputs to manuscript."
-    ]
+    ],
+    "followup": {
+      "status": "PARTIAL",
+      "source_table_identity": {
+        "historical_commit": "53190576cd8321d927682c86881927b9d51aacb1",
+        "manuscript_commit": "fa96db0193a12841067de3928db41e1d97115e56",
+        "runtime_blob": "f82700e987d712ba443386155af31c407b3830a4",
+        "srec_blob": "0dedde711400ffab83b482be12ff53a420f4bca0"
+      },
+      "lapa_candidate_channels": [
+        "density",
+        "gr",
+        "res_deep",
+        "res_shallow",
+        "phi_neutron",
+        "phi_sonic",
+        "phi_nd"
+      ],
+      "lapa_status": "EDA candidate, not historical run verification",
+      "new_861_exporter": "scripts/aggregate_861_tables.py",
+      "historical_profile": "local metadata absent; compare overlap modes",
+      "prior_ci": {
+        "commit": "336644a819eb51679e7954bd5587d67c28f62eb1",
+        "technical_run": 45897223809,
+        "synthetic_run": 45897223799,
+        "conclusion": "success"
+      },
+      "pending": [
+        "New coverage tool CI",
+        "Local Lapa run config",
+        "Historical profile config and F03 selected profile",
+        "Exact field numerical comparison and figure selection"
+      ]
+    }
   }
 }
