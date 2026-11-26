@@ -466,7 +466,8 @@ def plot_crosswell_target_hist() -> str:
     ax.hist(y_train, bins=50, alpha=0.65, density=True, label="train wells")
     ax.hist(y_test, bins=50, alpha=0.65, density=True, label="held-out F03-4")
     ax.set_xlabel(r"$V_c$ (clay-volume fraction)")
-    ax.set_ylabel("density")
+    # Name the histogram normalization so it is not read as bulk density.
+    ax.set_ylabel("Probability density")
     ax.set_title(r"Cross-well $V_c$ target distribution")
     ax.grid(True, alpha=0.3)
     ax.legend(loc="upper right")

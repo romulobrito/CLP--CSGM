@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "MODULE_TRANSFER_PENDING_RUNTIME_VALIDATION",
+  "status": "EXPERIMENT_SCRIPT_TRANSFER_PENDING_STANDALONE_ADAPTATION",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -173,7 +173,9 @@
       "destination_path": "scripts/run_r1m04_seed_panel.sh",
       "source_blob": "559d23e734642db1c25fc601f664a3cf2a29c977",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "559d23e734642db1c25fc601f664a3cf2a29c977",
+      "destination_mode": "100755"
     },
     {
       "group": "release02",
@@ -181,7 +183,9 @@
       "destination_path": "scripts/clp_csgm_r1m04_seed_panel_assets.py",
       "source_blob": "57b0104c3d04bce13e9b6291018bc29aa9328896",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "57b0104c3d04bce13e9b6291018bc29aa9328896",
+      "destination_mode": "100644"
     },
     {
       "group": "release02",
@@ -189,7 +193,9 @@
       "destination_path": "scripts/run_r1m03_step32_dev_splits.sh",
       "source_blob": "b7cec989c24494319dd0a99f2544ed65e4de1971",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "b7cec989c24494319dd0a99f2544ed65e4de1971",
+      "destination_mode": "100755"
     },
     {
       "group": "release02",
@@ -197,7 +203,9 @@
       "destination_path": "scripts/clp_csgm_r1m03_step32_split_assets.py",
       "source_blob": "425482701148c3de91437b7f1184adcaade5b75b",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "425482701148c3de91437b7f1184adcaade5b75b",
+      "destination_mode": "100644"
     },
     {
       "group": "release02",
@@ -205,7 +213,9 @@
       "destination_path": "scripts/run_r1m08_explicit_mask.sh",
       "source_blob": "6b46217c972c4e1e6c358d942039cc72e87a7551",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "6b46217c972c4e1e6c358d942039cc72e87a7551",
+      "destination_mode": "100755"
     },
     {
       "group": "release02",
@@ -213,7 +223,9 @@
       "destination_path": "scripts/clp_csgm_r1m08_explicit_mask_assets.py",
       "source_blob": "86e066074c65748dd71a593f1a52dc95f8f1fa36",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "86e066074c65748dd71a593f1a52dc95f8f1fa36",
+      "destination_mode": "100644"
     },
     {
       "group": "release02",
@@ -221,7 +233,9 @@
       "destination_path": "scripts/run_r2m04_omega_placement.sh",
       "source_blob": "141350771e903e50631713b02b5a23af15188190",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "141350771e903e50631713b02b5a23af15188190",
+      "destination_mode": "100755"
     },
     {
       "group": "release02",
@@ -229,7 +243,9 @@
       "destination_path": "scripts/clp_csgm_r2m04_omega_assets.py",
       "source_blob": "84dd6de90aa7b07e6be5f486b1af9c2c2a60ea98",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "84dd6de90aa7b07e6be5f486b1af9c2c2a60ea98",
+      "destination_mode": "100644"
     },
     {
       "group": "release02",
@@ -237,7 +253,9 @@
       "destination_path": "scripts/run_r3m03_simple_baselines.py",
       "source_blob": "77e27ea9ad02e61c2ba45bca15e2c5f79ebccb24",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "77e27ea9ad02e61c2ba45bca15e2c5f79ebccb24",
+      "destination_mode": "100644"
     },
     {
       "group": "release02",
@@ -245,7 +263,9 @@
       "destination_path": "scripts/run_r3m03_noise_sweep.py",
       "source_blob": "c386280393750c90932aa6260f18b36658a2702e",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "c386280393750c90932aa6260f18b36658a2702e",
+      "destination_mode": "100644"
     },
     {
       "group": "release02",
@@ -253,7 +273,9 @@
       "destination_path": "scripts/run_r3m03_smooth_audit.py",
       "source_blob": "30a1db89fa0562a18c069800945b9a099ac7cfaf",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "30a1db89fa0562a18c069800945b9a099ac7cfaf",
+      "destination_mode": "100644"
     },
     {
       "group": "release02",
@@ -261,7 +283,9 @@
       "destination_path": "scripts/run_r3m03_affine_limit_audit.py",
       "source_blob": "2d220910b3d6dfdaf3fdb236599370b3838bdeed",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "2d220910b3d6dfdaf3fdb236599370b3838bdeed",
+      "destination_mode": "100644"
     },
     {
       "group": "release02",
@@ -269,7 +293,9 @@
       "destination_path": "scripts/auddys_smoke_direct_ub.py",
       "source_blob": "4d8ce4e0cc138c4bd063a66b0af08f92fa452abd",
       "public_base_blob": "8e4ed0e1ab975e1c168d2c605b21e8088e0aab61",
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "4d8ce4e0cc138c4bd063a66b0af08f92fa452abd",
+      "destination_mode": "100644"
     },
     {
       "group": "release02",
@@ -277,7 +303,9 @@
       "destination_path": "scripts/run_r1m11_861_phi_lab.py",
       "source_blob": "90a3c4c9ed4544042af003cd5d37a3ed0c3e88e1",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "90a3c4c9ed4544042af003cd5d37a3ed0c3e88e1",
+      "destination_mode": "100644"
     },
     {
       "group": "release02",
@@ -285,7 +313,9 @@
       "destination_path": "scripts/clp_csgm_r1m06_controlled_assets.py",
       "source_blob": "42d650c2028d9013b381bf0751c237dd84a21be9",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "42d650c2028d9013b381bf0751c237dd84a21be9",
+      "destination_mode": "100644"
     },
     {
       "group": "release02",
@@ -293,7 +323,9 @@
       "destination_path": "scripts/clp_csgm_ablation_assets.py",
       "source_blob": "cddf0c946e5733a1202872dc95ee611713bf7631",
       "public_base_blob": "f15d5e2abc8552c481fd951bbe67ff28a968a125",
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "cddf0c946e5733a1202872dc95ee611713bf7631",
+      "destination_mode": "100644"
     },
     {
       "group": "release02",
@@ -301,7 +333,9 @@
       "destination_path": "scripts/clp_csgm_paper_assets.py",
       "source_blob": "8ea0b470dac7d7d8cd9997d5442ca9d135848735",
       "public_base_blob": "9f52fb06379409173b3c46596008b207c15b1da5",
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "8ea0b470dac7d7d8cd9997d5442ca9d135848735",
+      "destination_mode": "100644"
     },
     {
       "group": "release02",
@@ -309,7 +343,9 @@
       "destination_path": "scripts/paper_figure_style.py",
       "source_blob": "e0007528c5919ce4da97528047a1dad7fdcf4521",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "e0007528c5919ce4da97528047a1dad7fdcf4521",
+      "destination_mode": "100644"
     },
     {
       "group": "release02",
@@ -317,7 +353,9 @@
       "destination_path": "scripts/plot_r3m03_depth_profiles.py",
       "source_blob": "a1c0e3f50420b4b8d808042c8db877f002fb8a2a",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "a1c0e3f50420b4b8d808042c8db877f002fb8a2a",
+      "destination_mode": "100644"
     },
     {
       "group": "release02",
@@ -325,7 +363,9 @@
       "destination_path": "scripts/plot_r3m03_noise_panels.py",
       "source_blob": "0539c42c09aa692ebd393fcbd5cc818c8e12bbfa",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "0539c42c09aa692ebd393fcbd5cc818c8e12bbfa",
+      "destination_mode": "100644"
     },
     {
       "group": "release02",
@@ -333,7 +373,9 @@
       "destination_path": "scripts/plot_r3m03_rmse_vs_noise.py",
       "source_blob": "03959755d659b0850f5d4caf3f6c93d3a524877b",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "03959755d659b0850f5d4caf3f6c93d3a524877b",
+      "destination_mode": "100644"
     },
     {
       "group": "release02",
@@ -341,7 +383,9 @@
       "destination_path": "scripts/plot_r3m06_manuscript_figures.py",
       "source_blob": "071d310fb2e4d65e66f10bf1309eda104046a80e",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "071d310fb2e4d65e66f10bf1309eda104046a80e",
+      "destination_mode": "100644"
     },
     {
       "group": "protocol_candidates",
@@ -454,5 +498,10 @@
     "Verify figure/table source provenance, including old three-seed assets and final ten-seed Table 4",
     "Run clean imports and synthetic smoke, then compare authorized data results to reference values"
   ],
-  "release_gate": "Not ready for tag/release until transfer, standalone validation, and reproducibility limitations are documented. Full scientific reproduction is not claimed without authorized data and matching results."
+  "release_gate": "Not ready for tag/release until transfer, standalone validation, and reproducibility limitations are documented. Full scientific reproduction is not claimed without authorized data and matching results.",
+  "release02_verification": {
+    "source_blob_matches": 22,
+    "executable_shell_scripts": 4,
+    "scope": "Byte identity only; no numerical tests; existing paths preserved for subsequent adaptation."
+  }
 }
