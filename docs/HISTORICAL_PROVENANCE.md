@@ -18,3 +18,20 @@ Read-only inspection of the original CS-ML worktree (including ignored outputs):
 - Check historical runtime/S-REC run metadata if available; confirm exact invocation against the co-committed CSVs. Return only protocol metadata and aggregate comparison, not workbooks or arrays.
 
 History inspected: CS-ML main, revision checkpoint, first runner commit 0f111b0ae9deefe8173b229bd9d0a05c6553630c, manuscript checkpoint 53190576cd8321d927682c86881927b9d51aacb1, no-GR provenance commit a8a6fec4492d826f186a6d4b2bc339ef034f68d9; tracked trees contained no original Lapa run config or dedicated profile config. Do not infer missing run metadata from a default or from EDA alone.
+
+## Local audit complement (author-reported, 26 November 2026)
+
+The author supplied the following local inspection results; the underlying local files were not independently accessible in this audit:
+
+- Lapa run `auddys_favorable_u7_step4_ridge_mlp_csgm_20260506` has the same aggregates and figures as run `strict_b_20260510`. The latter is the more likely manuscript source on chronology, but the numerical results do not uniquely identify the run. Status: PARTIAL for unique run lineage. The complete configuration and input identity were not supplied in this complement.
+- The original Figure 8 PNG retained in `paper_clp_csgm/figures/r3m06_originals/` is reported byte-identical to the raw run PNG. Current Figures 8 and 24 are redraws of the same NPZ. Status: CONFIRMED by local audit for shared source and PNG identity; the historical overlap aggregation itself was not supplied.
+- Historical command confirmed by local audit:
+
+```bash
+python scripts/clp_csgm_runtime_study.py && \
+python scripts/clp_csgm_srec_diagnostics.py
+```
+
+- Lapa historical `split_depth_summary.csv`: NOT_FOUND, although the current code produces it. Its absence alone does not prevent reproduction if original partition settings and inputs can be established.
+
+The full local configuration files, workbook identities, and profile aggregation setting have not been received. Do not silently replace these missing details with defaults or candidate channels. No restricted data or arrays were transferred.

@@ -22,3 +22,7 @@ Do not commit field inputs, prediction profiles, model checkpoints, or other res
 ## Release gate
 
 Before tagging, review complete experiment coverage; resolve missing historical Lapa/profile settings or disclose the limitation; verify static checks and synthetic execution; record full field-data reproduction results where authorized and available. If field inputs cannot be obtained, explicitly state which results were not reproduced. Do not claim complete numerical reproducibility solely from source identity or smoke tests. The final immutable tag must point to the reviewed commit, with matching manuscript code availability and reviewer response.
+
+## Verified checkpoint and limits
+
+At commit c7fd7348b126fd32ebaf2f68532fa502662ef58d, technical and synthetic checks passed, including the 861 geometry diagnostic and constructed aggregation test. See COVERAGE_AUDIT.md for evidence and outstanding historical configuration exceptions. Exact full-protocol coverage and field numerical reproduction remain uncertified. The reference/comparison preparation may proceed without claiming that these gates are satisfied.

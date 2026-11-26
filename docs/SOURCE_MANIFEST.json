@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "COVERAGE_FOLLOWUP_PARTIAL_LOCAL_PROVENANCE_REQUIRED",
+  "status": "COVERAGE_AUDIT_CONSOLIDATED_WITH_EXPLICIT_EXCEPTIONS",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -809,6 +809,18 @@
       "full_checks_passed": 151,
       "failures": 0,
       "artifact_id": 15154355835
+    },
+    "latest_recheck": {
+      "status": "PASS",
+      "tested_commit": "c7fd7348b126fd32ebaf2f68532fa502662ef58d",
+      "workflow_run": 45897849839,
+      "job_id": 140176083986,
+      "static_checks_passed": 104,
+      "full_checks_passed": 160,
+      "failures": 0,
+      "pip_check": "No broken requirements found.",
+      "artifact_id": 15154452658,
+      "artifact_sha256": "d64ee76232948c293b1f78a3a2820e0607334457504783da1a4337c4e3ba7172"
     }
   },
   "release05b": {
@@ -820,10 +832,22 @@
     "method_cells_verified": 28,
     "failures": 0,
     "artifact_id": 15153577182,
-    "scope": "Reduced-budget synthetic benchmarks; no field numerical equivalence."
+    "scope": "Reduced-budget synthetic benchmarks; no field numerical equivalence.",
+    "latest_recheck": {
+      "status": "PASS",
+      "tested_commit": "c7fd7348b126fd32ebaf2f68532fa502662ef58d",
+      "workflow_run": 45897849853,
+      "job_id": 140176083675,
+      "benchmarks_passed": 2,
+      "method_cells_verified": 28,
+      "failures": 0,
+      "artifact_id": 15154836378,
+      "artifact_sha256": "5ba47d14cf09361f54ce18cb2482b0db48bbd59975bfb76098b924ae85ffe0af",
+      "scope": "Reduced-budget synthetic benchmarks; no field numerical equivalence."
+    }
   },
   "release05c": {
-    "status": "COVERAGE_AUDITED_OPEN_ITEMS",
+    "status": "AUDIT_CONSOLIDATED_WITH_EXCEPTIONS",
     "basis": "89-page revised manuscript and Git source checkpoint c4df022497f6b4a3438dd8372335df58178cfe89",
     "coverage_document": "docs/COVERAGE_AUDIT.md",
     "new_tools": [
@@ -843,14 +867,12 @@
       "scope": "Independent local NumPy calculation of published row-index formula, not execution of new repository script."
     },
     "pending": [
-      "Recover exact Lapa seven-channel run configuration and figure/table exporter chain.",
-      "Verify historical runtime/srec protocol (runtime script uses GR and noise 0.02 cross-well; do not silently change).",
-      "Confirm historical Figure 8/24 overlap aggregation and profile source.",
-      "Confirm all figure selections and table exporters; especially F03 qualitative views, Lapa and Well 861 paired tables.",
-      "Run new scripts and compare field outputs to manuscript."
+      "Exact Lapa configuration (ordered channels, split, noise and other run settings) not supplied in the local audit complement; historical origin non-unique.",
+      "Historical overlap aggregation for cross-well Figures 8 and 24, and original F03 Figure 10 run/seed, not supplied.",
+      "Exact remaining qualitative figure selections and field numerical comparison; no authorized inputs executed here."
     ],
     "followup": {
-      "status": "PARTIAL",
+      "status": "LOCAL_COMPLEMENT_RECEIVED_PARTIAL",
       "source_table_identity": {
         "historical_commit": "53190576cd8321d927682c86881927b9d51aacb1",
         "manuscript_commit": "fa96db0193a12841067de3928db41e1d97115e56",
@@ -876,11 +898,83 @@
         "conclusion": "success"
       },
       "pending": [
-        "New coverage tool CI",
-        "Local Lapa run config",
-        "Historical profile config and F03 selected profile",
-        "Exact field numerical comparison and figure selection"
+        "Exact Lapa configuration (ordered channels, split, noise and other run settings) not supplied in the local audit complement; historical origin non-unique.",
+        "Historical overlap aggregation for cross-well Figures 8 and 24, and original F03 Figure 10 run/seed, not supplied.",
+        "Exact remaining qualitative figure selections and field numerical comparison; no authorized inputs executed here."
       ]
+    },
+    "final_validation": {
+      "status": "AUDIT_CONSOLIDATED_EXACT_COVERAGE_NOT_CERTIFIED",
+      "tested_commit": "c7fd7348b126fd32ebaf2f68532fa502662ef58d",
+      "technical_run": {
+        "status": "PASS",
+        "tested_commit": "c7fd7348b126fd32ebaf2f68532fa502662ef58d",
+        "workflow_run": 45897849839,
+        "job_id": 140176083986,
+        "static_checks_passed": 104,
+        "full_checks_passed": 160,
+        "failures": 0,
+        "pip_check": "No broken requirements found.",
+        "artifact_id": 15154452658,
+        "artifact_sha256": "d64ee76232948c293b1f78a3a2820e0607334457504783da1a4337c4e3ba7172"
+      },
+      "synthetic_run": {
+        "status": "PASS",
+        "tested_commit": "c7fd7348b126fd32ebaf2f68532fa502662ef58d",
+        "workflow_run": 45897849853,
+        "job_id": 140176083675,
+        "benchmarks_passed": 2,
+        "method_cells_verified": 28,
+        "failures": 0,
+        "artifact_id": 15154836378,
+        "artifact_sha256": "5ba47d14cf09361f54ce18cb2482b0db48bbd59975bfb76098b924ae85ffe0af",
+        "scope": "Reduced-budget synthetic benchmarks; no field numerical equivalence."
+      },
+      "coverage_checks": {
+        "b7_dry_run": "PASS",
+        "well861_index_geometry": {
+          "status": "PASS",
+          "configurations": 18,
+          "shared_indices": [
+            21,
+            27
+          ],
+          "fraction_scored_ever_measured": [
+            0.8409090909090909,
+            1
+          ]
+        },
+        "well861_aggregation_fixture": "PASS"
+      },
+      "local_audit_complement": {
+        "source": "Author-reported local inspection, not independently accessed",
+        "lapa": {
+          "status": "PARTIAL",
+          "equivalent_runs": [
+            "auddys_favorable_u7_step4_ridge_mlp_csgm_20260506",
+            "strict_b_20260510"
+          ],
+          "more_likely_source": "strict_b_20260510",
+          "unique_numerical_identity": false,
+          "split_depth_summary": "NOT_FOUND",
+          "exact_config": "NOT_SUPPLIED"
+        },
+        "profiles": {
+          "shared_npz": "CONFIRMED_BY_AUTHOR",
+          "original_figure8_png_identity": "CONFIRMED_BY_AUTHOR",
+          "historical_overlap_rule": "NOT_SUPPLIED"
+        },
+        "runtime_srec": {
+          "historical_command": "python scripts/clp_csgm_runtime_study.py && python scripts/clp_csgm_srec_diagnostics.py",
+          "status": "CONFIRMED_BY_AUTHOR"
+        }
+      },
+      "pending": [
+        "Exact Lapa configuration (ordered channels, split, noise and other run settings) not supplied in the local audit complement; historical origin non-unique.",
+        "Historical overlap aggregation for cross-well Figures 8 and 24, and original F03 Figure 10 run/seed, not supplied.",
+        "Exact remaining qualitative figure selections and field numerical comparison; no authorized inputs executed here."
+      ],
+      "field_reproduction": "NOT_RUN"
     }
   }
 }

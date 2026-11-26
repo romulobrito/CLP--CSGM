@@ -47,8 +47,22 @@ Figures 1, 2, 5 are conceptual diagrams; Appendix A is theoretical, not a numeri
 
 ## Execution evidence and gate
 
-RELEASE-05a recheck: [run 45896373226](https://github.com/romulobrito/CLP--CSGM/actions/runs/45896373226), 98 static and 151 total checks, zero failures. RELEASE-05b: [run 45896373313](https://github.com/romulobrito/CLP--CSGM/actions/runs/45896373313), two synthetic benchmarks and 28 required method cells, zero failures. Both tested b0bc692. New coverage tools have not yet run on the GitHub runner. No field outputs were copied or generated. Coverage audit delivered with open items, not a declaration of full reproduction.
+RELEASE-05a recheck: [run 45896373226](https://github.com/romulobrito/CLP--CSGM/actions/runs/45896373226), 98 static and 151 total checks, zero failures. RELEASE-05b: [run 45896373313](https://github.com/romulobrito/CLP--CSGM/actions/runs/45896373313), two synthetic benchmarks and 28 required method cells, zero failures. Both tested b0bc692. At that earlier checkpoint the new coverage tools had not yet run on the GitHub runner; see the final validation below. No field outputs were copied or generated. Coverage audit delivered with open items, not a declaration of full reproduction.
 
 ## Follow-up audit (05c.2)
 
 See [HISTORICAL_PROVENANCE.md](HISTORICAL_PROVENANCE.md) for the matching source-table blob evidence, Lapa candidate channels, remaining local metadata requests and the 861 table exporter. No field-data equivalence is claimed.
+
+## Final coverage validation (05c.3)
+
+Tested commit `c7fd7348b126fd32ebaf2f68532fa502662ef58d`:
+- [Technical run 45897849839](https://github.com/romulobrito/CLP--CSGM/actions/runs/45897849839): 104 static checks, 160 total technical checks (including static checks), zero failures; pip check passed. [Artifact](https://github.com/romulobrito/CLP--CSGM/actions/runs/45897849839/artifacts/15154452658).
+- [Synthetic run 45897849853](https://github.com/romulobrito/CLP--CSGM/actions/runs/45897849853): both synthetic benchmarks, 28 required method cells, zero failures. [Artifact](https://github.com/romulobrito/CLP--CSGM/actions/runs/45897849853/artifacts/15154836378).
+- Coverage checks passed: B.7 command dry-run (not field execution), 861 index-only audit (18 configurations, 21–27 shared indices, 0.8409090909090909–1.0 fraction), and 861 aggregation self-test on constructed metrics (not paper RMSE).
+
+See HISTORICAL_PROVENANCE.md for the author-reported local audit supplement. The coverage audit is consolidated with explicit exceptions; the full exact-protocol coverage gate is not certified. The 05d.1 reference/comparison preparation can proceed independently, but field reproduction and release claims must respect these exceptions. No merge or tag is authorized by this audit.
+
+Outstanding:
+- Exact Lapa configuration (ordered channels, split, noise and other run settings) not supplied in the local audit complement; historical origin non-unique.
+- Historical overlap aggregation for cross-well Figures 8 and 24, and original F03 Figure 10 run/seed, not supplied.
+- Exact remaining qualitative figure selections and field numerical comparison; no authorized inputs executed here.
