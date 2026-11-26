@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "DOCUMENTATION_PREPARED_PENDING_EXECUTION_AND_COVERAGE_VALIDATION",
+  "status": "TECHNICAL_CHECKS_PREPARED_EXECUTION_PENDING",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -766,6 +766,21 @@
       "Historical profile aggregation confirmation",
       "Clean Python environment, synthetic execution and field-data comparison",
       "Validated dependency lock"
+    ]
+  },
+  "release05a": {
+    "parent_commit": "3e8008dbd484bab351eaa7aed39e08dcaf41a50d",
+    "static_inspection": {
+      "python_files": 40,
+      "shell_files": 7,
+      "explicit_import_inventory": "No missing local module observed; regex inspection only.",
+      "launcher_options": "13 matched command invocations; no unrecognized options found in examined launchers."
+    },
+    "execution": "Not performed: local environment cannot resolve github.com, Python 3.13.5 instead of manuscript 3.10.",
+    "check_runner": "scripts/check_release.py",
+    "pending": [
+      "Run Python compilation, bash syntax, AST inventory, isolated module loads and CLI help on Python 3.10.",
+      "Capture exact environment and evidence; resolve any failures before synthetic smoke."
     ]
   }
 }
