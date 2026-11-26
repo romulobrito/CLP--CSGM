@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "FIGURE_CHAIN_ADAPTED_PENDING_RUNTIME_AND_NUMERICAL_VALIDATION",
+  "status": "DOCUMENTATION_PREPARED_PENDING_EXECUTION_AND_COVERAGE_VALIDATION",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -736,6 +736,36 @@
       "Verify complete appendix producer coverage",
       "Compare all published metrics and profile to authorized local originals",
       "Historical profile configuration unavailable; uniform_mean default chosen provisionally"
+    ]
+  },
+  "release04": {
+    "parent_commit": "5f797c5486186bd03811bbeb521306c0d9f63a31",
+    "documents": [
+      {
+        "path": "README.md",
+        "blob": "4923622608b20cc8d3b2a299696ae39bd8ac4cff"
+      },
+      {
+        "path": "docs/EXPERIMENTS.md",
+        "blob": "1ab95f2c695fb751f30bcfa1bda7997f1c88cf8c"
+      },
+      {
+        "path": "docs/DATA_REQUIREMENTS.md",
+        "blob": "441b7dd06622ad9a4e0d81e5195fe400651bcc08"
+      },
+      {
+        "path": "docs/REPRODUCIBILITY.md",
+        "blob": "9bfd02af2feecee3e4b23f7615c9581c69127e8f"
+      }
+    ],
+    "manuscript_reference": "Revised 89-page manuscript (26 Nov 2026), Tables 4–24 and Appendices B–E",
+    "validation": "Documentation and static protocol review; no execution.",
+    "pending": [
+      "Exact historical Lapa seven-channel configuration",
+      "Full appendix/figure producer coverage and extended smoother chain",
+      "Historical profile aggregation confirmation",
+      "Clean Python environment, synthetic execution and field-data comparison",
+      "Validated dependency lock"
     ]
   }
 }
