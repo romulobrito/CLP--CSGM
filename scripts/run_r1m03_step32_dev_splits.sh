@@ -9,8 +9,8 @@ cd "$ROOT"
 
 export N_SPLITS="${N_SPLITS:-10}"
 BASE_DIR="outputs/reviewer_revision/r1m03_step32_dev_splits"
-TRAIN="data/F02-1,F03-2,F06-1_6logs_30dB.txt"
-TEST="data/F03-4_6logs_30dB.txt"
+TRAIN="${CLP_CROSS_TRAIN:-data/F02-1,F03-2,F06-1_6logs_30dB.txt}"
+TEST="${CLP_CROSS_TEST:-data/F03-4_6logs_30dB.txt}"
 
 if [[ ! -f "$TRAIN" || ! -f "$TEST" ]]; then
   echo "missing F3 files: $TRAIN or $TEST" >&2
@@ -44,7 +44,7 @@ while [[ "$i" -lt "$N_SPLITS" ]]; do
   i=$((i + 1))
 done
 
-cp -f paper_clp_csgm/docs/revision/PROTOCOL_R1M03_step32_dev_splits.md \
+cp -f docs/protocols/PROTOCOL_R1M03_step32_dev_splits.md \
   outputs/reviewer_revision/r1m03_step32_dev_splits/PROTOCOL.txt
 
 python - <<'PY'

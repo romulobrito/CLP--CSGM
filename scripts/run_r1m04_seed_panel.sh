@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# R1-M04 optional supplement: 10-seed CLP Ridge vs AE on the 9-cell grid.
+# R1-M04 primary comparison: 10-seed CLP Ridge vs AE on the 9-cell grid.
 # CPU only. Does not overwrite production cross-well runs.
 # ASCII-only. Run from the repository root.
 set -euo pipefail
@@ -10,8 +10,8 @@ cd "$ROOT"
 export PYTHONUNBUFFERED=1
 export SEEDS="${SEEDS:-7,23,41,13,29,31,37,43,47,53}"
 BASE_DIR="outputs/reviewer_revision/r1m04_seed_panel"
-TRAIN="data/F02-1,F03-2,F06-1_6logs_30dB.txt"
-TEST="data/F03-4_6logs_30dB.txt"
+TRAIN="${CLP_CROSS_TRAIN:-data/F02-1,F03-2,F06-1_6logs_30dB.txt}"
+TEST="${CLP_CROSS_TEST:-data/F03-4_6logs_30dB.txt}"
 
 if [[ ! -f "$TRAIN" || ! -f "$TEST" ]]; then
   echo "missing F3 files: $TRAIN or $TEST" >&2
@@ -42,7 +42,7 @@ for STEP in 8 16 32; do
     --run-id "$run_id"
 done
 
-cp -f paper_clp_csgm/docs/revision/PROTOCOL_R1M04_seed_panel.md \
+cp -f docs/protocols/PROTOCOL_R1M04_seed_panel.md \
   outputs/reviewer_revision/r1m04_seed_panel/PROTOCOL.txt
 
 python - <<'PY'

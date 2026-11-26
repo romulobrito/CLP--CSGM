@@ -27,7 +27,7 @@ import numpy as np
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
-PAPER_FIG = ROOT / "paper_clp_csgm" / "figures"
+PAPER_FIG = ROOT / "outputs/paper_assets" / "figures"
 BACKUP = PAPER_FIG / "r3m06_originals"
 PROFILE_NPZ = (
     ROOT

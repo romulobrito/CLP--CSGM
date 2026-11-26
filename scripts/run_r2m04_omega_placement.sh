@@ -10,8 +10,8 @@ cd "$ROOT"
 export PYTHONUNBUFFERED=1
 export CUDA_VISIBLE_DEVICES=""
 BASE_DIR="outputs/reviewer_revision/r2m04_omega_placement"
-TRAIN="data/F02-1,F03-2,F06-1_6logs_30dB.txt"
-TEST="data/F03-4_6logs_30dB.txt"
+TRAIN="${CLP_CROSS_TRAIN:-data/F02-1,F03-2,F06-1_6logs_30dB.txt}"
+TEST="${CLP_CROSS_TEST:-data/F03-4_6logs_30dB.txt}"
 OFFSETS=(0 10007 20011 30013 40009)
 
 if [[ ! -f "$TRAIN" || ! -f "$TEST" ]]; then
@@ -20,7 +20,7 @@ if [[ ! -f "$TRAIN" || ! -f "$TEST" ]]; then
 fi
 
 mkdir -p "$BASE_DIR/runs"
-cp -f paper_clp_csgm/docs/revision/PROTOCOL_R2M04_omega_placement.md "$BASE_DIR/PROTOCOL.txt"
+cp -f docs/protocols/PROTOCOL_R2M04_omega_placement.md "$BASE_DIR/PROTOCOL.txt"
 python - <<'PY'
 import json
 import os

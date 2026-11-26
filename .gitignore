@@ -14,6 +14,12 @@ env/
 data/*.txt
 data/*.csv
 data/*.npz
+data/*.xlsx
+data/*.xls
+data/*.las
+data/*.dlis
+data/*.parquet
+data/*.h5
 !data/README.md
 # Public synthetic smoke tables are tracked
 !data/synthetic/

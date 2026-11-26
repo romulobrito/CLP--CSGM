@@ -4,7 +4,7 @@
 Build illustrative figures: one test window with ground truth, sparse noisy
 measurements b at subsampled coordinates, and CLP-CSGM Ridge (optional AE).
 
-Figures are written under paper_clp_csgm/figures/sparse_reconstruction/ for LaTeX.
+Figures are written under outputs/paper_assets/figures/sparse_reconstruction/ for LaTeX.
 
 This script re-runs a single (seed, measurement_ratio) benchmark cell using the
 same data assembly and run_direct_ub_from_data entry point as the real-well and
@@ -260,7 +260,7 @@ def plot_sparse_window(
 def main() -> None:
     p = argparse.ArgumentParser(description="Paper sparse-reconstruction window figures.")
     p.add_argument("--mode", type=str, choices=("f03", "crosswell"), required=True)
-    p.add_argument("--out-dir", type=str, default="paper_clp_csgm/figures/sparse_reconstruction")
+    p.add_argument("--out-dir", type=str, default="outputs/paper_assets/figures/sparse_reconstruction")
     p.add_argument("--seed", type=int, default=7)
     p.add_argument("--rho", type=float, default=0.2)
     p.add_argument("--example-index", type=int, default=0)

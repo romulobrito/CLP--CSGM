@@ -5,7 +5,7 @@ Generate tables and figures for the CLP-CSGM paper.
 
 The script is intentionally read-only with respect to experiment outputs: it
 loads existing raw data and benchmark CSV files, then writes paper-ready assets
-under paper_clp_csgm/.
+under outputs/paper_assets/.
 """
 
 from __future__ import annotations
@@ -35,7 +35,7 @@ if _SCRIPTS_DIR not in sys.path:
 from paper_figure_style import apply_paper_style, save_paper_figure
 
 
-PAPER_DIR = os.path.join(REPO_ROOT, "paper_clp_csgm")
+PAPER_DIR = os.path.join(REPO_ROOT, "outputs/paper_assets")
 FIG_DIR = os.path.join(PAPER_DIR, "figures")
 TAB_DIR = os.path.join(PAPER_DIR, "tables")
 

@@ -7,7 +7,7 @@ Reads:
   outputs/reviewer_revision/r1m04_seed_panel/runs/stepXX/tables/summary_by_seed.csv
 Writes:
   outputs/reviewer_revision/r1m04_seed_panel/aggregate/tables/
-  paper_clp_csgm/tables/robustness_crosswell_seed_panel.csv|.tex
+  outputs/paper_assets/tables/robustness_crosswell_seed_panel.csv|.tex
 
 Does not modify results_crosswell_clp_vs_ae.* or paired_delta_crosswell_*.
 ASCII-only.
@@ -31,7 +31,7 @@ RUNS_DIR = os.path.join(
 AGG_DIR = os.path.join(
     REPO_ROOT, "outputs", "reviewer_revision", "r1m04_seed_panel", "aggregate", "tables"
 )
-PAPER_TAB = os.path.join(REPO_ROOT, "paper_clp_csgm", "tables")
+PAPER_TAB = os.path.join(REPO_ROOT, "outputs/paper_assets", "tables")
 CLP_METHOD = "ridge_prior_csgm"
 AE_METHOD = "ae_regression_ub"
 FOCUS_METHODS = (CLP_METHOD, AE_METHOD)

@@ -7,7 +7,7 @@ Reads:
   outputs/reviewer_revision/r1m03_step32_dev_splits/runs/splitXX/tables/summary.csv
 Writes:
   outputs/reviewer_revision/r1m03_step32_dev_splits/aggregate/tables/
-  paper_clp_csgm/tables/robustness_crosswell_step32_dev_splits.csv|.tex
+  outputs/paper_assets/tables/robustness_crosswell_step32_dev_splits.csv|.tex
 
 Does not modify results_crosswell_clp_vs_ae.*.
 ASCII-only.
@@ -30,7 +30,7 @@ RUNS_DIR = os.path.join(
 AGG_DIR = os.path.join(
     REPO_ROOT, "outputs", "reviewer_revision", "r1m03_step32_dev_splits", "aggregate", "tables"
 )
-PAPER_TAB = os.path.join(REPO_ROOT, "paper_clp_csgm", "tables")
+PAPER_TAB = os.path.join(REPO_ROOT, "outputs/paper_assets", "tables")
 CLP_METHOD = "ridge_prior_csgm"
 AE_METHOD = "ae_regression_ub"
 FOCUS_METHODS = (CLP_METHOD, AE_METHOD)

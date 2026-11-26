@@ -28,7 +28,7 @@ SUMMARY_PATH = (
 )
 PAPER_PATH = (
     ROOT_DIR
-    / "paper_clp_csgm"
+    / "outputs/paper_assets"
     / "figures"
     / "crosswell_vc_rmse_vs_noise.png"
 )

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "EXPERIMENT_SCRIPT_TRANSFER_PENDING_STANDALONE_ADAPTATION",
+  "status": "INFRASTRUCTURE_ADAPTED_PENDING_VALIDATION_AND_LEGACY_ASSET_AUDIT",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -54,7 +54,9 @@
       "destination_path": "scripts/clp_csgm_diagnostic_assets.py",
       "source_blob": "bec28127cd616489a5b8dad6496c7d68fb5dd3ea",
       "public_base_blob": "bec28127cd616489a5b8dad6496c7d68fb5dd3ea",
-      "status": "identical"
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "4f1062064c92d09275baa72ba6f7905822a284b8",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
     },
     {
       "group": "preserve",
@@ -62,7 +64,9 @@
       "destination_path": "scripts/clp_csgm_quick_figures.py",
       "source_blob": "9501f2a52b1347f58b95d379a7c675a0e1a26bc5",
       "public_base_blob": "9501f2a52b1347f58b95d379a7c675a0e1a26bc5",
-      "status": "identical"
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "3104b4078d7528dcd7ab2023800f2c5294b05b4a",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
     },
     {
       "group": "preserve",
@@ -70,7 +74,9 @@
       "destination_path": "scripts/clp_csgm_runtime_study.py",
       "source_blob": "d2d977fb01b1681c767954c32d25c2d5911079a4",
       "public_base_blob": "d2d977fb01b1681c767954c32d25c2d5911079a4",
-      "status": "identical"
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "f34e2a3fc8e82cd46161fc5b4c7848b493a63164",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
     },
     {
       "group": "preserve",
@@ -78,7 +84,9 @@
       "destination_path": "scripts/clp_csgm_srec_diagnostics.py",
       "source_blob": "34b02432e803fc8ba4c875e83676d9fbe6e6e6ea",
       "public_base_blob": "34b02432e803fc8ba4c875e83676d9fbe6e6e6ea",
-      "status": "identical"
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "74887513822f81a963d4b60f7fea7d4b83764292",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
     },
     {
       "group": "preserve",
@@ -86,7 +94,9 @@
       "destination_path": "scripts/clp_csgm_uncertainty_assets.py",
       "source_blob": "14737fb5e9857070c15573aa945830c20378d1b4",
       "public_base_blob": "14737fb5e9857070c15573aa945830c20378d1b4",
-      "status": "identical"
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "d4f1b19413c4d2b8461ec323c31af8557d83ff96",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
     },
     {
       "group": "preserve",
@@ -102,7 +112,9 @@
       "destination_path": "scripts/paper_sparse_reconstruction_figures.py",
       "source_blob": "7afffb895e640115b121444e540980127c999d28",
       "public_base_blob": "7afffb895e640115b121444e540980127c999d28",
-      "status": "identical"
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "d95673fdd5acda297f7a11d208f6774528bf91c7",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
     },
     {
       "group": "release01",
@@ -173,9 +185,10 @@
       "destination_path": "scripts/run_r1m04_seed_panel.sh",
       "source_blob": "559d23e734642db1c25fc601f664a3cf2a29c977",
       "public_base_blob": null,
-      "status": "transferred_pending_runtime_validation",
-      "destination_blob_expected": "559d23e734642db1c25fc601f664a3cf2a29c977",
-      "destination_mode": "100755"
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "edb1a4e30345e4411b7704a59974df417de7f41f",
+      "destination_mode": "100755",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
     },
     {
       "group": "release02",
@@ -183,9 +196,10 @@
       "destination_path": "scripts/clp_csgm_r1m04_seed_panel_assets.py",
       "source_blob": "57b0104c3d04bce13e9b6291018bc29aa9328896",
       "public_base_blob": null,
-      "status": "transferred_pending_runtime_validation",
-      "destination_blob_expected": "57b0104c3d04bce13e9b6291018bc29aa9328896",
-      "destination_mode": "100644"
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "14dfe95e2a66bac51851b55ce427f838aa9f87ca",
+      "destination_mode": "100644",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
     },
     {
       "group": "release02",
@@ -193,9 +207,10 @@
       "destination_path": "scripts/run_r1m03_step32_dev_splits.sh",
       "source_blob": "b7cec989c24494319dd0a99f2544ed65e4de1971",
       "public_base_blob": null,
-      "status": "transferred_pending_runtime_validation",
-      "destination_blob_expected": "b7cec989c24494319dd0a99f2544ed65e4de1971",
-      "destination_mode": "100755"
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "0acf8eb17c676283b7413537abaed964b23e87be",
+      "destination_mode": "100755",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
     },
     {
       "group": "release02",
@@ -203,9 +218,10 @@
       "destination_path": "scripts/clp_csgm_r1m03_step32_split_assets.py",
       "source_blob": "425482701148c3de91437b7f1184adcaade5b75b",
       "public_base_blob": null,
-      "status": "transferred_pending_runtime_validation",
-      "destination_blob_expected": "425482701148c3de91437b7f1184adcaade5b75b",
-      "destination_mode": "100644"
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "930ee3023ab9be505f5fc16f803391403596465c",
+      "destination_mode": "100644",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
     },
     {
       "group": "release02",
@@ -213,9 +229,10 @@
       "destination_path": "scripts/run_r1m08_explicit_mask.sh",
       "source_blob": "6b46217c972c4e1e6c358d942039cc72e87a7551",
       "public_base_blob": null,
-      "status": "transferred_pending_runtime_validation",
-      "destination_blob_expected": "6b46217c972c4e1e6c358d942039cc72e87a7551",
-      "destination_mode": "100755"
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "7e95aea4f05305aafb2de40bdd4e04b615c08f1e",
+      "destination_mode": "100755",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
     },
     {
       "group": "release02",
@@ -223,9 +240,10 @@
       "destination_path": "scripts/clp_csgm_r1m08_explicit_mask_assets.py",
       "source_blob": "86e066074c65748dd71a593f1a52dc95f8f1fa36",
       "public_base_blob": null,
-      "status": "transferred_pending_runtime_validation",
-      "destination_blob_expected": "86e066074c65748dd71a593f1a52dc95f8f1fa36",
-      "destination_mode": "100644"
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "e82f8a3335a8801652c0ae2a98797f350d9ee3cd",
+      "destination_mode": "100644",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
     },
     {
       "group": "release02",
@@ -233,9 +251,10 @@
       "destination_path": "scripts/run_r2m04_omega_placement.sh",
       "source_blob": "141350771e903e50631713b02b5a23af15188190",
       "public_base_blob": null,
-      "status": "transferred_pending_runtime_validation",
-      "destination_blob_expected": "141350771e903e50631713b02b5a23af15188190",
-      "destination_mode": "100755"
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "9a62f6484940f0e85a25c62e20623c372cfce4f8",
+      "destination_mode": "100755",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
     },
     {
       "group": "release02",
@@ -253,9 +272,10 @@
       "destination_path": "scripts/run_r3m03_simple_baselines.py",
       "source_blob": "77e27ea9ad02e61c2ba45bca15e2c5f79ebccb24",
       "public_base_blob": null,
-      "status": "transferred_pending_runtime_validation",
-      "destination_blob_expected": "77e27ea9ad02e61c2ba45bca15e2c5f79ebccb24",
-      "destination_mode": "100644"
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "5fa4b56c5eb94e63675f86a39dd95589b8ab6547",
+      "destination_mode": "100644",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
     },
     {
       "group": "release02",
@@ -303,9 +323,10 @@
       "destination_path": "scripts/run_r1m11_861_phi_lab.py",
       "source_blob": "90a3c4c9ed4544042af003cd5d37a3ed0c3e88e1",
       "public_base_blob": null,
-      "status": "transferred_pending_runtime_validation",
-      "destination_blob_expected": "90a3c4c9ed4544042af003cd5d37a3ed0c3e88e1",
-      "destination_mode": "100644"
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "d449e4d6ddb821fff9bd93a6f1fdae9bfb0566c9",
+      "destination_mode": "100644",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
     },
     {
       "group": "release02",
@@ -313,9 +334,10 @@
       "destination_path": "scripts/clp_csgm_r1m06_controlled_assets.py",
       "source_blob": "42d650c2028d9013b381bf0751c237dd84a21be9",
       "public_base_blob": null,
-      "status": "transferred_pending_runtime_validation",
-      "destination_blob_expected": "42d650c2028d9013b381bf0751c237dd84a21be9",
-      "destination_mode": "100644"
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "e88193ec8a4d9e245ca2d8bd82bb3b61604edc98",
+      "destination_mode": "100644",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
     },
     {
       "group": "release02",
@@ -323,9 +345,10 @@
       "destination_path": "scripts/clp_csgm_ablation_assets.py",
       "source_blob": "cddf0c946e5733a1202872dc95ee611713bf7631",
       "public_base_blob": "f15d5e2abc8552c481fd951bbe67ff28a968a125",
-      "status": "transferred_pending_runtime_validation",
-      "destination_blob_expected": "cddf0c946e5733a1202872dc95ee611713bf7631",
-      "destination_mode": "100644"
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "1ca35d0ef94b5803794b9193f32a948581a7fd64",
+      "destination_mode": "100644",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
     },
     {
       "group": "release02",
@@ -333,9 +356,10 @@
       "destination_path": "scripts/clp_csgm_paper_assets.py",
       "source_blob": "8ea0b470dac7d7d8cd9997d5442ca9d135848735",
       "public_base_blob": "9f52fb06379409173b3c46596008b207c15b1da5",
-      "status": "transferred_pending_runtime_validation",
-      "destination_blob_expected": "8ea0b470dac7d7d8cd9997d5442ca9d135848735",
-      "destination_mode": "100644"
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "a9f8e87458e9c8fb2f9030bd659b78b1de0259d5",
+      "destination_mode": "100644",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
     },
     {
       "group": "release02",
@@ -373,9 +397,10 @@
       "destination_path": "scripts/plot_r3m03_rmse_vs_noise.py",
       "source_blob": "03959755d659b0850f5d4caf3f6c93d3a524877b",
       "public_base_blob": null,
-      "status": "transferred_pending_runtime_validation",
-      "destination_blob_expected": "03959755d659b0850f5d4caf3f6c93d3a524877b",
-      "destination_mode": "100644"
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "1138cd3d9696be9721bb5dba004d1f4f3d5b01d5",
+      "destination_mode": "100644",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
     },
     {
       "group": "release02",
@@ -383,9 +408,10 @@
       "destination_path": "scripts/plot_r3m06_manuscript_figures.py",
       "source_blob": "071d310fb2e4d65e66f10bf1309eda104046a80e",
       "public_base_blob": null,
-      "status": "transferred_pending_runtime_validation",
-      "destination_blob_expected": "071d310fb2e4d65e66f10bf1309eda104046a80e",
-      "destination_mode": "100644"
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "aa3b4a17f42aff379fb2fd74a416c0ac85aa936a",
+      "destination_mode": "100644",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
     },
     {
       "group": "protocol_candidates",
@@ -393,7 +419,9 @@
       "destination_path": "docs/protocols/PROTOCOL_R1M03_step32_dev_splits.md",
       "source_blob": "9fc89c1a980ad68fec97f206555386a5f3d2f002",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "public_protocol_adapted_pending_review",
+      "destination_blob_expected": "5a791ef5c681085a185f7ff4807347328db69f05",
+      "adaptation": "Public protocol summary based on source protocol and revised manuscript; excludes correspondence and obsolete editorial instructions."
     },
     {
       "group": "protocol_candidates",
@@ -401,7 +429,9 @@
       "destination_path": "docs/protocols/PROTOCOL_R1M04_seed_panel.md",
       "source_blob": "4b17894914d332327958f5ef1d40d5c90fc4858c",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "public_protocol_adapted_pending_review",
+      "destination_blob_expected": "1f765cbcd5b45e17e1059253f5706617db639ee4",
+      "adaptation": "Public protocol summary based on source protocol and revised manuscript; excludes correspondence and obsolete editorial instructions."
     },
     {
       "group": "protocol_candidates",
@@ -409,7 +439,9 @@
       "destination_path": "docs/protocols/PROTOCOL_R1M08_explicit_mask.md",
       "source_blob": "cdc613f1b9852a93db40bb6ddc15d3e017c30311",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "public_protocol_adapted_pending_review",
+      "destination_blob_expected": "a1986f72bf846e0faf5176d0e9b85451d68affd0",
+      "adaptation": "Public protocol summary based on source protocol and revised manuscript; excludes correspondence and obsolete editorial instructions."
     },
     {
       "group": "protocol_candidates",
@@ -417,7 +449,9 @@
       "destination_path": "docs/protocols/PROTOCOL_R2M04_omega_placement.md",
       "source_blob": "9bcd64d1859d45977c9a21474c395dac6891cf57",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "public_protocol_adapted_pending_review",
+      "destination_blob_expected": "b3f835c15b4f135be744b5fc1fb2559287221049",
+      "adaptation": "Public protocol summary based on source protocol and revised manuscript; excludes correspondence and obsolete editorial instructions."
     },
     {
       "group": "release01",
@@ -503,5 +537,152 @@
     "source_blob_matches": 22,
     "executable_shell_scripts": 4,
     "scope": "Byte identity only; no numerical tests; existing paths preserved for subsequent adaptation."
+  },
+  "release03": {
+    "parent_commit": "d174185a4fc66571a17d48c31e7eab629b9a3e7f",
+    "changes": [
+      {
+        "path": ".gitignore",
+        "before": "9aaa5e5d83bf62b1dc46506538d6923118b1e58e",
+        "after": "b27fd96527586f44bf5c0cbd22d4147cdfef7530"
+      },
+      {
+        "path": "docs/protocols/PROTOCOL_R1M03_step32_dev_splits.md",
+        "before": null,
+        "after": "5a791ef5c681085a185f7ff4807347328db69f05"
+      },
+      {
+        "path": "docs/protocols/PROTOCOL_R1M04_seed_panel.md",
+        "before": null,
+        "after": "1f765cbcd5b45e17e1059253f5706617db639ee4"
+      },
+      {
+        "path": "docs/protocols/PROTOCOL_R1M08_explicit_mask.md",
+        "before": null,
+        "after": "a1986f72bf846e0faf5176d0e9b85451d68affd0"
+      },
+      {
+        "path": "docs/protocols/PROTOCOL_R2M04_omega_placement.md",
+        "before": null,
+        "after": "b3f835c15b4f135be744b5fc1fb2559287221049"
+      },
+      {
+        "path": "requirements.txt",
+        "before": "408f12734d9a82d15df1062699501dce0b0f17be",
+        "after": "395dae0b645483b87739a0efd276093eccc61791"
+      },
+      {
+        "path": "scripts/clp_csgm_ablation_assets.py",
+        "before": "cddf0c946e5733a1202872dc95ee611713bf7631",
+        "after": "1ca35d0ef94b5803794b9193f32a948581a7fd64"
+      },
+      {
+        "path": "scripts/clp_csgm_diagnostic_assets.py",
+        "before": "bec28127cd616489a5b8dad6496c7d68fb5dd3ea",
+        "after": "4f1062064c92d09275baa72ba6f7905822a284b8"
+      },
+      {
+        "path": "scripts/clp_csgm_paper_assets.py",
+        "before": "8ea0b470dac7d7d8cd9997d5442ca9d135848735",
+        "after": "a9f8e87458e9c8fb2f9030bd659b78b1de0259d5"
+      },
+      {
+        "path": "scripts/clp_csgm_quick_figures.py",
+        "before": "9501f2a52b1347f58b95d379a7c675a0e1a26bc5",
+        "after": "3104b4078d7528dcd7ab2023800f2c5294b05b4a"
+      },
+      {
+        "path": "scripts/clp_csgm_r1m03_step32_split_assets.py",
+        "before": "425482701148c3de91437b7f1184adcaade5b75b",
+        "after": "930ee3023ab9be505f5fc16f803391403596465c"
+      },
+      {
+        "path": "scripts/clp_csgm_r1m04_seed_panel_assets.py",
+        "before": "57b0104c3d04bce13e9b6291018bc29aa9328896",
+        "after": "14dfe95e2a66bac51851b55ce427f838aa9f87ca"
+      },
+      {
+        "path": "scripts/clp_csgm_r1m06_controlled_assets.py",
+        "before": "42d650c2028d9013b381bf0751c237dd84a21be9",
+        "after": "e88193ec8a4d9e245ca2d8bd82bb3b61604edc98"
+      },
+      {
+        "path": "scripts/clp_csgm_r1m08_explicit_mask_assets.py",
+        "before": "86e066074c65748dd71a593f1a52dc95f8f1fa36",
+        "after": "e82f8a3335a8801652c0ae2a98797f350d9ee3cd"
+      },
+      {
+        "path": "scripts/clp_csgm_runtime_study.py",
+        "before": "d2d977fb01b1681c767954c32d25c2d5911079a4",
+        "after": "f34e2a3fc8e82cd46161fc5b4c7848b493a63164"
+      },
+      {
+        "path": "scripts/clp_csgm_srec_diagnostics.py",
+        "before": "34b02432e803fc8ba4c875e83676d9fbe6e6e6ea",
+        "after": "74887513822f81a963d4b60f7fea7d4b83764292"
+      },
+      {
+        "path": "scripts/clp_csgm_uncertainty_assets.py",
+        "before": "14737fb5e9857070c15573aa945830c20378d1b4",
+        "after": "d4f1b19413c4d2b8461ec323c31af8557d83ff96"
+      },
+      {
+        "path": "scripts/paper_sparse_reconstruction_figures.py",
+        "before": "7afffb895e640115b121444e540980127c999d28",
+        "after": "d95673fdd5acda297f7a11d208f6774528bf91c7"
+      },
+      {
+        "path": "scripts/plot_r3m03_rmse_vs_noise.py",
+        "before": "03959755d659b0850f5d4caf3f6c93d3a524877b",
+        "after": "1138cd3d9696be9721bb5dba004d1f4f3d5b01d5"
+      },
+      {
+        "path": "scripts/plot_r3m06_manuscript_figures.py",
+        "before": "071d310fb2e4d65e66f10bf1309eda104046a80e",
+        "after": "aa3b4a17f42aff379fb2fd74a416c0ac85aa936a"
+      },
+      {
+        "path": "scripts/run_r1m03_step32_dev_splits.sh",
+        "before": "b7cec989c24494319dd0a99f2544ed65e4de1971",
+        "after": "0acf8eb17c676283b7413537abaed964b23e87be"
+      },
+      {
+        "path": "scripts/run_r1m04_seed_panel.sh",
+        "before": "559d23e734642db1c25fc601f664a3cf2a29c977",
+        "after": "edb1a4e30345e4411b7704a59974df417de7f41f"
+      },
+      {
+        "path": "scripts/run_r1m08_explicit_mask.sh",
+        "before": "6b46217c972c4e1e6c358d942039cc72e87a7551",
+        "after": "7e95aea4f05305aafb2de40bdd4e04b615c08f1e"
+      },
+      {
+        "path": "scripts/run_r1m11_861_phi_lab.py",
+        "before": "90a3c4c9ed4544042af003cd5d37a3ed0c3e88e1",
+        "after": "d449e4d6ddb821fff9bd93a6f1fdae9bfb0566c9"
+      },
+      {
+        "path": "scripts/run_r2m04_omega_placement.sh",
+        "before": "141350771e903e50631713b02b5a23af15188190",
+        "after": "9a62f6484940f0e85a25c62e20623c372cfce4f8"
+      },
+      {
+        "path": "scripts/run_r3m03_simple_baselines.py",
+        "before": "77e27ea9ad02e61c2ba45bca15e2c5f79ebccb24",
+        "after": "5fa4b56c5eb94e63675f86a39dd95589b8ab6547"
+      },
+      {
+        "path": "scripts/run_reproduce_clp_csgm.sh",
+        "before": "368591b1733d0253728b8a214894dc62e1b33874",
+        "after": "092be7ce219474837961aefa5ce0c70ec13bf45f"
+      }
+    ],
+    "validation": "Git-tree allowlist and CLI option inspection only; no execution.",
+    "pending": [
+      "Verify all imports and run syntax/smoke tests in a clean environment.",
+      "Legacy paper assets still require named m2_grid summaries or no-GR provenance/NPZ bundles; map or generate them from authorized local inputs.",
+      "Confirm launcher configurations and table/figure numerical equivalence against manuscript.",
+      "Exact dependency lock requires measured environment; documentation and remaining diagnostics are RELEASE-04/05."
+    ]
   }
 }

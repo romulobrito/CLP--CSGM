@@ -26,7 +26,7 @@ RUNS_DIR = os.path.join(
 AGG_DIR = os.path.join(
     REPO_ROOT, "outputs", "reviewer_revision", "r1m08_explicit_mask", "aggregate", "tables"
 )
-PAPER_TAB = os.path.join(REPO_ROOT, "paper_clp_csgm", "tables")
+PAPER_TAB = os.path.join(REPO_ROOT, "outputs/paper_assets", "tables")
 CLP_METHOD = "ridge_prior_csgm"
 AE_METHOD = "ae_regression_ub"
 MASK_METHOD = "ae_regression_ub_mask"

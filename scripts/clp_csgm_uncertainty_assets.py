@@ -23,7 +23,7 @@ import pandas as pd
 from scipy import stats
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-PAPER_DIR = os.path.join(REPO_ROOT, "paper_clp_csgm")
+PAPER_DIR = os.path.join(REPO_ROOT, "outputs/paper_assets")
 TAB_DIR = os.path.join(PAPER_DIR, "tables")
 FIG_DIR = os.path.join(PAPER_DIR, "figures")
 
@@ -131,7 +131,7 @@ def paired_delta_frame(seed_csv: str) -> pd.DataFrame:
 
 
 def write_latex_table(frame: pd.DataFrame, stem: str, float_format: str = "%.5f") -> str:
-    """Write CSV + ASCII LaTeX table under paper_clp_csgm/tables/."""
+    """Write CSV + ASCII LaTeX table under outputs/paper_assets/tables/."""
     os.makedirs(TAB_DIR, exist_ok=True)
     csv_path = os.path.join(TAB_DIR, "{}.csv".format(stem))
     tex_path = os.path.join(TAB_DIR, "{}.tex".format(stem))

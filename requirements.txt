@@ -6,6 +6,8 @@ scikit-learn>=1.0
 torch>=2.0
 PyWavelets>=1.4
 scipy>=1.7
+# Excel input for the authorized Lapa and well-861 supplements
+openpyxl>=3.1
 
 # Optional: legacy SPGL1 profiles in sir_cs_pipeline_optimized.py
 # (not needed for --run-csgm-m2 --no-lfista)

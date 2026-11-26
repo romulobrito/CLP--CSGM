@@ -17,6 +17,7 @@ rows. This script does not change the F3 grid.
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -34,13 +35,7 @@ import csgm_m2_module as csgm  # noqa: E402
 import direct_ub_baselines as dub  # noqa: E402
 from sir_cs_pipeline_optimized import Config  # noqa: E402
 
-EXCEL_PATH = (
-    REPO_ROOT
-    / "methods_comparison"
-    / "data"
-    / "processed"
-    / "861_integrated_logs_enriched.xlsx"
-)
+EXCEL_PATH = REPO_ROOT / "data" / "861_integrated_logs_enriched.xlsx"
 OUT_DIR = REPO_ROOT / "outputs" / "reviewer_revision" / "r1m11_861_phi_lab"
 
 DEPTH_COL = "Depth(m)"
@@ -262,9 +257,9 @@ def _predict_clp_and_prior(
     return y_clp, y_prior
 
 
-def _run() -> None:
+def _run(excel_path: Path = EXCEL_PATH, out_dir: Path = OUT_DIR) -> None:
     """Fit the three methods and write held-out laboratory RMSE tables."""
-    frame = _load_frame(EXCEL_PATH)
+    frame = _load_frame(excel_path)
     u_matrix = frame.loc[:, list(U_COLUMNS)].to_numpy(dtype=np.float64)
     y_vector = frame[TARGET_COL].to_numpy(dtype=np.float64)
     blocks = _depth_blocks(int(frame.shape[0]), N_BLOCKS)
@@ -399,8 +394,8 @@ def _run() -> None:
                 )
 
     detail = pd.DataFrame(rows)
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
-    detail_path = OUT_DIR / "heldout_rmse_detail.csv"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    detail_path = out_dir / "heldout_rmse_detail.csv"
     detail.to_csv(detail_path, index=False)
 
     summary_rows: List[Dict[str, float]] = []
@@ -416,11 +411,11 @@ def _run() -> None:
             }
         )
     summary = pd.DataFrame(summary_rows)
-    summary_path = OUT_DIR / "heldout_rmse_summary.csv"
+    summary_path = out_dir / "heldout_rmse_summary.csv"
     summary.to_csv(summary_path, index=False)
 
     meta = {
-        "excel": str(EXCEL_PATH),
+        "excel": str(excel_path),
         "n_rows": int(frame.shape[0]),
         "depth_min_m": float(frame[DEPTH_COL].min()),
         "depth_max_m": float(frame[DEPTH_COL].max()),
@@ -437,10 +432,14 @@ def _run() -> None:
         "score": "rmse on coordinates outside Omega",
         "device": "cpu",
     }
-    (OUT_DIR / "protocol.json").write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")
+    (out_dir / "protocol.json").write_text(json.dumps(meta, indent=2) + "\n", encoding="utf-8")
     print(summary.to_string(index=False))
     print("wrote", detail_path)
 
 
 if __name__ == "__main__":
-    _run()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--excel-path", type=Path, default=EXCEL_PATH)
+    parser.add_argument("--out-dir", type=Path, default=OUT_DIR)
+    args = parser.parse_args()
+    _run(args.excel_path, args.out_dir)

@@ -9,8 +9,8 @@ cd "$ROOT"
 export PYTHONUNBUFFERED=1
 export SEEDS="${SEEDS:-7,23,41}"
 BASE_DIR="outputs/reviewer_revision/r1m08_explicit_mask"
-TRAIN="data/F02-1,F03-2,F06-1_6logs_30dB.txt"
-TEST="data/F03-4_6logs_30dB.txt"
+TRAIN="${CLP_CROSS_TRAIN:-data/F02-1,F03-2,F06-1_6logs_30dB.txt}"
+TEST="${CLP_CROSS_TEST:-data/F03-4_6logs_30dB.txt}"
 
 if [[ ! -f "$TRAIN" || ! -f "$TEST" ]]; then
   echo "missing F3 files: $TRAIN or $TEST" >&2
@@ -42,7 +42,7 @@ for STEP in 8 16 32; do
     --run-id "$run_id"
 done
 
-cp -f paper_clp_csgm/docs/revision/PROTOCOL_R1M08_explicit_mask.md \
+cp -f docs/protocols/PROTOCOL_R1M08_explicit_mask.md \
   outputs/reviewer_revision/r1m08_explicit_mask/PROTOCOL.txt
 
 python - <<'PY'

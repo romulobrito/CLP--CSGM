@@ -33,10 +33,10 @@ from csgm_m2_module import train_ae_generator
 from sir_cs_pipeline import build_measurement_matrix
 from sir_cs_pipeline_optimized import Config, rmse
 
-ROOT = Path("outputs/reviewer_revision/r3m03_simple_baselines")
-REF_ROOT = Path("outputs/reviewer_revision/r2m04_omega_placement/runs")
-TRAIN_PATH = "data/F02-1,F03-2,F06-1_6logs_30dB.txt"
-TEST_PATH = "data/F03-4_6logs_30dB.txt"
+ROOT = ROOT_DIR / "outputs/reviewer_revision/r3m03_simple_baselines"
+REF_ROOT = ROOT_DIR / "outputs/reviewer_revision/r2m04_omega_placement/runs"
+TRAIN_PATH = os.environ.get("CLP_CROSS_TRAIN", str(ROOT_DIR / "data/F02-1,F03-2,F06-1_6logs_30dB.txt"))
+TEST_PATH = os.environ.get("CLP_CROSS_TEST", str(ROOT_DIR / "data/F03-4_6logs_30dB.txt"))
 CHANNELS = ("sonic", "rhob", "ai", "vp")
 STEPS = (8, 16, 32)
 SEEDS = (7, 23, 41)

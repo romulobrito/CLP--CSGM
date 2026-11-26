@@ -15,7 +15,7 @@ import pandas as pd
 
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-PAPER = os.path.join(ROOT, "paper_clp_csgm")
+PAPER = os.path.join(ROOT, "outputs/paper_assets")
 FIG = os.path.join(PAPER, "figures")
 TAB = os.path.join(PAPER, "tables")
 
