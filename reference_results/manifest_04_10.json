@@ -1,0 +1,154 @@
+[
+  {
+    "table": "04",
+    "file": "reference_results/table04.csv",
+    "source_path": "tables/robustness_crosswell_seed_panel.tex",
+    "source_blob": "3afae4a5146b3080188d1c8ad12a89e2b46491a3",
+    "keys": [
+      "step",
+      "rho"
+    ],
+    "metrics": [
+      "n_seeds",
+      "delta_mean",
+      "delta_se",
+      "delta_t95_half",
+      "clp_wins",
+      "ae_wins",
+      "ci_includes_zero"
+    ],
+    "rows": 9,
+    "categorical_metrics": [
+      "ci_includes_zero"
+    ],
+    "exact_metrics": [
+      "n_seeds",
+      "clp_wins",
+      "ae_wins"
+    ],
+    "informational_metrics": []
+  },
+  {
+    "table": "05",
+    "file": "reference_results/table05.csv",
+    "source_path": "tables/results_f03_gr_only_compact.tex",
+    "source_blob": "9c3fcba350533354ac212aba8882bbaa0a9add33",
+    "keys": [
+      "method"
+    ],
+    "metrics": [
+      "rmse_rho020",
+      "rmse_rho030",
+      "rmse_rho040",
+      "rmse_rho050",
+      "rmse_rho060"
+    ],
+    "rows": 7,
+    "categorical_metrics": [],
+    "exact_metrics": [],
+    "informational_metrics": []
+  },
+  {
+    "table": "06",
+    "file": "reference_results/table06.csv",
+    "source_path": "tables/paired_delta_f03_clp_vs_ae.tex",
+    "source_blob": "bc456259fe924eff61b30b4cc9c0dfd57ec9a33c",
+    "keys": [
+      "rho"
+    ],
+    "metrics": [
+      "delta_mean",
+      "delta_se",
+      "delta_t95_half",
+      "clp_wins",
+      "ae_wins"
+    ],
+    "rows": 5,
+    "categorical_metrics": [],
+    "exact_metrics": [
+      "clp_wins",
+      "ae_wins"
+    ],
+    "informational_metrics": []
+  },
+  {
+    "table": "07",
+    "file": "reference_results/table07.csv",
+    "source_path": "tables/ablation_crosswell_wide.tex",
+    "source_blob": "fd860719fbeb21fbea3e4f5eff14ea8929a15a8f",
+    "keys": [
+      "step",
+      "rho"
+    ],
+    "metrics": [
+      "clp_rmse",
+      "prior_rmse",
+      "measurement_only_rmse",
+      "ae_rmse",
+      "gain_vs_prior_pct",
+      "gain_vs_measurement_pct"
+    ],
+    "rows": 9,
+    "categorical_metrics": [],
+    "exact_metrics": [],
+    "informational_metrics": []
+  },
+  {
+    "table": "08",
+    "file": "reference_results/table08.csv",
+    "source_path": "tables/ablation_f03_wide.tex",
+    "source_blob": "682209e95f25986c0fccb049f3933e9b9918d172",
+    "keys": [
+      "rho"
+    ],
+    "metrics": [
+      "clp_rmse",
+      "prior_rmse",
+      "measurement_only_rmse",
+      "ae_rmse",
+      "gain_vs_prior_pct",
+      "gain_vs_measurement_pct"
+    ],
+    "rows": 5,
+    "categorical_metrics": [],
+    "exact_metrics": [],
+    "informational_metrics": []
+  },
+  {
+    "table": "09",
+    "file": "reference_results/table09.csv",
+    "source_path": "tables/ablation_prior_class_crosswell_wide.tex",
+    "source_blob": "39867ca65b844a369bcd1c4e814499a6577a8bab",
+    "keys": [
+      "step",
+      "rho"
+    ],
+    "metrics": [
+      "mlp_prior_rmse",
+      "ridge_prior_rmse",
+      "ridge_gain_pct"
+    ],
+    "rows": 9,
+    "categorical_metrics": [],
+    "exact_metrics": [],
+    "informational_metrics": []
+  },
+  {
+    "table": "10",
+    "file": "reference_results/table10.csv",
+    "source_path": "tables/ablation_prior_class_f03_wide.tex",
+    "source_blob": "c88388e85868ab87f19d122f20a95fc8741fc441",
+    "keys": [
+      "rho"
+    ],
+    "metrics": [
+      "mlp_prior_rmse",
+      "ridge_prior_rmse",
+      "ridge_gain_pct"
+    ],
+    "rows": 5,
+    "categorical_metrics": [],
+    "exact_metrics": [],
+    "informational_metrics": []
+  }
+]

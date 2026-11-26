@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "COVERAGE_AUDIT_CONSOLIDATED_WITH_EXPLICIT_EXCEPTIONS",
+  "status": "PUBLISHED_REFERENCE_PREPARED_COMPARATOR_TEST_PENDING",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -976,5 +976,19 @@
       ],
       "field_reproduction": "NOT_RUN"
     }
+  },
+  "release05d1": {
+    "status": "IMPLEMENTED_PENDING_CI",
+    "source_manuscript_commit": "fa96db0193a12841067de3928db41e1d97115e56",
+    "tables": 21,
+    "rows": 269,
+    "reference": "reference_results/REFERENCE_MANIFEST.json",
+    "comparator": "scripts/compare_manuscript_results.py",
+    "scope": "Published rounded aggregates; no protocol verification or field replay.",
+    "pending": [
+      "CI self-test",
+      "Producer-specific normalization adapters",
+      "Authorized field comparisons"
+    ]
   }
 }

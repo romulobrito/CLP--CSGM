@@ -1,0 +1,176 @@
+[
+  {
+    "table": "11",
+    "file": "reference_results/table11.csv",
+    "source_path": "tables/srec_percentiles_summary.tex",
+    "source_blob": "e5cc54fba3e64e1bbbf272a7e9d9395495267ed3",
+    "keys": [
+      "dataset",
+      "rho"
+    ],
+    "metrics": [
+      "m",
+      "p1",
+      "p5",
+      "p10",
+      "median"
+    ],
+    "rows": 6,
+    "categorical_metrics": [],
+    "exact_metrics": [
+      "m"
+    ],
+    "informational_metrics": [],
+    "notes": ""
+  },
+  {
+    "table": "12",
+    "file": "reference_results/table12.csv",
+    "source_path": "tables/results_f03_gr_only.tex",
+    "source_blob": "c83fad52e027c924b4b7528fb4fd08f4da62b527",
+    "keys": [
+      "rho",
+      "method"
+    ],
+    "metrics": [
+      "rmse",
+      "rmse_std",
+      "rmse_t95_half",
+      "mae",
+      "relative_l2"
+    ],
+    "rows": 35,
+    "categorical_metrics": [],
+    "exact_metrics": [],
+    "informational_metrics": [],
+    "notes": ""
+  },
+  {
+    "table": "13",
+    "file": "reference_results/table13.csv",
+    "source_path": "tables/robustness_crosswell_step16_gr_embargo.tex",
+    "source_blob": "41841ac645235d10ba5cc60696f9b884d5fa98de",
+    "keys": [
+      "scenario",
+      "rho"
+    ],
+    "metrics": [
+      "ridge_rmse_mean",
+      "ridge_rmse_std",
+      "ae_rmse",
+      "measurement_only_rmse",
+      "ridge_gain_vs_ae_pct",
+      "ridge_gain_vs_meas_only_pct"
+    ],
+    "rows": 12,
+    "categorical_metrics": [],
+    "exact_metrics": [],
+    "informational_metrics": [],
+    "notes": ""
+  },
+  {
+    "table": "14",
+    "file": "reference_results/table14.csv",
+    "source_path": "tables/robustness_crosswell_step32_dev_splits.tex",
+    "source_blob": "b0391d8967725b538195bc3061411ebdd577016a",
+    "keys": [
+      "rho"
+    ],
+    "metrics": [
+      "n_splits",
+      "n_train",
+      "n_val",
+      "clp_rmse_mean",
+      "clp_rmse_std",
+      "ae_rmse_mean",
+      "ae_rmse_std",
+      "delta_mean",
+      "clp_win_frac"
+    ],
+    "rows": 3,
+    "categorical_metrics": [],
+    "exact_metrics": [
+      "n_splits",
+      "n_train",
+      "n_val"
+    ],
+    "informational_metrics": [],
+    "notes": ""
+  },
+  {
+    "table": "15",
+    "file": "reference_results/table15.csv",
+    "source_path": "tables/robustness_crosswell_explicit_mask.tex",
+    "source_blob": "24b45805501c0d336637cc1af5692255195165e1",
+    "keys": [
+      "step",
+      "rho"
+    ],
+    "metrics": [
+      "clp_rmse",
+      "ae_rmse",
+      "ae_mask_rmse",
+      "delta_ae",
+      "delta_mask",
+      "clp_wins_ae",
+      "clp_wins_mask"
+    ],
+    "rows": 9,
+    "categorical_metrics": [],
+    "exact_metrics": [
+      "clp_wins_ae",
+      "clp_wins_mask"
+    ],
+    "informational_metrics": [],
+    "notes": "Win counts use denominator 3; fraction notation normalized to integer numerator."
+  },
+  {
+    "table": "16",
+    "file": "reference_results/table16.csv",
+    "source_path": "tables/robustness_crosswell_omega_placement.tex",
+    "source_blob": "f070aa3f23e73f5b7955addebc4fc85ac1e80abf",
+    "keys": [
+      "step",
+      "rho"
+    ],
+    "metrics": [
+      "n",
+      "clp_rmse",
+      "ae_rmse",
+      "delta_mean",
+      "clp_wins",
+      "ae_wins"
+    ],
+    "rows": 9,
+    "categorical_metrics": [],
+    "exact_metrics": [
+      "n",
+      "clp_wins",
+      "ae_wins"
+    ],
+    "informational_metrics": [],
+    "notes": ""
+  },
+  {
+    "table": "17",
+    "file": "reference_results/table17.csv",
+    "source_path": "tables/robustness_crosswell_simple_baselines.tex",
+    "source_blob": "507b0de19c25988e86e8547a401c64fb2bfe091e",
+    "keys": [
+      "step",
+      "rho"
+    ],
+    "metrics": [
+      "linear_rmse",
+      "ridge_direct_rmse",
+      "interpolation_rmse",
+      "clp_rmse",
+      "ae_rmse"
+    ],
+    "rows": 9,
+    "categorical_metrics": [],
+    "exact_metrics": [],
+    "informational_metrics": [],
+    "notes": ""
+  }
+]

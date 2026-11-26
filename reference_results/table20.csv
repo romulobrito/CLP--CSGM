@@ -1,0 +1,11 @@
+dataset,method,time_per_window_sec,relative_time_vs_ae,rmse
+"Cross-well Vc","ML only","0.00787","0.32","0.02582"
+"Cross-well Vc","MLP [u,b]","0.04348","2.33","0.21399"
+"Cross-well Vc","PCA [u,b]","0.07129","3.15","0.14464"
+"Cross-well Vc","AE [u,b]","0.03156","1.00","0.01793"
+"Cross-well Vc","CLP-CSGM Ridge","0.23517","9.79","0.01480"
+"F03-4 GR-only","ML only","0.06010","2.13","0.02391"
+"F03-4 GR-only","MLP [u,b]","0.04771","1.73","0.03981"
+"F03-4 GR-only","PCA [u,b]","0.31793","11.67","0.02149"
+"F03-4 GR-only","AE [u,b]","0.02999","1.00","0.01429"
+"F03-4 GR-only","CLP-CSGM Ridge","0.08838","3.23","0.01418"
