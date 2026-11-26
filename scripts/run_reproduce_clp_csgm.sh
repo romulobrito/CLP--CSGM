@@ -41,3 +41,5 @@ python scripts/clp_csgm_ablation_assets.py
 python scripts/clp_csgm_r1m06_controlled_assets.py
 # Legacy figure utilities require additional named result bundles; run separately.
 echo "Primary comparison, three-seed benchmarks and controlled prior tables finished."
+# Generate local intermediate results and final manuscript-style figures.
+bash scripts/run_regenerate_figure_inputs.sh

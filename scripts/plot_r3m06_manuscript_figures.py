@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """Redraw the manuscript RMSE and depth figures from saved summaries.
 
-The RMSE panels read the no-GR copies under
+By default, read the checked local regenerated bundle. With --historical,\nread the original no-GR copies under
 outputs/reviewer_revision/r3m06_no_gr_summaries. They do not read the
 five-channel CSVs in outputs/cross_well_vc/direct_ub.
 The depth profile still requires the local NPZ named in PROFILE_NPZ.
@@ -25,6 +25,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from build_regenerated_figure_inputs import checked_regenerated_paths
 
 ROOT = Path(__file__).resolve().parents[1]
 PAPER_FIG = ROOT / "outputs/paper_assets" / "figures"
@@ -84,7 +85,7 @@ def _backup(name: str) -> None:
     """Keep the previous paper PNG under an identified folder."""
     source = PAPER_FIG / name
     if not source.is_file():
-        raise FileNotFoundError(str(source))
+        return
     BACKUP.mkdir(parents=True, exist_ok=True)
     destination = BACKUP / name
     if not destination.is_file():
@@ -134,10 +135,10 @@ def _checked_summary_paths() -> List[Tuple[int, Path]]:
     return checked
 
 
-def _load_rmse() -> pd.DataFrame:
+def _load_rmse(historical: bool = False) -> pd.DataFrame:
     """Stack the three no-GR step summaries. Seeds and splits stay as stored."""
     frames: List[pd.DataFrame] = []
-    for step, path in _checked_summary_paths():
+    for step, path in (_checked_summary_paths() if historical else checked_regenerated_paths()):
         frame = pd.read_csv(path)
         required = {
             "measurement_ratio",
@@ -375,13 +376,14 @@ def main() -> None:
         default=str(PAPER_FIG),
         help="Directory for the PNG files. The default is the manuscript figures folder.",
     )
+    parser.add_argument("--historical", action="store_true", help="Use original local historical provenance instead of the regenerated bundle.")
     args = parser.parse_args()
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     if out_dir.resolve() == PAPER_FIG.resolve():
         _backup("results_crosswell_rmse_vs_rho.png")
         _backup("10_depth_profile_crosswell_vc.png")
-    _plot_rmse(_load_rmse(), out_dir)
+    _plot_rmse(_load_rmse(args.historical), out_dir)
     _plot_profiles(out_dir)
     print("wrote revised figures under", out_dir)
 

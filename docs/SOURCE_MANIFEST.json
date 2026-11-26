@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "INFRASTRUCTURE_ADAPTED_PENDING_VALIDATION_AND_LEGACY_ASSET_AUDIT",
+  "status": "FIGURE_CHAIN_ADAPTED_PENDING_RUNTIME_AND_NUMERICAL_VALIDATION",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -64,9 +64,9 @@
       "destination_path": "scripts/clp_csgm_quick_figures.py",
       "source_blob": "9501f2a52b1347f58b95d379a7c675a0e1a26bc5",
       "public_base_blob": "9501f2a52b1347f58b95d379a7c675a0e1a26bc5",
-      "status": "infrastructure_adapted_pending_runtime_validation",
-      "destination_blob_expected": "3104b4078d7528dcd7ab2023800f2c5294b05b4a",
-      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
+      "status": "artifact_chain_adapted_pending_runtime_validation",
+      "destination_blob_expected": "71fb904b2ca90ad223f8441c31c7a379174a67d8",
+      "adaptation": "Local regenerated figure inputs with protocol checks; historical and regenerated provenance kept separate; see RELEASE-03b diff."
     },
     {
       "group": "preserve",
@@ -94,9 +94,9 @@
       "destination_path": "scripts/clp_csgm_uncertainty_assets.py",
       "source_blob": "14737fb5e9857070c15573aa945830c20378d1b4",
       "public_base_blob": "14737fb5e9857070c15573aa945830c20378d1b4",
-      "status": "infrastructure_adapted_pending_runtime_validation",
-      "destination_blob_expected": "d4f1b19413c4d2b8461ec323c31af8557d83ff96",
-      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
+      "status": "artifact_chain_adapted_pending_runtime_validation",
+      "destination_blob_expected": "59a0d1beb7d4fd00da80c984d79866241abebc51",
+      "adaptation": "Local regenerated figure inputs with protocol checks; historical and regenerated provenance kept separate; see RELEASE-03b diff."
     },
     {
       "group": "preserve",
@@ -356,10 +356,10 @@
       "destination_path": "scripts/clp_csgm_paper_assets.py",
       "source_blob": "8ea0b470dac7d7d8cd9997d5442ca9d135848735",
       "public_base_blob": "9f52fb06379409173b3c46596008b207c15b1da5",
-      "status": "infrastructure_adapted_pending_runtime_validation",
-      "destination_blob_expected": "a9f8e87458e9c8fb2f9030bd659b78b1de0259d5",
+      "status": "artifact_chain_adapted_pending_runtime_validation",
+      "destination_blob_expected": "8c85433ea4a062c017c624558927e5d52d69f165",
       "destination_mode": "100644",
-      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
+      "adaptation": "Local regenerated figure inputs with protocol checks; historical and regenerated provenance kept separate; see RELEASE-03b diff."
     },
     {
       "group": "release02",
@@ -408,10 +408,10 @@
       "destination_path": "scripts/plot_r3m06_manuscript_figures.py",
       "source_blob": "071d310fb2e4d65e66f10bf1309eda104046a80e",
       "public_base_blob": null,
-      "status": "infrastructure_adapted_pending_runtime_validation",
-      "destination_blob_expected": "aa3b4a17f42aff379fb2fd74a416c0ac85aa936a",
+      "status": "artifact_chain_adapted_pending_runtime_validation",
+      "destination_blob_expected": "89981148c5ba398c360df0cb6be15f743a2d867d",
       "destination_mode": "100644",
-      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
+      "adaptation": "Local regenerated figure inputs with protocol checks; historical and regenerated provenance kept separate; see RELEASE-03b diff."
     },
     {
       "group": "protocol_candidates",
@@ -683,6 +683,59 @@
       "Legacy paper assets still require named m2_grid summaries or no-GR provenance/NPZ bundles; map or generate them from authorized local inputs.",
       "Confirm launcher configurations and table/figure numerical equivalence against manuscript.",
       "Exact dependency lock requires measured environment; documentation and remaining diagnostics are RELEASE-04/05."
+    ]
+  },
+  "release03b": {
+    "parent_commit": "d429d8fe3323d21ebbc7e467602f3ddeb4e37b3a",
+    "changes": [
+      {
+        "path": "docs/RESULT_DEPENDENCIES.md",
+        "before": null,
+        "after": "24a7ad79af40ca17f31c47db3a6bdcd47e5b355c"
+      },
+      {
+        "path": "scripts/build_regenerated_figure_inputs.py",
+        "before": null,
+        "after": "bd06de41eeb6e478504bdeaeca13ea68ea6f1e2e"
+      },
+      {
+        "path": "scripts/clp_csgm_paper_assets.py",
+        "before": "a9f8e87458e9c8fb2f9030bd659b78b1de0259d5",
+        "after": "8c85433ea4a062c017c624558927e5d52d69f165"
+      },
+      {
+        "path": "scripts/clp_csgm_quick_figures.py",
+        "before": "3104b4078d7528dcd7ab2023800f2c5294b05b4a",
+        "after": "71fb904b2ca90ad223f8441c31c7a379174a67d8"
+      },
+      {
+        "path": "scripts/clp_csgm_uncertainty_assets.py",
+        "before": "d4f1b19413c4d2b8461ec323c31af8557d83ff96",
+        "after": "59a0d1beb7d4fd00da80c984d79866241abebc51"
+      },
+      {
+        "path": "scripts/plot_r3m06_manuscript_figures.py",
+        "before": "aa3b4a17f42aff379fb2fd74a416c0ac85aa936a",
+        "after": "89981148c5ba398c360df0cb6be15f743a2d867d"
+      },
+      {
+        "path": "scripts/run_regenerate_figure_inputs.sh",
+        "before": null,
+        "after": "21c0a6a76ad1202729cdf52a7160ddc5203610f4"
+      },
+      {
+        "path": "scripts/run_reproduce_clp_csgm.sh",
+        "before": "092be7ce219474837961aefa5ce0c70ec13bf45f",
+        "after": "8b3c2ff7975c6420df8f13e8c741e9f003606fcc"
+      }
+    ],
+    "historical_conflict": "Tracked legacy Ridge run configs are five-channel p_input=320, not the manuscript four-channel p_input=256; never reuse them.",
+    "validation": "Static inspection and Git tree allowlist only.",
+    "pending": [
+      "Execute clean environment and synthetic smoke",
+      "Verify complete appendix producer coverage",
+      "Compare all published metrics and profile to authorized local originals",
+      "Historical profile configuration unavailable; uniform_mean default chosen provisionally"
     ]
   }
 }
