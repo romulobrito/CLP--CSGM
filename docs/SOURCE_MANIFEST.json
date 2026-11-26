@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "PUBLISHED_REFERENCE_PREPARED_COMPARATOR_TEST_PENDING",
+  "status": "ADAPTERS_IMPLEMENTED_PENDING_FIXTURE_AND_FIELD_VALIDATION",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -978,17 +978,40 @@
     }
   },
   "release05d1": {
-    "status": "IMPLEMENTED_PENDING_CI",
+    "status": "PASS_COMPARATOR_FIXTURE",
     "source_manuscript_commit": "fa96db0193a12841067de3928db41e1d97115e56",
     "tables": 21,
     "rows": 269,
     "reference": "reference_results/REFERENCE_MANIFEST.json",
     "comparator": "scripts/compare_manuscript_results.py",
     "scope": "Published rounded aggregates; no protocol verification or field replay.",
+    "pending": [],
+    "validation": {
+      "tested_commit": "3eeb8b5570aed5c71da3bc94cfd73514905e0a3a",
+      "technical_run": 45900065531,
+      "job_id": 140183387593,
+      "static_checks": 106,
+      "technical_checks": 163,
+      "failures": 0,
+      "reference_tables_verified": 21,
+      "artifact_id": 15155336528,
+      "synthetic_run": 45900065544,
+      "synthetic_conclusion": "success"
+    }
+  },
+  "release05d2a": {
+    "status": "IMPLEMENTED_PENDING_FIXTURE_VALIDATION",
+    "adapter": "scripts/normalize_manuscript_results.py",
+    "table_count": 21,
+    "explicit_source_required": [
+      "21",
+      "22"
+    ],
+    "scope": "Normalize independently generated aggregate CSVs, verify row keys/counts where available, preserve source hashes; no field runs or full protocol certification.",
     "pending": [
-      "CI self-test",
-      "Producer-specific normalization adapters",
-      "Authorized field comparisons"
+      "Fixture tests for each adapter",
+      "Producer contract checks with real outputs",
+      "Authorized field reproduction"
     ]
   }
 }
