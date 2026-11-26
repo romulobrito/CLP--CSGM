@@ -9,7 +9,9 @@ The historical checkpoint contains **five-channel** configurations (GR included,
 | Figs. 8, 24 (step 16, seed 7, rho 0.20) | run_regenerate_figure_inputs.sh: dedicated single-cell run | depth_profile_test_block.npz; plot_r3m06_manuscript_figures.py |
 | Tables 7–10 | main driver: separate Ridge/MLP runs | ablation and controlled-prior aggregators |
 | Appendix B.8/B.10/B.11 | corresponding four revision launchers | paired aggregators |
-| Appendix B.12 | omega placement offset-zero runs; simple baselines; noise sweep; smoothing and affine audit | respective plotting scripts |
+| Appendix B.12 | omega placement offset-zero runs; simple baselines; noise sweep; seven-candidate smoothing and affine audit | respective plotting scripts |
+| Appendix B.7, Table 13 / Fig. 20 | run_b7_gr_embargo.py | local table13.csv and figure20.png |
+| Appendix E depth-index overlap | audit_861_depth_indices.py | local index-only diagnostic (no laboratory values) |
 
 From the repository root, with authorized inputs, run the main driver. It invokes the figure-input regeneration script. To regenerate only the profile and figures after the three canonical Ridge runs exist, run `bash scripts/run_regenerate_figure_inputs.sh`. The builder checks run configuration, exact channels, wells, counts, seeds, ratios and selected CLP parameters; it verifies summary cell coverage and records local file and configuration hashes. The final plotter retains its published CLP mean check (absolute tolerance 5e-5). The historical mode remains explicit; it requires the original local provenance, not shipped with the package.
 

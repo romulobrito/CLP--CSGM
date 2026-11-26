@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "TECHNICAL_VALIDATION_PASSED_SYNTHETIC_PENDING",
+  "status": "SYNTHETIC_VALIDATION_PASSED_COVERAGE_AUDITED_WITH_OPEN_ITEMS",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -800,11 +800,54 @@
       }
     },
     "check_runner": "scripts/check_release.py",
-    "pending": []
+    "pending": [],
+    "recheck": {
+      "tested_commit": "b0bc692cacd027d0d86549e24c4b6cd64348e046",
+      "workflow_run": 45896373226,
+      "job_id": 140171167479,
+      "static_checks_passed": 98,
+      "full_checks_passed": 151,
+      "failures": 0,
+      "artifact_id": 15154355835
+    }
   },
   "release05b": {
-    "status": "WORKFLOW_CONFIGURED_EXECUTION_PENDING",
-    "scope": "Two synthetic benchmarks, reduced budgets; no field data or numerical manuscript reproduction.",
-    "acceptance": "Both launchers exit successfully; required method cells, finite metrics, aggregation, CLP diagnostics and parity arrays pass."
+    "status": "PASS",
+    "tested_commit": "b0bc692cacd027d0d86549e24c4b6cd64348e046",
+    "workflow_run": 45896373313,
+    "job_id": 140171167873,
+    "benchmarks_passed": 2,
+    "method_cells_verified": 28,
+    "failures": 0,
+    "artifact_id": 15153577182,
+    "scope": "Reduced-budget synthetic benchmarks; no field numerical equivalence."
+  },
+  "release05c": {
+    "status": "COVERAGE_AUDITED_OPEN_ITEMS",
+    "basis": "89-page revised manuscript and Git source checkpoint c4df022497f6b4a3438dd8372335df58178cfe89",
+    "coverage_document": "docs/COVERAGE_AUDIT.md",
+    "new_tools": [
+      "scripts/run_b7_gr_embargo.py",
+      "scripts/audit_861_depth_indices.py"
+    ],
+    "index_only_independent_calculation": {
+      "configurations": 18,
+      "shared_indices": [
+        21,
+        27
+      ],
+      "fraction_scored_ever_measured": [
+        0.8409090909090909,
+        1
+      ],
+      "scope": "Independent local NumPy calculation of published row-index formula, not execution of new repository script."
+    },
+    "pending": [
+      "Recover exact Lapa seven-channel run configuration and figure/table exporter chain.",
+      "Verify historical runtime/srec protocol (runtime script uses GR and noise 0.02 cross-well; do not silently change).",
+      "Confirm historical Figure 8/24 overlap aggregation and profile source.",
+      "Confirm all figure selections and table exporters; especially F03 qualitative views, Lapa and Well 861 paired tables.",
+      "Run new scripts and compare field outputs to manuscript."
+    ]
   }
 }
