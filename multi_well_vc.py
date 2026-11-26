@@ -17,8 +17,9 @@ Target:
 Split convention for the cross-well study:
     - train/val wells: a list of wells read from one or more files
     - test well: a single well read from a separate file
-    - val is carved as the tail (last val_frac) of each train well, contiguous
-      in depth, to minimize within-well leakage while keeping reproducibility
+    - default val is the tail (last val_frac) of each train well
+    - optional val_split_mode=random_per_well redraws the same val budget
+      with val_split_seed (R1-M03 supplement; test well unchanged)
 
 ASCII-only.
 """
@@ -329,6 +330,70 @@ def concat_windows(batches: Sequence[MultiWellWindows]) -> MultiWellWindows:
 # ---------------------------------------------------------------------------
 
 
+def random_per_well_val_mask(
+    wells: np.ndarray, val_frac: float, split_seed: int
+) -> Tuple[np.ndarray, np.ndarray]:
+    """
+    Partition window indices by drawing val_frac of each well at random.
+
+    The held-out test well is not in `wells`. Only development windows are
+    split. Embargo is not applied here: combine with tail mode instead.
+
+    Returns (is_train, is_val) boolean arrays of shape wells.shape.
+    """
+    if not (0.0 < float(val_frac) < 1.0):
+        raise ValueError("val_frac must be in (0,1).")
+    names = np.asarray(wells, dtype=object).ravel()
+    n = names.size
+    is_train = np.ones(n, dtype=bool)
+    is_val = np.zeros(n, dtype=bool)
+    rng = np.random.default_rng(int(split_seed))
+    unique_order: List[str] = []
+    for name in names.tolist():
+        if name not in unique_order:
+            unique_order.append(str(name))
+    for name in unique_order:
+        idx = np.where(names == name)[0]
+        if idx.size < 4:
+            continue
+        n_val = max(1, int(np.floor(float(val_frac) * idx.size)))
+        if n_val >= idx.size:
+            n_val = idx.size - 1
+        chosen = rng.choice(idx, size=int(n_val), replace=False)
+        is_val[chosen] = True
+        is_train[chosen] = False
+    if not bool(np.any(is_val)):
+        raise ValueError("random_per_well val mask is empty; check window counts.")
+    return is_train, is_val
+
+
+def development_val_mask(
+    wells: np.ndarray,
+    val_frac: float,
+    *,
+    val_split_mode: str = "tail",
+    val_split_seed: int = 0,
+    val_embargo_windows: int = 0,
+) -> Tuple[np.ndarray, np.ndarray]:
+    """Select the train/val mask for development wells."""
+    mode = str(val_split_mode).strip().lower()
+    if mode == "tail":
+        return tail_per_well_val_mask(
+            wells, val_frac=val_frac, val_embargo_windows=int(val_embargo_windows)
+        )
+    if mode == "random_per_well":
+        if int(val_embargo_windows) != 0:
+            raise ValueError(
+                "val_embargo_windows must be 0 when val_split_mode=random_per_well"
+            )
+        return random_per_well_val_mask(
+            wells, val_frac=val_frac, split_seed=int(val_split_seed)
+        )
+    raise ValueError(
+        "val_split_mode must be 'tail' or 'random_per_well', got {}".format(mode)
+    )
+
+
 def tail_per_well_val_mask(
     wells: np.ndarray, val_frac: float, val_embargo_windows: int = 0
 ) -> Tuple[np.ndarray, np.ndarray]:
@@ -388,6 +453,8 @@ def build_cross_well_data_dict(
     step: int = 4,
     val_frac: float = 0.1,
     val_embargo_windows: int = 0,
+    val_split_mode: str = "tail",
+    val_split_seed: int = 0,
     residual_basis: str = "dct",
     scale_x: bool = True,
     train_well_names: Optional[Sequence[str]] = None,
@@ -429,9 +496,11 @@ def build_cross_well_data_dict(
     ]
     te_all = concat_windows(te_batches)
 
-    is_train, is_val = tail_per_well_val_mask(
+    is_train, is_val = development_val_mask(
         tr_all.well_of_window,
         val_frac=val_frac,
+        val_split_mode=str(val_split_mode),
+        val_split_seed=int(val_split_seed),
         val_embargo_windows=int(val_embargo_windows),
     )
     x_tr_raw = tr_all.x[is_train]
@@ -472,6 +541,8 @@ def build_cross_well_data_dict(
         "step": int(step),
         "val_frac": float(val_frac),
         "val_embargo_windows": int(val_embargo_windows),
+        "val_split_mode": str(val_split_mode).strip().lower(),
+        "val_split_seed": int(val_split_seed),
         "residual_basis": str(residual_basis),
         "scale_x": bool(scale_x),
         "n_train": int(x_tr.shape[0]),

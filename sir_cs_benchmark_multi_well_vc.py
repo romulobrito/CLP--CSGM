@@ -8,7 +8,8 @@ assimilation. Direct [u, b] -> y benchmark with a held-out test well.
 - u: concatenated channel segments (default: sonic, rhob, ai, vp; i.e. no GR).
 - b: artificially subsampled y with additive measurement noise (core analogue).
 - Train set: windows from the three training wells concatenated.
-- Val set: tail val_frac of windows of each training well (no leakage).
+- Val set: default = tail val_frac of each training well; optional
+  random_per_well draws (R1-M03) with --val-split-seed.
 - Test set: all windows of the held-out well.
 
 Usage (from repo root):
@@ -130,13 +131,35 @@ def parse_args() -> argparse.Namespace:
             "inside each training well to reduce overlap leakage."
         ),
     )
+    p.add_argument(
+        "--val-split-mode",
+        type=str,
+        default="tail",
+        choices=("tail", "random_per_well"),
+        help=(
+            "How validation windows are taken inside development wells: "
+            "tail (paper default) or random_per_well (R1-M03 supplement)."
+        ),
+    )
+    p.add_argument(
+        "--val-split-seed",
+        type=int,
+        default=0,
+        help="RNG seed for random_per_well validation draws (ignored for tail).",
+    )
     p.add_argument("--base-dir", type=str, default="outputs/cross_well_vc/direct_ub")
     p.add_argument("--run-id", type=str, default="", help="Run folder name (default: timestamp).")
     p.add_argument(
         "--seeds",
         type=str,
         default="7,23,41",
-        help="Comma-separated RNG seeds (M and b noise; same u,y split for all).",
+        help="Comma-separated model seeds (training and, if offset is 0, Omega).",
+    )
+    p.add_argument(
+        "--measurement-seed-offset",
+        type=int,
+        default=0,
+        help="Added to the model seed only when drawing Omega and measurement noise. 0 keeps the published draw.",
     )
     p.add_argument(
         "--rhos",
@@ -198,6 +221,11 @@ def parse_args() -> argparse.Namespace:
         "--no-lfista",
         action="store_true",
         help="Skip hybrid_lfista_joint (useful for CSGM-focused benchmark runs).",
+    )
+    p.add_argument(
+        "--run-ae-explicit-mask",
+        action="store_true",
+        help="Also fit AE [u,b,mask] with b placed on window coordinates. Off by default.",
     )
     p.add_argument(
         "--run-csgm-m2",
@@ -296,7 +324,9 @@ def write_dataset_manifest(
         "",
         "window_len (L, n_output): " + str(meta.get("window_len", 0)),
         "step: " + str(meta.get("step", 0)),
-        "val_frac (tail per train well): " + str(meta.get("val_frac", 0.0)),
+        "val_frac (per train well): " + str(meta.get("val_frac", 0.0)),
+        "val_split_mode: " + str(meta.get("val_split_mode", "tail")),
+        "val_split_seed: " + str(meta.get("val_split_seed", 0)),
         "val_embargo_windows (train/val boundary): "
         + str(meta.get("val_embargo_windows", 0)),
         "n_train n_val n_test (windows): " + str(n_tr) + " " + str(n_va) + " " + str(n_te),
@@ -343,6 +373,12 @@ def _reconstruct_test_depth_axis(
 
 def main() -> None:
     args = parse_args()
+    if str(args.val_split_mode) == "random_per_well" and int(args.val_embargo_windows) != 0:
+        print(
+            "val_embargo_windows must be 0 with val_split_mode=random_per_well",
+            file=sys.stderr,
+        )
+        sys.exit(2)
     warnings.filterwarnings("ignore", category=ConvergenceWarning)
     seeds_str = "7" if bool(args.fast) else str(args.seeds)
     rhos_str = "0.1,0.2" if bool(args.fast) else str(args.rhos)
@@ -370,6 +406,8 @@ def main() -> None:
         step=int(args.step),
         val_frac=float(args.val_frac),
         val_embargo_windows=int(args.val_embargo_windows),
+        val_split_mode=str(args.val_split_mode),
+        val_split_seed=int(args.val_split_seed),
         residual_basis=str(args.residual_basis),
     )
     meta = data["meta"]
@@ -397,6 +435,7 @@ def main() -> None:
     cfg.run_lfista = not bool(args.no_lfista)
     cfg.run_csgm_m2 = bool(args.run_csgm_m2)
     cfg.run_csgm_ablations = bool(args.run_csgm_ablations)
+    cfg.run_ae_explicit_mask = bool(args.run_ae_explicit_mask)
     cfg.csgm_prior_type = str(args.csgm_prior_type).strip().lower()
     cfg.csgm_latent_dim = int(args.csgm_latent_dim)
     cfg.csgm_ae_epochs = int(args.csgm_ae_epochs)
@@ -405,6 +444,8 @@ def main() -> None:
     cfg.csgm_opt_lr = float(args.csgm_opt_lr)
     cfg.csgm_lambda_grid = _parse_float_list(str(args.csgm_lambda_grid))
     cfg.paper_strict_paired_b = True
+    cfg.measurement_seed_offset = int(args.measurement_seed_offset)
+    cfg.omega_records = []
     bg_override = int(args.lfista_bg_epochs)
     if bg_override > 0:
         cfg.lfista_num_epochs_bg = bg_override
@@ -485,7 +526,8 @@ def main() -> None:
             + " bg_epochs=" + str(cfg.lfista_num_epochs_bg)
             + " csgm_m2=" + str(cfg.run_csgm_m2)
             + " csgm_ablations=" + str(cfg.run_csgm_ablations)
-            + " csgm_prior=" + str(cfg.csgm_prior_type),
+            + " csgm_prior=" + str(cfg.csgm_prior_type)
+            + " ae_explicit_mask=" + str(cfg.run_ae_explicit_mask),
         )
 
         for seed in cfg.seeds:
@@ -517,12 +559,18 @@ def main() -> None:
                     first_job_info = {"seed": float(seed), "rho": float(mr)}
 
         detailed = pd.concat(all_dfs, ignore_index=True)
+        meas_offset = int(cfg.measurement_seed_offset)
+        detailed["measurement_seed_offset"] = meas_offset
+        detailed["measurement_seed"] = detailed["seed"].astype(int) + meas_offset
         per_seed = summarize_results_per_seed(detailed)
         summary = summarize_results_across_seeds(per_seed)
         detailed["method_label"] = detailed["method"].map(method_display_name)
         per_seed["method_label"] = per_seed["method"].map(method_display_name)
         summary["method_label"] = summary["method"].map(method_display_name)
         detailed.to_csv(os.path.join(tables_dir, "detailed_results.csv"), index=False)
+        omega_path = os.path.join(tables_dir, "omega_sets.csv")
+        pd.DataFrame(list(cfg.omega_records)).to_csv(omega_path, index=False)
+        _log(tee, "Omega sets: " + omega_path)
         per_seed.to_csv(os.path.join(tables_dir, "summary_by_seed.csv"), index=False)
         summary.to_csv(os.path.join(tables_dir, "summary.csv"), index=False)
         focus_paths = save_focus_tables(
@@ -694,6 +742,9 @@ def main() -> None:
             "window_len": l,
             "step": int(meta["step"]),
             "val_frac": float(meta["val_frac"]),
+            "val_split_mode": str(meta.get("val_split_mode", "tail")),
+            "val_split_seed": int(meta.get("val_split_seed", 0)),
+            "val_embargo_windows": int(meta.get("val_embargo_windows", 0)),
             "n_train": n_tr,
             "n_val": n_va,
             "n_test": n_te,

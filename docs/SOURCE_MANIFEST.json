@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "PLANNED_NOT_VALIDATED",
+  "status": "MODULE_TRANSFER_PENDING_RUNTIME_VALIDATION",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -110,7 +110,8 @@
       "destination_path": "direct_ub_baselines.py",
       "source_blob": "8a049f51542a858c30d5152203ee4584fad5c614",
       "public_base_blob": "f8c93f403b3ca6acc5f2595df5448afa94b39ced",
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "8a049f51542a858c30d5152203ee4584fad5c614"
     },
     {
       "group": "release01",
@@ -118,7 +119,8 @@
       "destination_path": "multi_well_vc.py",
       "source_blob": "1542470fe21efa2cf7d4cd00116320d38662d702",
       "public_base_blob": "37b1d156089dcab63c4374ac2b43a7105c6fa9bc",
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "1542470fe21efa2cf7d4cd00116320d38662d702"
     },
     {
       "group": "release01",
@@ -126,7 +128,8 @@
       "destination_path": "sir_cs_benchmark_direct_ub.py",
       "source_blob": "55a097b1b9b1c2ec46232cdfc0ee55a26625e6a6",
       "public_base_blob": "600bbc2545aebb51de1b6c6a85726c25a352981e",
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "55a097b1b9b1c2ec46232cdfc0ee55a26625e6a6"
     },
     {
       "group": "release01",
@@ -134,7 +137,8 @@
       "destination_path": "sir_cs_benchmark_multi_well_vc.py",
       "source_blob": "f2eda168b331f3e537dd2170cbc032f0224e2f93",
       "public_base_blob": "6cbaf9e97dd7c9efb9ce58fd96135142f13f6e39",
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "f2eda168b331f3e537dd2170cbc032f0224e2f93"
     },
     {
       "group": "release01",
@@ -142,7 +146,8 @@
       "destination_path": "sir_cs_pipeline_optimized.py",
       "source_blob": "d5baf707cc3f8cbe7fcee6d627c84fe28ac6aeb9",
       "public_base_blob": "a3de0338034ceb6d566fce806c9491b73606ad70",
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "d5baf707cc3f8cbe7fcee6d627c84fe28ac6aeb9"
     },
     {
       "group": "release01",
@@ -150,7 +155,8 @@
       "destination_path": "sir_cs_pipeline.py",
       "source_blob": "d5e41eb89997b3506c06ddcdc68265a743ca0eea",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "d5e41eb89997b3506c06ddcdc68265a743ca0eea"
     },
     {
       "group": "release01",
@@ -158,7 +164,8 @@
       "destination_path": "bases_extra.py",
       "source_blob": "15f718df49becdb624224320b6b9813d11d9aeb5",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "15f718df49becdb624224320b6b9813d11d9aeb5"
     },
     {
       "group": "release02",
@@ -369,12 +376,14 @@
       "status": "planned_not_transferred"
     },
     {
-      "group": "dependency_review",
+      "group": "release01",
       "source_path": "lfista_module.py",
       "destination_path": "lfista_module.py",
       "source_blob": "f9da03483147db26c3c537454398f11d4d9233d8",
       "public_base_blob": null,
-      "status": "planned_not_transferred"
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "f9da03483147db26c3c537454398f11d4d9233d8",
+      "reason": "Required import of LFISTATrainConfig by shared pipeline even when LFISTA is disabled; legacy compatibility dependency, not proposed method."
     },
     {
       "group": "dependency_review",

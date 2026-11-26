@@ -61,6 +61,34 @@ def concat_ub(X: np.ndarray, B: np.ndarray) -> np.ndarray:
     return np.hstack([X, B])
 
 
+def embed_sparse_observation(B: np.ndarray, M: np.ndarray) -> np.ndarray:
+    """Place noisy measurements on window coordinates and append a binary mask.
+
+    B has shape (n_samples, m). M has shape (m, n_output) with one selected
+    coordinate per row and no repeated columns. The return has shape
+    (n_samples, 2 * n_output): placed values, then the same mask on every row.
+    """
+    measurements = np.asarray(B, dtype=np.float64)
+    operator = np.asarray(M, dtype=np.float64)
+    if measurements.ndim != 2 or operator.ndim != 2:
+        raise ValueError("B and M must be two-dimensional arrays.")
+    n_samples, n_meas = measurements.shape
+    n_rows, n_output = operator.shape
+    if n_rows != n_meas:
+        raise ValueError("M rows ({}) must match B columns ({}).".format(n_rows, n_meas))
+    if n_output < 1 or n_samples < 1:
+        raise ValueError("embed_sparse_observation received an empty array.")
+    row_sums = operator.sum(axis=1)
+    if not np.allclose(row_sums, 1.0):
+        raise ValueError("each measurement row must select exactly one coordinate.")
+    column_sums = operator.sum(axis=0)
+    if bool(np.any(column_sums > 1.0 + 1e-8)):
+        raise ValueError("measurement coordinates must be unique.")
+    placed = measurements @ operator
+    mask = np.repeat(column_sums.reshape(1, n_output), n_samples, axis=0)
+    return np.hstack([placed, mask])
+
+
 def fit_scaler_ub(Xb_train: np.ndarray) -> StandardScaler:
     s = StandardScaler()
     s.fit(Xb_train)
