@@ -2,7 +2,7 @@
 
 Conditional Latent-Prior Compressed Sensing with Generative Models (CLP-CSGM) for reconstruction of petrophysical target logs from continuous auxiliary measurements and sparse target observations.
 
-Code accompanying *Conditional Latent-Prior Generative Compressed Sensing for Petrophysical Target-Log Reconstruction*, revised manuscript for Computers & Geosciences. This repository is distributed under the [MIT License](LICENSE).
+Code accompanying the manuscript *Conditional Latent-Prior Generative Compressed Sensing for Petrophysical Target-Log Reconstruction*. This repository is distributed under the [MIT License](LICENSE).
 
 **Validation status:** all 21 experimental tables (04–24) were independently executed locally by the author, and all 26 numerical figures regenerated. Scientific conclusions were preserved with documented exceptions in numerical magnitudes and seed counts: 867/1124 metrics agree within the original published-precision tolerance, three tables fully match, and two targeted repeatability checks were exact in the tested environment. This is partial numerical agreement, not complete historical numerical equivalence. See the [field reproducibility report](docs/FIELD_REPRODUCIBILITY_REPORT.md). No field datasets or trained models are distributed here. The exact package-version snapshot is available; fresh-install validation passed in both the [technical](https://github.com/romulobrito/CLP--CSGM/actions/runs/46042013857) and [synthetic](https://github.com/romulobrito/CLP--CSGM/actions/runs/46042013860) CI jobs.
 
@@ -21,7 +21,7 @@ The reference replay used CPython 3.10.22 on Linux x86_64 (Ubuntu 22.04.5 LTS), 
 ```bash
 git clone https://github.com/romulobrito/CLP--CSGM.git
 cd CLP--CSGM
-# For the reviewed version, check out the immutable release tag once published.
+git checkout --detach v1.0.0
 # Ensure "python" resolves to CPython 3.10.22.
 bash scripts/install_release_cpu.sh
 source .venv-release/bin/activate
@@ -74,4 +74,6 @@ Historical module names are retained for compatibility. For CLP-CSGM benchmarks 
 - [Source transfer manifest](docs/SOURCE_MANIFEST.json)
 - [Frozen experimental protocols](docs/protocols/)
 
-Cite the manuscript and the corresponding source-data publications when using this code. Publication metadata and the immutable release reference will be added only when confirmed.
+## Scientific release and citation
+
+The archived experimental version is [CLP-CSGM v1.0.0 — Scientific Reproducibility Release](https://github.com/romulobrito/CLP--CSGM/releases/tag/v1.0.0), corresponding to commit [`19aa736c62f36f259c611eb9cc5a841c48dc7ac7`](https://github.com/romulobrito/CLP--CSGM/tree/19aa736c62f36f259c611eb9cc5a841c48dc7ac7). Use this version to reproduce the manuscript experiments. Cite the manuscript, the versioned software release and the corresponding source-data publications when using this code. Bibliographic publication metadata will be added when available.
