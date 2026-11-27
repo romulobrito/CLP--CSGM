@@ -27,3 +27,7 @@ Table 15 step 8 rho .20 clp_wins_mask changed 3 -> 2. Reported 18/18 mean-differ
 ## Decision
 
 Retain the strict comparator and partial status. Gates A–C have 18/21 tables executed; one of these tables has full numerical agreement. Record outstanding read-only checks (full config/mask audit, complete report SHA-256, signed discrepancy context, high-noise seed wins and Table 15 win counts). Proceed to Gate D independently of those read-only checks; Lapa must pass its historical configuration preflight. No causal attribution of remaining numeric discrepancies, no claim of complete reproduction, no changes to scientific source.
+
+## Local follow-up supplied with Gate D
+
+Author confirms Table 15 step 16/32 mask-aware AE wins 17/18 and each seed wins 9/9 cells versus interpolation at noise .10 and .20. Report SHA-256 d496d209e75eb34d1545ecf7dcaa4b008480b26eda087899915f108c1d73f136. These close the two targeted seed-count checks; the step 8 rho .20 exception remains. Complete raw configs and mask audit have not been independently retrieved.

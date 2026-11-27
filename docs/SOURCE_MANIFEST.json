@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "FIELD_GATES_A_B_C_EXECUTED_PARTIAL_NUMERIC_MATCH_GATE_D_PENDING",
+  "status": "ALL_21_FIELD_TABLES_EXECUTED_PARTIAL_NUMERIC_MATCH_FIGURE_AUDIT_PENDING",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -1058,7 +1058,7 @@
     }
   },
   "release05d2c": {
-    "status": "GATES_A_B_C_PARTIAL_NUMERIC_MATCH_WITH_EXPLICIT_EXCEPTIONS",
+    "status": "GATES_A_D_EXECUTED_WITH_EXPLICIT_NUMERICAL_AND_PROVENANCE_EXCEPTIONS",
     "runbook": "docs/LOCAL_FIELD_REPRODUCTION.md",
     "first_gate": "Table 4, ten paired seeds, nine step/rho cells; independent fresh checkout",
     "tested_code_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
@@ -1102,7 +1102,7 @@
       "max_rmse_difference": 0,
       "canonical_scientific_sha256": "d96267d92561cb992fdbf7c1a6332fc0cb6b215f0ef85c867a7a8140aff1400d"
     },
-    "next": "Gate D (and remaining Gate C read-only checks); no repeat of Gates A–C",
+    "next": "Gate E, figure provenance and regeneration; then consolidated report and environment lock",
     "gate_b": {
       "status": "PARTIAL_NUMERIC_MATCH_CONCLUSIONS_REPORTED_PRESERVED",
       "execution_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
@@ -1314,18 +1314,101 @@
         "reported_mean_signs_total": 18
       },
       "remaining_read_only_checks": [
-        "Table 15 step16/32 seed win count 17/18; confirm no other seed count changes",
-        "Table 18 high-noise seed-level win counts, not just means; manuscript states all three seeds at .10 and .20",
-        "Actual protocol/config and mask audit, report SHA-256 and complete signed deviations not supplied in summary"
+        "Full Gate C actual config/mask audit and complete signed discrepancy details not independently retrieved; retain local evidence."
       ],
       "timing": "INFORMATIONAL",
-      "next": "Gate D, conditioned on local historical Lapa config recovery; well 861 can execute independently"
+      "next": "Gate D, conditioned on local historical Lapa config recovery; well 861 can execute independently",
+      "report_sha256": "d496d209e75eb34d1545ecf7dcaa4b008480b26eda087899915f108c1d73f136",
+      "read_only_followup": {
+        "table15_step16_32_mask_wins": 17,
+        "table15_step16_32_pairs": 18,
+        "table18_noise_010_020_each_seed_wins": 9,
+        "table18_each_seed_cells": 9,
+        "evidence": "Author-reported local read-only checks; raw artifacts not remotely retrieved"
+      }
     },
     "gate_d": {
+      "status": "EXECUTED_TWO_NUMERIC_MATCH_ONE_PARTIAL",
+      "execution_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
+      "evidence": "Author-reported local results; raw files not remotely retrieved",
+      "tables": [
+        {
+          "table": "22",
+          "matched": 105,
+          "total": 105,
+          "status": "NUMERIC_MATCH",
+          "full_precision_matches_may06_run": 105
+        },
+        {
+          "table": "23",
+          "matched": 12,
+          "total": 12,
+          "status": "NUMERIC_MATCH"
+        },
+        {
+          "table": "24",
+          "matched": 17,
+          "total": 18,
+          "status": "PARTIAL_NUMERIC_MATCH",
+          "exception": {
+            "fold_id": 2,
+            "rho": 0.25,
+            "method": "AE",
+            "reference": 0.0691,
+            "observed": 0.0690474994,
+            "signed_difference": -0.0000525006
+          }
+        }
+      ],
+      "metrics_matched": 134,
+      "metrics_total": 135,
+      "lapa_lineage": {
+        "status": "PARTIAL",
+        "historical_runs": [
+          "auddys_favorable_u7_step4_ridge_mlp_csgm_20260506",
+          "strict_b_20260510"
+        ],
+        "difference": "paper_strict_paired_b=True in May 10; flag not exposed in public launcher; full-precision scientific summaries identical for Table 22; CI95 fields differ",
+        "config_details": "Exact recovered invocation and input hash provenance should be retained locally and reported as metadata"
+      },
+      "well861": {
+        "input_sha256": "4c275a8dcf49042ea9db6f3abb76043a6b2ed622ae226391ffc1c56f7b7a4d7b",
+        "clp_wins": [
+          5,
+          6
+        ],
+        "pairs_each": 9,
+        "pooled_winner": "AE",
+        "block_winners": [
+          "CLP",
+          "CLP",
+          "AE"
+        ],
+        "score": "within-window withheld coordinates",
+        "protocol": "confirmed by local audit"
+      },
+      "next": "Gate E figure audit; no more table training required on current evidence"
+    },
+    "table_campaign": {
+      "tables_executed": 21,
+      "tables_total": 21,
+      "numeric_match_tables": [
+        "14",
+        "22",
+        "23"
+      ],
+      "numeric_metrics_matched": 867,
+      "numeric_metrics_total": 1124,
+      "numeric_metrics_outside_tolerance": 257,
+      "timing_informational": 20,
+      "status": "PARTIAL_NUMERIC_MATCH",
+      "scientific_conclusions": "Reported preserved; individual Table 15 count and magnitude/uncertainty differences retained"
+    },
+    "gate_e": {
       "status": "NOT_RUN",
-      "scope": "Tables 22–24",
-      "lapa_preflight": "Required: recover exact historical run config and source workbook identity before execution; no default substitution",
-      "well861": "Use original enriched workbook and published within-window score, not globally withheld physical depths"
+      "scope": "Figures 3–4, 6–29; conceptual figures 1,2,5 excluded from numerical replay",
+      "runbook": "docs/LOCAL_FIELD_REPRODUCTION.md",
+      "required_preflight": "Recover exact historical profile and qualitative selections; distinguish historical identity from regeneration; preserve existing results and hashes."
     }
   }
 }

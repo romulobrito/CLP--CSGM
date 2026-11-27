@@ -1,6 +1,6 @@
 # RELEASE-05d.2c — local field reproduction
 
-Status: Gate A independently executed with partial numerical agreement and preserved scientific conclusions; targeted repeatability confirmed. See FIELD_GATE_A_AUDIT.md. Gate B completed with partial numerical agreement and targeted MLP repeatability confirmed (see FIELD_GATE_B_AUDIT.md). Gate C completed with partial numeric agreement (Table 14 exact; see FIELD_GATE_C_AUDIT.md). Gate D is next; Gates D–E remain untested. The code and 21 adapters passed artificial fixtures at b4f05405a30566a33f650288d9345b8876725ee1.
+Status: Gate A independently executed with partial numerical agreement and preserved scientific conclusions; targeted repeatability confirmed. See FIELD_GATE_A_AUDIT.md. Gate B completed with partial numerical agreement and targeted MLP repeatability confirmed (see FIELD_GATE_B_AUDIT.md). Gate C completed with partial numeric agreement (Table 14 exact; see FIELD_GATE_C_AUDIT.md). Gate D completed (Tables 22–23 exact, Table 24 partial; see FIELD_GATE_D_AUDIT.md). All 21 tables executed. Gate E is next. The code and 21 adapters passed artificial fixtures at b4f05405a30566a33f650288d9345b8876725ee1.
 
 ## Inputs and isolation
 
@@ -153,6 +153,36 @@ python scripts/compare_manuscript_results.py --tables 22 --observed-dir outputs/
 ```
 
 Report D1/D2 separately: counts, exact/partial numeric status, signed discrepancies, method ranks, CLP vs AE pooled and per-block results, strictly positive paired wins, measurement-only comparator and whether manuscript conclusions are retained. No tuning against references. Do not rerun other gates or advance to figure audit. Complete remaining Gate C read-only checks in FIELD_GATE_C_AUDIT.md using existing outputs only.
+
+## Gate E: figure provenance and regeneration
+
+Use the same frozen scientific checkout e3bc30027b6bbcb331a08cc620c397e183ae3106. No rerun of the full driver or table campaigns. Inventory the manuscript figures against COVERAGE_AUDIT.md and RESULT_DEPENDENCIES.md, including EDA (3–4), plots (6–29), conceptual diagrams (1,2,5; not numerical tests). For each figure report original filename, producer, actual data source and configuration, local output path, hashes, comparison status and limitations. Check existing Gate B/C/D plot outputs before running generators. Preserve their hashes and back up any pre-existing outputs that an exporter would overwrite to a separate ignored local evidence directory; never copy old historical values into regenerated inputs.
+
+E1 — read-only historical recovery: inspect original local Figure 8/24 profile run config and NPZ metadata, Figure 10 original run, seed, rho and overlap aggregation, and Figs 14–17 selected windows/pooling. Compare original and final manuscript figure provenance, not only filename or visual similarity. Recover actual Lapa command/configs and workbook identity as a metadata-only supplement, and record paper_strict_paired_b limitation. Do not infer missing metadata from defaults. If profile selection is unknown, mark historical identity PARTIAL or NOT_FOUND, and label any default-based regeneration as such.
+
+E2 — main figure bundle: only after recording E1, check the three canonical no-GR Ridge runs from Gate B. If historical profile aggregation is uniform_mean (or as explicitly labeled default-based exploratory regeneration when unknown), execute:
+
+```bash
+bash scripts/run_regenerate_figure_inputs.sh
+```
+
+This executes only the dedicated cross-well step16 seed7 rho .20 profile, validates the local bundle and plots Figures 6,8,24. It requires profile length 832 and uniform_mean in the builder, and the plotter enforces published CLP means within 5e-5. If any check fails, retain the actual error and independently generated inputs, do not relax tolerances or overwrite historical results. If historical aggregation differs, report the incompatibility; no code changes in this gate. Compare all five methods and uncertainties for Fig 6, not only CLP. Separate numerical values, selection equivalence and formatting.
+
+E3 — other assets: run these exporters only when inputs exist and the output overwrite risk has been handled:
+
+```bash
+python scripts/clp_csgm_paper_assets.py
+python scripts/clp_csgm_uncertainty_assets.py
+python scripts/clp_csgm_diagnostic_assets.py
+python scripts/run_r3m03_affine_limit_audit.py
+python scripts/plot_r3m03_depth_profiles.py
+python scripts/plot_r3m03_noise_panels.py
+python scripts/plot_r3m03_rmse_vs_noise.py
+```
+
+These are not a blanket guarantee of exact figure reproduction. The affine audit depends on the seven-candidate smooth detail; the noise panels may reconstruct selected cases. Preserve existing scientific CSVs. For Figs 14–15 the documented candidates are F03 rho .20 seed 7 example 0 and crosswell step16 rho .10 seed7 example0. Confirm historical selections before any limited rerun using paper_sparse_reconstruction_figures.py --mode f03/crosswell --skip-lfista with explicit arguments and a fresh --out-dir. For Fig 10, use existing Gate B profile if its first-job seed/rho and aggregation match recovered metadata; otherwise only run the dedicated recovered single-cell configuration. If historical metadata are unavailable, do not claim exact selection equivalence. For Figs 11,20,21,25,26–29 first use existing outputs from Gate C/D and compare source arrays or aggregates without retraining. Runtime values are hardware-specific. Report producer failures and unresolved selection/config gaps.
+
+E4 — audit report: per figure classify CONCEPTUAL_NOT_APPLICABLE, NUMERIC_INPUT_MATCH, REGENERATED_WITH_DIFFERENCES, SELECTION_UNVERIFIED, BLOCKED or NOT_RUN as appropriate; distinguish pixel identity from scientific input identity. Local comparisons only; return authorized metadata, hashes, summaries, and any approved figures, not raw field curves, NPZs or weights. No commits, merges, tags, no new reference tolerances, no scientific source changes.
 
 ## Return for audit
 
