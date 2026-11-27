@@ -1,6 +1,6 @@
 # RELEASE-05d.2c — local field reproduction
 
-Status: Gate A independently executed with partial numerical agreement and preserved scientific conclusions; targeted repeatability confirmed. See FIELD_GATE_A_AUDIT.md. Gate B completed with partial numerical agreement and targeted MLP repeatability confirmed (see FIELD_GATE_B_AUDIT.md). Gate C completed with partial numeric agreement (Table 14 exact; see FIELD_GATE_C_AUDIT.md). Gate D completed (Tables 22–23 exact, Table 24 partial; see FIELD_GATE_D_AUDIT.md). All 21 tables executed. Gate E audited; three figures blocked by missing serialized offset. See FIELD_GATE_E_AUDIT.md for the metadata-only correction and local continuation. The code and 21 adapters passed artificial fixtures at b4f05405a30566a33f650288d9345b8876725ee1.
+Status: Gate A independently executed with partial numerical agreement and preserved scientific conclusions; targeted repeatability confirmed. See FIELD_GATE_A_AUDIT.md. Gate B completed with partial numerical agreement and targeted MLP repeatability confirmed (see FIELD_GATE_B_AUDIT.md). Gate C completed with partial numeric agreement (Table 14 exact; see FIELD_GATE_C_AUDIT.md). Gate D completed (Tables 22–23 exact, Table 24 partial; see FIELD_GATE_D_AUDIT.md). All 21 tables executed. Gate E/E.1 completed; zero blocked figures. See FIELD_GATE_E_AUDIT.md and FIELD_REPRODUCIBILITY_REPORT.md. Full environment lock and release finalization pending. The code and 21 adapters passed artificial fixtures at b4f05405a30566a33f650288d9345b8876725ee1.
 
 ## Inputs and isolation
 

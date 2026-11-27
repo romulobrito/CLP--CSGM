@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "FIGURE_AUDIT_REPORTED_BUNDLE_FIX_PENDING_VALIDATION",
+  "status": "FIELD_TABLE_AND_FIGURE_CAMPAIGN_COMPLETE_PARTIAL_NUMERICAL_AGREEMENT_ENVIRONMENT_LOCK_PENDING",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -1058,7 +1058,7 @@
     }
   },
   "release05d2c": {
-    "status": "GATES_A_D_EXECUTED_WITH_EXPLICIT_NUMERICAL_AND_PROVENANCE_EXCEPTIONS",
+    "status": "FIELD_TABLE_AND_FIGURE_CAMPAIGN_COMPLETE_WITH_EXPLICIT_EXCEPTIONS",
     "runbook": "docs/LOCAL_FIELD_REPRODUCTION.md",
     "first_gate": "Table 4, ten paired seeds, nine step/rho cells; independent fresh checkout",
     "tested_code_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
@@ -1102,7 +1102,7 @@
       "max_rmse_difference": 0,
       "canonical_scientific_sha256": "d96267d92561cb992fdbf7c1a6332fc0cb6b215f0ef85c867a7a8140aff1400d"
     },
-    "next": "Gate E.1: validate evidence-based figure bundle correction; no retraining",
+    "next": "RELEASE-05e: freeze the actual local CPU environment, verify install and technical/synthetic checks; then final PR",
     "gate_b": {
       "status": "PARTIAL_NUMERIC_MATCH_CONCLUSIONS_REPORTED_PRESERVED",
       "execution_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
@@ -1405,22 +1405,55 @@
       "scientific_conclusions": "Reported preserved; individual Table 15 count and magnitude/uncertainty differences retained"
     },
     "gate_e": {
-      "status": "AUDITED_WITH_3_BLOCKED",
+      "status": "COMPLETE_NO_BLOCKED_FIGURES",
       "execution_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
       "figures_total": 29,
       "conceptual": 3,
       "numeric_input_match": 6,
-      "regenerated_with_differences": 17,
-      "blocked": [
-        6,
-        8,
-        24
-      ],
+      "regenerated_with_differences": 20,
+      "blocked": [],
       "profile_selection": "Confirmed historical uniform_mean, step16 seed7 rho .20; Fig10 seed7 rho .20 step1 uniform_mean; Figs14–17 selection confirmed",
       "profile_npz_sha256": "c4cb794a3665196e07281d5465c0a3eafe82efd3c0a8db22948560e8d8215ccf",
       "blocker": "asdict(cfg) omits dynamically assigned measurement_seed_offset; existing omega_sets.csv and detailed_results.csv provide direct evidence",
       "evidence": "Author-provided Gate E inventory, local files not retrieved",
-      "next": "Validate metadata-only bundler correction in CI and run on existing local artifacts without training"
+      "next": "Full local pip freeze and environment metadata; final release audit",
+      "infrastructure_commit": "324326d7c0d782cf13f22ec287b4dd3a0acae682",
+      "provenance_schema": 2,
+      "provenance_sha256": "0000da5ea02966587cab4fce83998c7a5181dec6dcc849b01e86e511b91034db",
+      "figure_hashes": {
+        "fig06": "6fa831ddc375892da2d2b9c46452f5d2845b98a1efb68a9c3ff403661b26b3e6",
+        "fig08": "9cdc722bf10ca743d2ad3b16d96486981c2dece523f5e4199cb9b6ce2975a5bf",
+        "fig24": "d7c86368b409db0b89fad4abf855839075644aaa948cfdd0dd245c1a2c82b68d"
+      },
+      "figure6": {
+        "full_rankings_preserved": 9,
+        "cells": 9,
+        "max_mean_abs_diff": {
+          "ml_only": 0,
+          "mlp": 0,
+          "pca": 8.33e-17,
+          "ae": 0.0000190613,
+          "clp": 0.0000120506
+        },
+        "max_mean_relative_pct": {
+          "ae": 0.0733,
+          "clp": 0.0351
+        }
+      },
+      "ci": {
+        "technical_run": 46035970271,
+        "technical_job": 140631342312,
+        "static_checks": 112,
+        "technical_checks_total": 172,
+        "adapter_checks": 124,
+        "figure_regression": "PASS",
+        "synthetic_run": 46035970154,
+        "synthetic_job": 140631342622,
+        "synthetic_benchmarks": 2,
+        "synthetic_method_cells": 28,
+        "conclusion": "success"
+      },
+      "figure29_caveat": "Author classified NUMERIC_INPUT_MATCH on matching aggregate evidence; pooled pointwise parity identity not demonstrated by aggregate match alone"
     }
   }
 }
