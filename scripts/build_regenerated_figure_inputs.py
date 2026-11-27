@@ -34,6 +34,39 @@ def require(condition: bool, message: str) -> None:
         raise RuntimeError(message)
 
 
+def checked_measurement_evidence(run: Path, cfg: dict, seeds: list[int], rhos: list[float]) -> dict:
+    """Verify saved observation streams; never infer a missing offset from defaults."""
+    omega_path = run / "tables/omega_sets.csv"
+    detail_path = run / "tables/detailed_results.csv"
+    omega = pd.read_csv(omega_path)
+    expected = {(s, r) for s in seeds for r in rhos}
+    keys = list(zip(omega["model_seed"], omega["measurement_ratio"]))
+    require(len(keys) == len(expected) and set(keys) == expected,
+            f"{run}: missing or duplicate Omega cells")
+    require((omega["measurement_seed_offset"] == 0).all() and
+            (omega["measurement_seed"] == omega["model_seed"]).all(),
+            f"{run}: nonzero or inconsistent recorded measurement offset")
+    if "measurement_seed_offset" in cfg:
+        require(cfg["measurement_seed_offset"] == 0,
+                f"{run}: nonzero configured measurement offset")
+    for row in omega.itertuples(index=False):
+        m = max(4, int(round(float(row.measurement_ratio) * 64)))
+        coords = [int(x) for x in str(row.omega_order).split(",")]
+        wanted = np.random.default_rng(int(row.model_seed)).choice(64, size=m, replace=False).tolist()
+        require(row.m == m and coords == wanted,
+                f"{run}: recorded Omega does not match the zero-offset stream")
+    detail = pd.read_csv(detail_path, usecols=["seed", "measurement_ratio",
+                                              "measurement_seed_offset", "measurement_seed"])
+    require(set(zip(detail["seed"], detail["measurement_ratio"])) == expected and
+            (detail["measurement_seed_offset"] == 0).all() and
+            (detail["measurement_seed"] == detail["seed"]).all(),
+            f"{run}: inconsistent detailed measurement evidence")
+    return {"effective_measurement_seed_offset": 0,
+            "config_offset_present": "measurement_seed_offset" in cfg,
+            "omega_sha256": sha256(omega_path),
+            "detailed_results_sha256": sha256(detail_path)}
+
+
 def check_config(run: Path, step: int, seeds: list[int], rhos: list[float]) -> dict:
     cfg = json.loads((run / "config.json").read_text(encoding="utf-8"))
     meta = cfg["cross_well_vc"]
@@ -48,8 +81,9 @@ def check_config(run: Path, step: int, seeds: list[int], rhos: list[float]) -> d
     require(meta["val_split_mode"] == "tail" and float(meta["val_frac"]) == 0.1 and
             int(meta["val_embargo_windows"]) == 0, f"{run}: wrong validation split")
     require(cfg["seeds"] == seeds and cfg["measurement_ratios"] == rhos and
-            cfg["measurement_kind"] == "subsample" and float(cfg["measurement_noise_std"]) == 0.01 and
-            int(cfg["measurement_seed_offset"]) == 0, f"{run}: wrong observation protocol")
+            cfg["measurement_kind"] == "subsample" and float(cfg["measurement_noise_std"]) == 0.01,
+            f"{run}: wrong observation protocol")
+    checked_measurement_evidence(run, cfg, seeds, rhos)
     expected = {"csgm_prior_type": "ridge", "run_csgm_m2": True, "run_lfista": False,
                 "csgm_latent_dim": 16, "csgm_hidden_dim": 128, "csgm_ae_epochs": 200,
                 "csgm_iters": 400, "csgm_restarts": 3, "csgm_opt_lr": 0.05,
@@ -102,7 +136,7 @@ def build() -> None:
         records.append((step, run, path))
     profile = checked_profile()
     BUNDLE.mkdir(parents=True, exist_ok=True)
-    manifest = {"schema": 1, "kind": "local_regeneration_not_historical",
+    manifest = {"schema": 2, "kind": "local_regeneration_not_historical",
                 "protocol": "crosswell_vc_main_no_gr", "files": []}
     for step, run, source in records:
         name = f"step{step:02d}_summary_focus_clp_csgm_vs_ub.csv"
@@ -110,19 +144,22 @@ def build() -> None:
         shutil.copyfile(source, dest)
         manifest["files"].append({"step": step, "file": name, "sha256": sha256(dest),
             "source": str(source.relative_to(ROOT)), "config_sha256": sha256(run / "config.json"),
-            "worktree_channels": CHANNELS, "worktree_p_input": 256, "seeds": SEEDS})
+            "worktree_channels": CHANNELS, "worktree_p_input": 256, "seeds": SEEDS,
+            "measurement_evidence": checked_measurement_evidence(run, json.loads((run / "config.json").read_text()), SEEDS, RHOS),
+            "per_seed_sha256": sha256(run / "tables/summary_by_seed.csv")})
     combined = BUNDLE / "summary_focus_clp_csgm_vs_ub.csv"
     pd.concat(frames, ignore_index=True).to_csv(combined, index=False)
     manifest["combined_sha256"] = sha256(combined)
     manifest["profile"] = {"source": str(profile.relative_to(ROOT)), "sha256": sha256(profile),
-                           "config_sha256": sha256(PROFILE_RUN / "config.json")}
+                           "config_sha256": sha256(PROFILE_RUN / "config.json"),
+                           "measurement_evidence": checked_measurement_evidence(PROFILE_RUN, json.loads((PROFILE_RUN / "config.json").read_text()), [7], [0.20])}
     (BUNDLE / "provenance.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     print("Wrote local regeneration bundle:", BUNDLE)
 
 
 def checked_regenerated_paths() -> list[tuple[int, Path]]:
     manifest = json.loads((BUNDLE / "provenance.json").read_text(encoding="utf-8"))
-    require(manifest["kind"] == "local_regeneration_not_historical", "Wrong provenance kind")
+    require(manifest["kind"] == "local_regeneration_not_historical" and manifest["schema"] == 2, "Wrong provenance kind/schema; rebuild local bundle")
     require(len(manifest["files"]) == 3, "Expected three summary files")
     results = []
     for step in COUNTS:
@@ -131,6 +168,8 @@ def checked_regenerated_paths() -> list[tuple[int, Path]]:
         name = f"step{step:02d}_summary_focus_clp_csgm_vs_ub.csv"
         require(record["file"] == name and record["source"] == str(source.relative_to(ROOT)) and
                 record["config_sha256"] == sha256(run / "config.json"), "Summary provenance mismatch")
+        require(record["measurement_evidence"] == checked_measurement_evidence(run, json.loads((run / "config.json").read_text()), SEEDS, RHOS) and
+                record["per_seed_sha256"] == sha256(run / "tables/summary_by_seed.csv"), "Measurement or seed-summary provenance mismatch")
         path = BUNDLE / name
         require(sha256(path) == record["sha256"] == sha256(source), "Summary hash mismatch")
         results.append((step, path))
@@ -138,6 +177,7 @@ def checked_regenerated_paths() -> list[tuple[int, Path]]:
     record = manifest["profile"]
     require(record["source"] == str(profile.relative_to(ROOT)) and record["sha256"] == sha256(profile) and
             record["config_sha256"] == sha256(PROFILE_RUN / "config.json"), "Profile provenance mismatch")
+    require(record["measurement_evidence"] == checked_measurement_evidence(PROFILE_RUN, json.loads((PROFILE_RUN / "config.json").read_text()), [7], [0.20]), "Profile measurement provenance mismatch")
     require(manifest["combined_sha256"] == sha256(BUNDLE / "summary_focus_clp_csgm_vs_ub.csv"),
             "Combined summary hash mismatch")
     return results

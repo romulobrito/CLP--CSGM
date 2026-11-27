@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "ALL_21_FIELD_TABLES_EXECUTED_PARTIAL_NUMERIC_MATCH_FIGURE_AUDIT_PENDING",
+  "status": "FIGURE_AUDIT_REPORTED_BUNDLE_FIX_PENDING_VALIDATION",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -1102,7 +1102,7 @@
       "max_rmse_difference": 0,
       "canonical_scientific_sha256": "d96267d92561cb992fdbf7c1a6332fc0cb6b215f0ef85c867a7a8140aff1400d"
     },
-    "next": "Gate E, figure provenance and regeneration; then consolidated report and environment lock",
+    "next": "Gate E.1: validate evidence-based figure bundle correction; no retraining",
     "gate_b": {
       "status": "PARTIAL_NUMERIC_MATCH_CONCLUSIONS_REPORTED_PRESERVED",
       "execution_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
@@ -1369,7 +1369,7 @@
           "strict_b_20260510"
         ],
         "difference": "paper_strict_paired_b=True in May 10; flag not exposed in public launcher; full-precision scientific summaries identical for Table 22; CI95 fields differ",
-        "config_details": "Exact recovered invocation and input hash provenance should be retained locally and reported as metadata"
+        "config_details": "Recovered ordered density,gr,res_deep,res_shallow,phi_neutron,phi_sonic,phi_nd; Logs sheet; log10(k_lab); L16 step4 contiguous windows 0.6/0.2/0.2, 10/3/5; seeds7/23/41; rho .20–.60; noise .01; Ridge and MLP. Strict flag remains unavailable."
       },
       "well861": {
         "input_sha256": "4c275a8dcf49042ea9db6f3abb76043a6b2ed622ae226391ffc1c56f7b7a4d7b",
@@ -1405,10 +1405,22 @@
       "scientific_conclusions": "Reported preserved; individual Table 15 count and magnitude/uncertainty differences retained"
     },
     "gate_e": {
-      "status": "NOT_RUN",
-      "scope": "Figures 3–4, 6–29; conceptual figures 1,2,5 excluded from numerical replay",
-      "runbook": "docs/LOCAL_FIELD_REPRODUCTION.md",
-      "required_preflight": "Recover exact historical profile and qualitative selections; distinguish historical identity from regeneration; preserve existing results and hashes."
+      "status": "AUDITED_WITH_3_BLOCKED",
+      "execution_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
+      "figures_total": 29,
+      "conceptual": 3,
+      "numeric_input_match": 6,
+      "regenerated_with_differences": 17,
+      "blocked": [
+        6,
+        8,
+        24
+      ],
+      "profile_selection": "Confirmed historical uniform_mean, step16 seed7 rho .20; Fig10 seed7 rho .20 step1 uniform_mean; Figs14–17 selection confirmed",
+      "profile_npz_sha256": "c4cb794a3665196e07281d5465c0a3eafe82efd3c0a8db22948560e8d8215ccf",
+      "blocker": "asdict(cfg) omits dynamically assigned measurement_seed_offset; existing omega_sets.csv and detailed_results.csv provide direct evidence",
+      "evidence": "Author-provided Gate E inventory, local files not retrieved",
+      "next": "Validate metadata-only bundler correction in CI and run on existing local artifacts without training"
     }
   }
 }
