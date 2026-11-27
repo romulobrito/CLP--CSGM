@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "FIELD_TABLE_AND_FIGURE_CAMPAIGN_COMPLETE_PARTIAL_NUMERICAL_AGREEMENT_ENVIRONMENT_LOCK_PENDING",
+  "status": "EXACT_PACKAGE_SNAPSHOT_COMMITTED_FRESH_INSTALL_CI_PENDING",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -1102,7 +1102,7 @@
       "max_rmse_difference": 0,
       "canonical_scientific_sha256": "d96267d92561cb992fdbf7c1a6332fc0cb6b215f0ef85c867a7a8140aff1400d"
     },
-    "next": "RELEASE-05e: freeze the actual local CPU environment, verify install and technical/synthetic checks; then final PR",
+    "next": "RELEASE-05e fresh-install CI, then final repository audit and single PR",
     "gate_b": {
       "status": "PARTIAL_NUMERIC_MATCH_CONCLUSIONS_REPORTED_PRESERVED",
       "execution_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
@@ -1455,5 +1455,25 @@
       },
       "figure29_caveat": "Author classified NUMERIC_INPUT_MATCH on matching aggregate evidence; pooled pointwise parity identity not demonstrated by aggregate match alone"
     }
+  },
+  "release05e": {
+    "status": "EXACT_VERSION_SNAPSHOT_RECOVERED_FRESH_INSTALL_PENDING",
+    "source_record_sha256": "e3946441f4f02519bcde27bd71c750ffda97b00d5dcab10cceceba5784eb8954",
+    "source_record_bytes": 21948,
+    "source_record_lines": 467,
+    "packages": 33,
+    "python": "3.10.22",
+    "platform": "Linux x86_64 Ubuntu 22.04.5 LTS",
+    "pip": "26.3",
+    "torch": "2.6.0+cpu",
+    "package_list": "requirements-release-cpu.txt",
+    "installer": "scripts/install_release_cpu.sh",
+    "checker": "scripts/check_release_environment.py",
+    "documentation": "docs/RELEASE_ENVIRONMENT.md",
+    "wheel_identity": "NOT_RECORDED",
+    "historical_environment": "NOT_FOUND",
+    "fresh_install_ci": "PENDING",
+    "field_training": "NOT_REQUIRED",
+    "raw_record": "retained locally; machine-identifying paths omitted"
   }
 }

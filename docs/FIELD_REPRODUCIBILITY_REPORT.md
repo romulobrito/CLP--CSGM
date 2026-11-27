@@ -28,6 +28,6 @@ All 29 figures inventoried: 3 conceptual, 26 numerical regenerated, none blocked
 
 ## Environment and release status
 
-Current local environment reported Python 3.10.22, NumPy 1.26.4, pandas 2.3.3, Matplotlib 3.7.5, scikit-learn 1.6.1, PyTorch 2.6.0+cpu, PyWavelets 1.4.1, SciPy 1.15.3, openpyxl 3.1.5, Linux x86_64, CPU, OMP_NUM_THREADS=1, MKL_NUM_THREADS=1. Complete local transitive lock still to be supplied and checked; not the recovered historical environment. Technical CI 46035970271 and synthetic CI 46035970154 passed at infrastructure commit. No new field training required on present evidence. Release merge/tag not yet performed.
+Current local environment reported Python 3.10.22, NumPy 1.26.4, pandas 2.3.3, Matplotlib 3.7.5, scikit-learn 1.6.1, PyTorch 2.6.0+cpu, PyWavelets 1.4.1, SciPy 1.15.3, openpyxl 3.1.5, Linux x86_64, CPU, OMP_NUM_THREADS=1, MKL_NUM_THREADS=1. The complete local package snapshot has since been recovered: 33 exact package versions in requirements-release-cpu.txt; fresh-install validation is pending. See RELEASE_ENVIRONMENT.md. This is not the recovered historical environment or a wheel-hash lock. Technical CI 46035970271 and synthetic CI 46035970154 passed at infrastructure commit. No new field training required on present evidence. Release merge/tag not yet performed.
 
 Detailed evidence: [Gate A](FIELD_GATE_A_AUDIT.md), [Gate B](FIELD_GATE_B_AUDIT.md), [Gate C](FIELD_GATE_C_AUDIT.md), [Gate D](FIELD_GATE_D_AUDIT.md), [Gate E](FIELD_GATE_E_AUDIT.md), [machine-readable manifest](SOURCE_MANIFEST.json).

@@ -4,7 +4,7 @@ Conditional Latent-Prior Compressed Sensing with Generative Models (CLP-CSGM) fo
 
 Code accompanying *Conditional Latent-Prior Generative Compressed Sensing for Petrophysical Target-Log Reconstruction*, revised manuscript for Computers & Geosciences. This repository is distributed under the [MIT License](LICENSE).
 
-**Validation status:** revision code and standalone reproduction drivers are being prepared. The commands below describe the intended workflow; clean-environment execution and numerical agreement with the manuscript have not yet been verified for this revision. No field datasets or trained models are distributed here.
+**Validation status:** all 21 experimental tables (04–24) were independently executed locally by the author, and all 26 numerical figures regenerated. Scientific conclusions were preserved with documented exceptions in numerical magnitudes and seed counts: 867/1124 metrics agree within the original published-precision tolerance, three tables fully match, and two targeted repeatability checks were exact in the tested environment. This is partial numerical agreement, not complete historical numerical equivalence. See the [field reproducibility report](docs/FIELD_REPRODUCIBILITY_REPORT.md). No field datasets or trained models are distributed here. The exact package-version snapshot is available; fresh-install validation of this snapshot is tracked in CI.
 
 ## Method
 
@@ -16,18 +16,23 @@ and reconstruct with the decoder G. Target standardization is accounted for in t
 
 ## Install and try without field data
 
-The manuscript reports Python 3.10, NumPy 1.26, pandas 2.3, Matplotlib 3.7, scikit-learn 1.6, PyTorch 2.6 and PyWavelets 1.4. A multi-core CPU with at least 8 GB RAM is reported; CUDA is optional. The current requirements file specifies minimum dependencies, not a validated exact environment lock.
+The reference replay used CPython 3.10.22 on Linux x86_64 (Ubuntu 22.04.5 LTS), CPU PyTorch 2.6.0+cpu, and one numerical thread. The 33 exact installed distribution versions are recorded in [requirements-release-cpu.txt](requirements-release-cpu.txt); [environment documentation](docs/RELEASE_ENVIRONMENT.md) describes the observed hardware, numerical libraries and limitations. The minimum-version requirements.txt is retained for other installations, not exact replay.
 
 ```bash
 git clone https://github.com/romulobrito/CLP--CSGM.git
 cd CLP--CSGM
-python3.10 -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements.txt
+git checkout revision/cageo-d-26-01398-reproducibility
+# Ensure "python" resolves to CPython 3.10.22.
+bash scripts/install_release_cpu.sh
+source .venv-release/bin/activate
+export CUDA_VISIBLE_DEVICES=""
+export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
+export MPLBACKEND=Agg
+python scripts/check_release_environment.py
 bash scripts/run_synthetic_smoke.sh
 ```
 
-Use the revision branch while preparation is in progress: `git checkout revision/cageo-d-26-01398-reproducibility` before installing. The included synthetic tables exercise both main launchers with reduced training and refinement budgets; their errors cannot be compared to paper results.
+The installer creates a new virtualenv and refuses to modify an existing one. The included synthetic tables exercise both main launchers with reduced budgets; their errors cannot be compared to paper results. Version matching does not guarantee bitwise agreement across hardware or wheel builds.
 
 ## Reproduce the paper experiments
 
@@ -63,6 +68,8 @@ Historical module names are retained for compatibility. For CLP-CSGM benchmarks 
 - [Experiment-to-evidence map and commands](docs/EXPERIMENTS.md)
 - [Data requirements and redistribution policy](docs/DATA_REQUIREMENTS.md)
 - [Reproduction procedure and validation limits](docs/REPRODUCIBILITY.md)
+- [Field reproducibility report](docs/FIELD_REPRODUCIBILITY_REPORT.md)
+- [Recorded CPU environment and installation](docs/RELEASE_ENVIRONMENT.md)
 - [Result dependency map](docs/RESULT_DEPENDENCIES.md)
 - [Source transfer manifest](docs/SOURCE_MANIFEST.json)
 - [Frozen experimental protocols](docs/protocols/)

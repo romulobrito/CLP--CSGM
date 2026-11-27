@@ -28,3 +28,7 @@ Outstanding:
 - Exact Lapa configuration (ordered channels, split, noise and other run settings) not supplied in the local audit complement; historical origin non-unique.
 - Historical overlap aggregation for cross-well Figures 8 and 24, and original F03 Figure 10 run/seed, not supplied.
 - Exact remaining qualitative figure selections and field numerical comparison; no authorized inputs executed here.
+
+## RELEASE-05e — exact package snapshot
+
+The author-reported local environment was recovered after Gates A–E; see RELEASE_ENVIRONMENT.md. Both technical and synthetic workflows now install the complete version snapshot in fresh virtualenvs and check exact distribution identity before execution. Fresh-install validation is pending. Earlier CI success remains evidence only for the earlier tested environment.

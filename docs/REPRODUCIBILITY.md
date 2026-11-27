@@ -2,7 +2,7 @@
 
 ## Current status
 
-The revision source is selected from CS-ML commit c4df022497f6b4a3438dd8372335df58178cfe89. The public base and per-file source/destination hashes are recorded in SOURCE_MANIFEST.json. Unchanged scientific modules were checked by Git blob identity; infrastructure adaptations are tracked separately. This is not a claim of successful reproduction.
+The revision source is selected from CS-ML commit c4df022497f6b4a3438dd8372335df58178cfe89. The public base and per-file source/destination hashes are recorded in SOURCE_MANIFEST.json. Unchanged scientific modules were checked by Git blob identity; infrastructure adaptations are tracked separately. Field replay and figure regeneration are now complete with partial numerical agreement; see FIELD_REPRODUCIBILITY_REPORT.md for the actual outcomes and exceptions.
 
 ## Levels of verification
 
@@ -11,7 +11,7 @@ The revision source is selected from CS-ML commit c4df022497f6b4a3438dd8372335df
 3. Protocol consistency: use authorized original inputs, record their local hashes and metadata, inspect generated config.json, DATASET_MANIFEST.txt, PROTOCOL.txt and RUN_MANIFEST.txt where available. Check channels, well separation, counts, seeds, observation sets, noise, lambda selection and metric definitions.
 4. Scientific reproduction: compare regenerated per-seed and aggregate values to the manuscript and authorized reference outputs; distinguish the ten-seed primary pair from three-seed studies. Set comparison tolerances before execution and report discrepancies. Timing is hardware-dependent. Check figures against the intended experiment and profile overlap rule.
 
-The manuscript reports Python 3.10 and NumPy 1.26, pandas 2.3, Matplotlib 3.7, scikit-learn 1.6, PyTorch 2.6, PyWavelets 1.4. The current requirements.txt is a minimum-version list; a tested exact lock is not yet available. Record pip freeze after the clean-environment test, including scipy and openpyxl versions.
+The manuscript reports Python 3.10 and NumPy 1.26, pandas 2.3, Matplotlib 3.7, scikit-learn 1.6, PyTorch 2.6, PyWavelets 1.4. The requirements.txt remains a minimum-version list. requirements-release-cpu.txt captures all 33 installed distribution versions from the author-reported unchanged local replay environment. Use scripts/install_release_cpu.sh in a new checkout, then check_release_environment.py. See RELEASE_ENVIRONMENT.md; fresh-install validation is pending, and original historical wheel identities remain unknown.
 
 ## Execution order
 
@@ -25,4 +25,4 @@ Before tagging, review complete experiment coverage; resolve missing historical 
 
 ## Verified checkpoint and limits
 
-At commit c7fd7348b126fd32ebaf2f68532fa502662ef58d, technical and synthetic checks passed, including the 861 geometry diagnostic and constructed aggregation test. See COVERAGE_AUDIT.md for evidence and outstanding historical configuration exceptions. Exact full-protocol coverage and field numerical reproduction remain uncertified. The reference/comparison preparation may proceed without claiming that these gates are satisfied.
+At commit c7fd7348b126fd32ebaf2f68532fa502662ef58d, technical and synthetic checks passed, including the 861 geometry diagnostic and constructed aggregation test. See COVERAGE_AUDIT.md for evidence and outstanding historical configuration exceptions. This paragraph records the earlier checkpoint. Later Gates A–E completed as described in FIELD_REPRODUCIBILITY_REPORT.md; full exact historical numerical reproduction remains uncertified.
