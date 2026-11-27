@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "FIELD_GATES_A_B_PARTIAL_NUMERIC_MATCH_TARGETED_REPEATABILITY_CONFIRMED_GATE_C_PENDING",
+  "status": "FIELD_GATES_A_B_C_EXECUTED_PARTIAL_NUMERIC_MATCH_GATE_D_PENDING",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -1058,7 +1058,7 @@
     }
   },
   "release05d2c": {
-    "status": "GATES_A_B_PARTIAL_NUMERIC_MATCH_CONCLUSIONS_PRESERVED",
+    "status": "GATES_A_B_C_PARTIAL_NUMERIC_MATCH_WITH_EXPLICIT_EXCEPTIONS",
     "runbook": "docs/LOCAL_FIELD_REPRODUCTION.md",
     "first_gate": "Table 4, ten paired seeds, nine step/rho cells; independent fresh checkout",
     "tested_code_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
@@ -1102,7 +1102,7 @@
       "max_rmse_difference": 0,
       "canonical_scientific_sha256": "d96267d92561cb992fdbf7c1a6332fc0cb6b215f0ef85c867a7a8140aff1400d"
     },
-    "next": "Gate C, Tables 11 and 13–21; retain partial status for Gates A/B",
+    "next": "Gate D (and remaining Gate C read-only checks); no repeat of Gates A–C",
     "gate_b": {
       "status": "PARTIAL_NUMERIC_MATCH_CONCLUSIONS_REPORTED_PRESERVED",
       "execution_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
@@ -1206,10 +1206,126 @@
       }
     },
     "gate_c": {
+      "status": "PARTIAL_NUMERIC_MATCH_CONCLUSIONS_REPORTED_PRESERVED",
+      "execution_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
+      "evidence": "Author-reported local Gate C comparison; raw local artifacts not accessed remotely",
+      "tables_normalized": 10,
+      "metrics_matched": 463,
+      "metrics_total": 565,
+      "metrics_outside_tolerance": 102,
+      "timing_informational": 20,
+      "numeric_match_tables": [
+        "14"
+      ],
+      "producer_exit_codes": "all zero (reported)",
+      "comparison_exit_code": 1,
+      "report_path": "outputs/validation/gate_c_comparison.json",
+      "tables": [
+        {
+          "table": "11",
+          "matched": 18,
+          "total": 30,
+          "status": "PARTIAL_NUMERIC_MATCH"
+        },
+        {
+          "table": "13",
+          "matched": 57,
+          "total": 72,
+          "status": "PARTIAL_NUMERIC_MATCH"
+        },
+        {
+          "table": "14",
+          "matched": 27,
+          "total": 27,
+          "status": "NUMERIC_MATCH"
+        },
+        {
+          "table": "15",
+          "matched": 42,
+          "total": 63,
+          "status": "PARTIAL_NUMERIC_MATCH"
+        },
+        {
+          "table": "16",
+          "matched": 46,
+          "total": 54,
+          "status": "PARTIAL_NUMERIC_MATCH"
+        },
+        {
+          "table": "17",
+          "matched": 39,
+          "total": 45,
+          "status": "PARTIAL_NUMERIC_MATCH"
+        },
+        {
+          "table": "18",
+          "matched": 104,
+          "total": 108,
+          "status": "PARTIAL_NUMERIC_MATCH"
+        },
+        {
+          "table": "19",
+          "matched": 104,
+          "total": 108,
+          "status": "PARTIAL_NUMERIC_MATCH"
+        },
+        {
+          "table": "20",
+          "matched": 8,
+          "total": 10,
+          "status": "PARTIAL_NUMERIC_MATCH"
+        },
+        {
+          "table": "21",
+          "matched": 18,
+          "total": 48,
+          "status": "PARTIAL_NUMERIC_MATCH"
+        }
+      ],
+      "noise_ordering": {
+        "noise_std": [
+          0.01,
+          0.05,
+          0.1,
+          0.2
+        ],
+        "clp_lower_than_interpolation": [
+          0,
+          7,
+          9,
+          9
+        ],
+        "clp_lower_than_smoothing": [
+          1,
+          5,
+          8,
+          9
+        ],
+        "cells_per_noise": 9,
+        "all_counts_match": true
+      },
+      "table15_exception": {
+        "step": 8,
+        "rho": 0.2,
+        "metric": "clp_wins_mask",
+        "historical": 3,
+        "reproduced": 2,
+        "reported_mean_signs_preserved": 18,
+        "reported_mean_signs_total": 18
+      },
+      "remaining_read_only_checks": [
+        "Table 15 step16/32 seed win count 17/18; confirm no other seed count changes",
+        "Table 18 high-noise seed-level win counts, not just means; manuscript states all three seeds at .10 and .20",
+        "Actual protocol/config and mask audit, report SHA-256 and complete signed deviations not supplied in summary"
+      ],
+      "timing": "INFORMATIONAL",
+      "next": "Gate D, conditioned on local historical Lapa config recovery; well 861 can execute independently"
+    },
+    "gate_d": {
       "status": "NOT_RUN",
-      "scope": "Tables 11 and 13–21; staged protocol in LOCAL_FIELD_REPRODUCTION.md",
-      "historical_runtime_timing": "INFORMATIONAL",
-      "execution_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106"
+      "scope": "Tables 22–24",
+      "lapa_preflight": "Required: recover exact historical run config and source workbook identity before execution; no default substitution",
+      "well861": "Use original enriched workbook and published within-window score, not globally withheld physical depths"
     }
   }
 }

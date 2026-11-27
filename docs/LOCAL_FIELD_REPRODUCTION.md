@@ -1,6 +1,6 @@
 # RELEASE-05d.2c — local field reproduction
 
-Status: Gate A independently executed with partial numerical agreement and preserved scientific conclusions; targeted repeatability confirmed. See FIELD_GATE_A_AUDIT.md. Gate B completed with partial numerical agreement and targeted MLP repeatability confirmed (see FIELD_GATE_B_AUDIT.md). Gate C is next; Gates C–E remain untested. The code and 21 adapters passed artificial fixtures at b4f05405a30566a33f650288d9345b8876725ee1.
+Status: Gate A independently executed with partial numerical agreement and preserved scientific conclusions; targeted repeatability confirmed. See FIELD_GATE_A_AUDIT.md. Gate B completed with partial numerical agreement and targeted MLP repeatability confirmed (see FIELD_GATE_B_AUDIT.md). Gate C completed with partial numeric agreement (Table 14 exact; see FIELD_GATE_C_AUDIT.md). Gate D is next; Gates D–E remain untested. The code and 21 adapters passed artificial fixtures at b4f05405a30566a33f650288d9345b8876725ee1.
 
 ## Inputs and isolation
 
@@ -123,6 +123,36 @@ python scripts/compare_manuscript_results.py --tables 11 13 14 15 16 17 18 19 20
 Confirm B7 four GR/embargo cases; ten dev split seeds with fixed model seed 7; explicit-mask comparator; five offsets 0/10007/20011/30013/40009 and three model seeds; offset-zero dependency for simple baselines; noise sweep fixed draws and seven lambda values 1e-4 through 100; smoothing seven alpha values 1e-6,1e-4,1e-2,1,1e2,1e4,1e6 (not extended audit). Runtime/S-REC use their separate historical GR-inclusive cross-well diagnostic (step 16, noise .02 for runtime), not the no-GR main benchmark. Timing is informational; report hardware and thread setting. S-REC is sampled empirical separation, not a global proof. F03 stress cases A–D should be verified against Table 21 configuration, including split, noise and step. Check actual producer schema and all output paths against normalizer; if mismatches occur return the exact error and producer fields. Do not silently replace inputs or select another run by numeric agreement.
 
 Return all ten table statuses, matched/total metrics, signed differences by metric, max absolute and relative discrepancies with units, protocol/config and mask coverage, raw ranking conclusions (not solely aggregator assertions), and the noise-level win counts of CLP versus interpolation and smoothing. Record exceptions including missing diagnostics. If a table is missing, classify NOT_RUN instead of inventing values. Do not advance to Gate D/E or run extra figure scripts. Table 20 timing must not be counted as evidence of numerical reproducibility of historical wall-clock performance.
+
+## Gate D: supplementary laboratory-related benchmarks (Tables 22–24)
+
+Same scientific checkout and environment as Gates A–C. Preserve outputs, use new empty producer roots, and verify the actual authorized input hashes. The enriched 861 workbook is available locally according to Gate A (SHA-256 4c275a8dcf49042ea9db6f3abb76043a6b2ed622ae226391ffc1c56f7b7a4d7b). No raw field data or predictions are to be transferred.
+
+D1, well 861 (Tables 23–24): run with the original enriched workbook, not a substitute. Confirm 87 rows, 29 per depth block, source target Phi_lab (pu), four auxiliary columns GR (API), Res_Deep, Res_Shallow, Lithotype, window 8, step 1, 16 validation rows, seeds 7/23/41, rho .25/.50, noise 0. The code evaluates withheld coordinates per window, not globally unseen physical depths. Run the index diagnostic separately; it must not be interpreted as the field performance.
+
+```bash
+export CUDA_VISIBLE_DEVICES=""
+export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1
+export MPLBACKEND=Agg
+python scripts/audit_861_depth_indices.py --row-count 87
+python scripts/run_r1m11_861_phi_lab.py --excel-path data/861_integrated_logs_enriched.xlsx
+python scripts/aggregate_861_tables.py
+python scripts/normalize_manuscript_results.py --tables 23 24 --out-dir outputs/observed_gate_d_861
+python scripts/compare_manuscript_results.py --tables 23 24 --observed-dir outputs/observed_gate_d_861 --report outputs/validation/gate_d_861_comparison.json
+```
+
+D2, Lapa (Table 22): BEFORE training inspect both original local historical runs strict_b_20260510 and auddys_favorable_u7_step4_ridge_mlp_csgm_20260506. Locate their config.json, manifests and summary.csv; confirm both against the historical Table 22 full-precision source if present and the printed reference. Record exact ordered seven channels, workbook/sheet and hash (current Auddys_table.xlsx SHA-256 f82c3b6124ba8bb44878063d1a194c1d042b5cd0944d69a5bef66a293906c71f), log10 transform, split mode and fractions, counts, noise, measurement kind, both prior classes and their order, all CSGM and direct AE settings. The current launcher uses contiguous window splitting, direct AE epochs=80 and deduplicates common method rows keeping the first prior run. Verify those settings against historical evidence; do not substitute F03 depth-first split or defaults just because they are available. The historical run IDs are not numerically unique; if both configurations are equivalent and match published data, document lineage ambiguity rather than asserting a unique source. If any critical parameter cannot be recovered or current launcher cannot express the historical configuration, classify Table 22 NOT_RUN and report the blocker. Do not invent an exact command.
+
+After preflight, use scripts/auddys_smoke_direct_ub.py with explicitly recovered options, new base directory outputs/reviewer_revision/gate_d_lapa and run ID lapa_replay. Include both prior types in recovered order and required ablations if historical config confirms. Verify complete method/seed/rho grid and actual config. Normalize and compare the fresh result only:
+
+```bash
+python scripts/normalize_manuscript_results.py --tables 22 \
+  --source 22=outputs/reviewer_revision/gate_d_lapa/runs/lapa_replay/tables/summary.csv \
+  --out-dir outputs/observed_gate_d_lapa
+python scripts/compare_manuscript_results.py --tables 22 --observed-dir outputs/observed_gate_d_lapa --report outputs/validation/gate_d_lapa_comparison.json
+```
+
+Report D1/D2 separately: counts, exact/partial numeric status, signed discrepancies, method ranks, CLP vs AE pooled and per-block results, strictly positive paired wins, measurement-only comparator and whether manuscript conclusions are retained. No tuning against references. Do not rerun other gates or advance to figure audit. Complete remaining Gate C read-only checks in FIELD_GATE_C_AUDIT.md using existing outputs only.
 
 ## Return for audit
 
