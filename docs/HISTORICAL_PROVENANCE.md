@@ -35,3 +35,7 @@ python scripts/clp_csgm_srec_diagnostics.py
 - Lapa historical `split_depth_summary.csv`: NOT_FOUND, although the current code produces it. Its absence alone does not prevent reproduction if original partition settings and inputs can be established.
 
 The full local configuration files, workbook identities, and profile aggregation setting have not been received. Do not silently replace these missing details with defaults or candidate channels. No restricted data or arrays were transferred.
+
+## Resolution at Gates D–E/E.1
+
+The preceding sections record earlier audit stages. The local author subsequently recovered Lapa May 6 configuration and workbook identity (Table 22: 105/105 values), historical uniform_mean for Figs 8/24 and Fig 10, and Figs 14–17 selections. See FIELD_GATE_D_AUDIT.md and FIELD_GATE_E_AUDIT.md. Unique strict Lapa lineage and original package/wheel environment remain unresolved; no pointwise parity identity inferred from aggregates.

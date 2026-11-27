@@ -1,0 +1,9 @@
+# Final release review
+
+Reviewed tree: 19991fc6b4de320b2c7d745bdd0782fd58ab46d9; main base bba1423eac98d1f93375905e9d7e974fcd3a8261. 117 tracked files, 86 added, 19 modified, none removed against main. Inventory under data/ consists only of README and three synthetic tables. No tracked field workbooks, model weights, NPZ prediction arrays or outputs directory in the reviewed tree. No scientific module changed relative to the local field execution checkout e3bc30027b6bbcb331a08cc620c397e183ae3106. Differences since then are documentation, figure validation and release environment/CI infrastructure. This was a tracked tree inventory and blob comparison, not a comprehensive secret scanner or independent audit of local field files.
+
+Fresh-install CI at 19991fc6b4de320b2c7d745bdd0782fd58ab46d9 passed in both jobs: [technical 46042013857](https://github.com/romulobrito/CLP--CSGM/actions/runs/46042013857) (116 static, 177 total technical checks, 124 adapter checks and figure regression), [synthetic 46042013860](https://github.com/romulobrito/CLP--CSGM/actions/runs/46042013860) (2 benchmarks, 28 method cells). Both reported VERSION_MATCH (33/33 distributions) and pip check passed.
+
+See FIELD_REPRODUCIBILITY_REPORT.md for all results and limitations: 21/21 tables executed, 867/1124 metrics within original tolerance, 3 exact tables, 26/26 numerical figures regenerated, 2 targeted repeatability cases. No claim of complete historical numerical reproducibility, exact wheel identity, strict Lapa lineage or pointwise parity equivalence for Figure 29.
+
+This review updates current documentation and enables CI on pull requests to main and on main pushes. Final PR checks must finish before merge. No new scientific code or field data added. Publication tag/release and manuscript code availability update are separate steps; do not cite a tag until it exists.

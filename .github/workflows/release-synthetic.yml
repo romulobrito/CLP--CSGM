@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - revision/cageo-d-26-01398-reproducibility
+      - main
     paths:
       - '.github/workflows/release-synthetic.yml'
       - 'scripts/check_synthetic_smoke.py'
@@ -11,6 +12,8 @@ on:
       - 'scripts/install_release_cpu.sh'
       - 'requirements*.txt'
       - 'data/synthetic/**'
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:

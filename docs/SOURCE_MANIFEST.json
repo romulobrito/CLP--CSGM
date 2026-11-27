@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "EXACT_PACKAGE_SNAPSHOT_COMMITTED_FRESH_INSTALL_CI_PENDING",
+  "status": "FINAL_REVIEW_PREPARED_PARTIAL_HISTORICAL_NUMERICAL_AGREEMENT",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -532,7 +532,7 @@
     "Verify figure/table source provenance, including old three-seed assets and final ten-seed Table 4",
     "Run clean imports and synthetic smoke, then compare authorized data results to reference values"
   ],
-  "release_gate": "Not ready for tag/release until transfer, standalone validation, and reproducibility limitations are documented. Full scientific reproduction is not claimed without authorized data and matching results.",
+  "release_gate": "Single final PR; merge only after review and CI. Immutable tag/release and manuscript link remain pending. No full historical numerical agreement claim.",
   "release02_verification": {
     "source_blob_matches": 22,
     "executable_shell_scripts": 4,
@@ -1102,7 +1102,7 @@
       "max_rmse_difference": 0,
       "canonical_scientific_sha256": "d96267d92561cb992fdbf7c1a6332fc0cb6b215f0ef85c867a7a8140aff1400d"
     },
-    "next": "RELEASE-05e fresh-install CI, then final repository audit and single PR",
+    "next": "Final single PR and release publication; no more field training",
     "gate_b": {
       "status": "PARTIAL_NUMERIC_MATCH_CONCLUSIONS_REPORTED_PRESERVED",
       "execution_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
@@ -1457,7 +1457,7 @@
     }
   },
   "release05e": {
-    "status": "EXACT_VERSION_SNAPSHOT_RECOVERED_FRESH_INSTALL_PENDING",
+    "status": "EXACT_VERSION_SNAPSHOT_VALIDATED_IN_CI",
     "source_record_sha256": "e3946441f4f02519bcde27bd71c750ffda97b00d5dcab10cceceba5784eb8954",
     "source_record_bytes": 21948,
     "source_record_lines": 467,
@@ -1472,8 +1472,35 @@
     "documentation": "docs/RELEASE_ENVIRONMENT.md",
     "wheel_identity": "NOT_RECORDED",
     "historical_environment": "NOT_FOUND",
-    "fresh_install_ci": "PENDING",
+    "fresh_install_ci": "PASS",
     "field_training": "NOT_REQUIRED",
-    "raw_record": "retained locally; machine-identifying paths omitted"
+    "raw_record": "retained locally; machine-identifying paths omitted",
+    "tested_commit": "19991fc6b4de320b2c7d745bdd0782fd58ab46d9",
+    "ci": {
+      "technical_run": 46042013857,
+      "technical_job": 140651831030,
+      "static_checks": 116,
+      "technical_checks_total": 177,
+      "adapter_checks": 124,
+      "figure_regression": "PASS",
+      "synthetic_run": 46042013860,
+      "synthetic_job": 140651830983,
+      "synthetic_benchmarks": 2,
+      "synthetic_cells": 28,
+      "version_match": 33,
+      "pip_check": "PASS"
+    }
+  },
+  "final_review": {
+    "status": "PREPARED_FOR_PR",
+    "audited_head": "19991fc6b4de320b2c7d745bdd0782fd58ab46d9",
+    "base_main": "bba1423eac98d1f93375905e9d7e974fcd3a8261",
+    "audited_tree_files": 117,
+    "added_vs_main": 86,
+    "modified_vs_main": 19,
+    "removed_vs_main": 0,
+    "scientific_source_changes_since_field_checkout": 0,
+    "scope": "Tracked tree inventory, source blob comparison, validation logs and documentation consistency; not independent field artifact retrieval or exhaustive secret scan.",
+    "remaining": "Final PR CI, review, merge, tag/release, manuscript/correspondence update."
   }
 }

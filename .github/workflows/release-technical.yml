@@ -4,11 +4,14 @@ on:
   push:
     branches:
       - revision/cageo-d-26-01398-reproducibility
+      - main
     paths:
       - '**.py'
       - '**.sh'
       - 'requirements*.txt'
       - '.github/workflows/release-technical.yml'
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:

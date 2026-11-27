@@ -1,6 +1,6 @@
 # RELEASE-05d.2c — local field reproduction
 
-Status: Gate A independently executed with partial numerical agreement and preserved scientific conclusions; targeted repeatability confirmed. See FIELD_GATE_A_AUDIT.md. Gate B completed with partial numerical agreement and targeted MLP repeatability confirmed (see FIELD_GATE_B_AUDIT.md). Gate C completed with partial numeric agreement (Table 14 exact; see FIELD_GATE_C_AUDIT.md). Gate D completed (Tables 22–23 exact, Table 24 partial; see FIELD_GATE_D_AUDIT.md). All 21 tables executed. Gate E/E.1 completed; zero blocked figures. See FIELD_GATE_E_AUDIT.md and FIELD_REPRODUCIBILITY_REPORT.md. The exact 33-package version snapshot has been recovered; fresh-install CI validation and release finalization pending. See RELEASE_ENVIRONMENT.md. The code and 21 adapters passed artificial fixtures at b4f05405a30566a33f650288d9345b8876725ee1.
+Status: Gate A independently executed with partial numerical agreement and preserved scientific conclusions; targeted repeatability confirmed. See FIELD_GATE_A_AUDIT.md. Gate B completed with partial numerical agreement and targeted MLP repeatability confirmed (see FIELD_GATE_B_AUDIT.md). Gate C completed with partial numeric agreement (Table 14 exact; see FIELD_GATE_C_AUDIT.md). Gate D completed (Tables 22–23 exact, Table 24 partial; see FIELD_GATE_D_AUDIT.md). All 21 tables executed. Gate E/E.1 completed; zero blocked figures. See FIELD_GATE_E_AUDIT.md and FIELD_REPRODUCIBILITY_REPORT.md. The exact 33-package version snapshot has been recovered; fresh-install CI validation passed; release finalization pending. See RELEASE_ENVIRONMENT.md. The code and 21 adapters passed artificial fixtures at b4f05405a30566a33f650288d9345b8876725ee1.
 
 ## Inputs and isolation
 
@@ -17,7 +17,7 @@ Use the historical authorized processed inputs, not merely files with matching n
 
 ## Gate A: primary numerical comparison (Table 4)
 
-Use the verified CPU environment: Python 3.10.22, NumPy 1.26.4, pandas 2.3.3, Matplotlib 3.7.5, scikit-learn 1.6.1, PyTorch 2.6.0+cpu, PyWavelets 1.4.1, SciPy 1.15.3, openpyxl 3.1.5. Record pip freeze and pip check. This is the CI-validated set, not a claim about the exact historical hardware or a complete transitive lock.
+Use the verified CPU environment: Python 3.10.22, NumPy 1.26.4, pandas 2.3.3, Matplotlib 3.7.5, scikit-learn 1.6.1, PyTorch 2.6.0+cpu, PyWavelets 1.4.1, SciPy 1.15.3, openpyxl 3.1.5. Record pip freeze and pip check. The complete 33-package version snapshot is now validated in CI; this does not establish the historical hardware or original wheel hashes.
 
 ```bash
 export CUDA_VISIBLE_DEVICES=""
@@ -186,4 +186,4 @@ E4 — audit report: per figure classify CONCEPTUAL_NOT_APPLICABLE, NUMERIC_INPU
 
 ## Return for audit
 
-Return only authorized aggregate metrics (including normalized table04.csv), comparison report, source/destination hashes, config metadata, seed coverage, command/exit code, environment record and a list of deviations. Do not return raw logs containing field values, raw input files, depth curves, weights, predictions or restricted data. If disclosure of metadata or aggregates is restricted, return a redacted summary. No automatic merge or release tag. This runbook is a staged plan, not an executed field test.
+Return only authorized aggregate metrics (including normalized table04.csv), comparison report, source/destination hashes, config metadata, seed coverage, command/exit code, environment record and a list of deviations. Do not return raw logs containing field values, raw input files, depth curves, weights, predictions or restricted data. If disclosure of metadata or aggregates is restricted, return a redacted summary. No automatic merge or release tag. This runbook records the staged procedure; actual completed results and exceptions are documented in the field audit reports.

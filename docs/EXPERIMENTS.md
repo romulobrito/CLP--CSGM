@@ -1,6 +1,6 @@
 # Experiment map
 
-All commands are run from the repository root after installing dependencies and supplying authorized data. This is an implementation map, not evidence of completed reproduction. Full numerical verification is pending.
+All commands are run from the repository root after installing dependencies and supplying authorized data. This is an implementation map; see FIELD_REPRODUCIBILITY_REPORT.md for the completed local campaign and partial historical numerical agreement.
 
 ## Main results
 
@@ -30,20 +30,20 @@ The legacy three-seed cross-well paired tables and figures carry distinct filena
 | --- | --- | --- |
 | B.1, Table 11 | python scripts/clp_csgm_srec_diagnostics.py | Sampled separation, not a proof of global S-REC |
 | B.4 | scripts/paper_sparse_reconstruction_figures.py --mode crosswell or f03 --skip-lfista | Qualitative windows; confirm selected example against paper |
-| B.5 | F03-4 launcher and local profile outputs | Exact figure selection pending |
+| B.5 | F03-4 launcher and local profile outputs | Historical selection recovered: seed 7, rho .20, uniform_mean |
 | B.6 | python scripts/clp_csgm_diagnostic_assets.py | Requires main benchmark runs |
 | B.7, Table 13 / Fig. 20 | python scripts/run_b7_gr_embargo.py | Four controlled step-16 scenarios; --dry-run or --aggregate-only available |
 | B.8, Table 14 | bash scripts/run_r1m03_step32_dev_splits.sh | Ten split seeds, fixed model/measurement seed 7 |
 | B.10, Table 15 | bash scripts/run_r1m08_explicit_mask.sh | Three paired seeds |
 | B.11, Table 16 | bash scripts/run_r2m04_omega_placement.sh | Five observation/noise draws, model seeds fixed |
 | B.12, Tables 17–19 | See sequence below | Separate reference-noise and noise-sensitivity experiments |
-| B.13 | bash scripts/run_regenerate_figure_inputs.sh | Dedicated profile; historical overlap mode still unverified |
+| B.13 | bash scripts/run_regenerate_figure_inputs.sh | Dedicated profile; historical uniform_mean confirmed |
 | B.14, Table 20 | python scripts/clp_csgm_runtime_study.py | Historical GR-inclusive cross-well timing diagnostic; see HISTORICAL_PROVENANCE.md |
 | C, Table 21 | python scripts/f03_stress_benchmark_bundle.py | Inspect --dry-run first |
-| D, Table 22 | scripts/auddys_smoke_direct_ub.py | Authorized Lapa data and exact historical config needed |
+| D, Table 22 | scripts/auddys_smoke_direct_ub.py | Authorized data; May 6 protocol recovered, strict May 10 lineage partial |
 | E, Tables 23–24 | python scripts/run_r1m11_861_phi_lab.py --excel-path /path/to/authorized.xlsx | Authorized 87-row workbook; then python scripts/aggregate_861_tables.py; within-window withheld score |
 
-For B.7, retain L=64, step 16, rho grid 0.05,0.10,0.20, seeds 7,23,41, tail validation 0.1, noise 0.01, Ridge and the same train/test wells. Run the cross-well launcher four times, with channels sonic,rhob,ai,vp or sonic,rhob,gr,ai,vp and embargo 0 or 4. Use distinct run IDs and a separate base directory; compare with Table 13. The new B.7 driver generates table13.csv and figure20.png; numerical agreement is pending.
+For B.7, retain L=64, step 16, rho grid 0.05,0.10,0.20, seeds 7,23,41, tail validation 0.1, noise 0.01, Ridge and the same train/test wells. Run the cross-well launcher four times, with channels sonic,rhob,ai,vp or sonic,rhob,gr,ai,vp and embargo 0 or 4. Use distinct run IDs and a separate base directory; compare with Table 13. The new B.7 driver generates table13.csv and figure20.png; partial numerical agreement recorded in Gate C.
 
 B.12 ordered local workflow (do not mix earlier saved runs):
 
@@ -60,12 +60,12 @@ python scripts/plot_r3m03_rmse_vs_noise.py
 
 The simple baseline script requires the offset-zero reference runs. The smooth and affine audit stages require their upstream detail tables. The noise sweep also has a separate --methods interp,smooth --tag option; this does not rerun CLP. Table 19 and Fig. 21 use run_r3m03_smooth_audit.py with seven alpha candidates (1e-6, 1e-4, 1e-2, 1, 1e2, 1e4, 1e6), not the exploratory 17-candidate interp_smooth_extended bundle. Fig. 22 uses the affine-limit audit on that same seven-candidate result. Noise std grid 0.01,0.05,0.10,0.20. At fixed step/model seed, comparison changes the noise scale rather than the observation locations; lambda is selected for each noise level.
 
-Lapa: use --help to inspect launcher options; manuscript uses L=16, step 4, log10 k_lab, seven auxiliary channels, ratios 0.20–0.60 and three seeds, with both latent prior variants. A final command is deliberately not certified because the exact seven-channel configuration has not been located.
+Lapa: use --help to inspect launcher options; manuscript uses L=16, step 4, log10 k_lab, seven auxiliary channels, ratios 0.20–0.60 and three seeds, with both latent prior variants. Gate D recovered the ordered channels density,gr,res_deep,res_shallow,phi_neutron,phi_sonic,phi_nd, contiguous split .6/.2/.2 (10/3/5 windows), noise .01, log10 target, and both priors. The May 6 replay matched Table 22; strict May 10 flag remains unsupported. See FIELD_GATE_D_AUDIT.md and FIELD_GATE_E_AUDIT.md.
 
 Well 861: three depth-held-out blocks, length 8, step 1, 16 validation rows, three seeds, ratios 0.25/0.50, no added noise. Outputs heldout_rmse_detail.csv, heldout_rmse_summary.csv and protocol.json. The score is withheld coordinates within each window, not globally withheld physical depths. Run python scripts/audit_861_depth_indices.py --row-count 87 to check the index geometry without laboratory data, or use --excel-path with the authorized workbook.
 
 ## Known gaps
 
-See COVERAGE_AUDIT.md for evidence-by-evidence status. The scripts exist for the listed experiments, but command coverage for all figures, exact historical profile/configuration equivalence, Lapa settings, and all table-level numerical agreement remain open. The theoretical proofs in Appendix A are not executable experiments.
+See COVERAGE_AUDIT.md for evidence-by-evidence status. All 21 experimental tables were executed and all 26 numerical figures regenerated. Exact historical numerical agreement, strict Lapa lineage, original historical environment and pointwise parity identity for Fig. 29 remain limited; see FIELD_REPRODUCIBILITY_REPORT.md. The theoretical proofs in Appendix A are not executable experiments.
 
 For recovered source lineage and outstanding local metadata, see [HISTORICAL_PROVENANCE.md](HISTORICAL_PROVENANCE.md).

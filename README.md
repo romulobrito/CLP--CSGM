@@ -4,7 +4,7 @@ Conditional Latent-Prior Compressed Sensing with Generative Models (CLP-CSGM) fo
 
 Code accompanying *Conditional Latent-Prior Generative Compressed Sensing for Petrophysical Target-Log Reconstruction*, revised manuscript for Computers & Geosciences. This repository is distributed under the [MIT License](LICENSE).
 
-**Validation status:** all 21 experimental tables (04–24) were independently executed locally by the author, and all 26 numerical figures regenerated. Scientific conclusions were preserved with documented exceptions in numerical magnitudes and seed counts: 867/1124 metrics agree within the original published-precision tolerance, three tables fully match, and two targeted repeatability checks were exact in the tested environment. This is partial numerical agreement, not complete historical numerical equivalence. See the [field reproducibility report](docs/FIELD_REPRODUCIBILITY_REPORT.md). No field datasets or trained models are distributed here. The exact package-version snapshot is available; fresh-install validation of this snapshot is tracked in CI.
+**Validation status:** all 21 experimental tables (04–24) were independently executed locally by the author, and all 26 numerical figures regenerated. Scientific conclusions were preserved with documented exceptions in numerical magnitudes and seed counts: 867/1124 metrics agree within the original published-precision tolerance, three tables fully match, and two targeted repeatability checks were exact in the tested environment. This is partial numerical agreement, not complete historical numerical equivalence. See the [field reproducibility report](docs/FIELD_REPRODUCIBILITY_REPORT.md). No field datasets or trained models are distributed here. The exact package-version snapshot is available; fresh-install validation passed in both the [technical](https://github.com/romulobrito/CLP--CSGM/actions/runs/46042013857) and [synthetic](https://github.com/romulobrito/CLP--CSGM/actions/runs/46042013860) CI jobs.
 
 ## Method
 
@@ -21,7 +21,7 @@ The reference replay used CPython 3.10.22 on Linux x86_64 (Ubuntu 22.04.5 LTS), 
 ```bash
 git clone https://github.com/romulobrito/CLP--CSGM.git
 cd CLP--CSGM
-git checkout revision/cageo-d-26-01398-reproducibility
+# For the reviewed version, check out the immutable release tag once published.
 # Ensure "python" resolves to CPython 3.10.22.
 bash scripts/install_release_cpu.sh
 source .venv-release/bin/activate

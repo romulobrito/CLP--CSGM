@@ -66,3 +66,7 @@ Outstanding:
 - Exact Lapa configuration (ordered channels, split, noise and other run settings) not supplied in the local audit complement; historical origin non-unique.
 - Historical overlap aggregation for cross-well Figures 8 and 24, and original F03 Figure 10 run/seed, not supplied.
 - Exact remaining qualitative figure selections and field numerical comparison; no authorized inputs executed here.
+
+## Superseding final campaign evidence
+
+The preceding coverage map and pending items are historical checkpoints, not the current release status. Gates A–D executed all 21 tables; Gate E/E.1 regenerated all 26 numerical figures. Historical Lapa May 6 configuration, profile overlap and qualitative selections were recovered locally; strict Lapa lineage and full numerical equivalence remain limited. See FIELD_REPRODUCIBILITY_REPORT.md and FIELD_GATE_E_AUDIT.md. Fresh-install CI at 19991fc6b4de320b2c7d745bdd0782fd58ab46d9 passed in both jobs: [technical 46042013857](https://github.com/romulobrito/CLP--CSGM/actions/runs/46042013857) (116 static, 177 total technical checks, 124 adapter checks and figure regression), [synthetic 46042013860](https://github.com/romulobrito/CLP--CSGM/actions/runs/46042013860) (2 benchmarks, 28 method cells). Both reported VERSION_MATCH (33/33 distributions) and pip check passed.
