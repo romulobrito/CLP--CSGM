@@ -1,6 +1,6 @@
 # RELEASE-05d.2c — local field reproduction
 
-Status: Gate A independently executed with partial numerical agreement and preserved scientific conclusions; targeted repeatability confirmed. See FIELD_GATE_A_AUDIT.md. Gate B is next; other field results remain untested. The code and 21 adapters passed artificial fixtures at b4f05405a30566a33f650288d9345b8876725ee1.
+Status: Gate A independently executed with partial numerical agreement and preserved scientific conclusions; targeted repeatability confirmed. See FIELD_GATE_A_AUDIT.md. Gate B completed with partial numerical agreement, with targeted Table 10 diagnosis pending (see FIELD_GATE_B_AUDIT.md). Gates C–E remain untested. The code and 21 adapters passed artificial fixtures at b4f05405a30566a33f650288d9345b8876725ee1.
 
 ## Inputs and isolation
 

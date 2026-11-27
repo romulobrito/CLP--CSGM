@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "FIELD_GATE_A_PARTIAL_NUMERIC_MATCH_REPEATABILITY_CONFIRMED_GATE_B_PENDING",
+  "status": "FIELD_GATE_B_PARTIAL_NUMERIC_MATCH_DIAGNOSTIC_PENDING",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -1103,6 +1103,81 @@
       "max_rmse_difference": 0,
       "canonical_scientific_sha256": "d96267d92561cb992fdbf7c1a6332fc0cb6b215f0ef85c867a7a8140aff1400d"
     },
-    "next": "Gate B, tables 05–10 and 12; no repeat of Table 04; no historical tolerance change"
+    "next": "Gate B targeted Table 10 audit before Gate C",
+    "gate_b": {
+      "status": "PARTIAL_NUMERIC_MATCH_CONCLUSIONS_REPORTED_PRESERVED",
+      "execution_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
+      "evidence": "Author-reported local run; raw local artifacts not accessed remotely",
+      "benchmarks_completed": 8,
+      "benchmarks_total": 8,
+      "tables_normalized": 7,
+      "metrics_matched": 215,
+      "metrics_total": 361,
+      "metrics_outside_tolerance": 146,
+      "numeric_match_tables": 0,
+      "report_sha256": "12b1f78faf033fcc72cf63085f5c647a6a475b28b0086e096df60886444d939c",
+      "protocol": "All eight configs passed author audit; cross-well Ridge/MLP masks identical; F03 masks not directly exported",
+      "tables": [
+        {
+          "table": "05",
+          "matched": 24,
+          "total": 35,
+          "max_abs": 0.00010372,
+          "max_relative_pct": 0.8805
+        },
+        {
+          "table": "06",
+          "matched": 11,
+          "total": 25,
+          "max_abs": 0.000395464,
+          "max_relative_pct": 156.956,
+          "relative_context": "near-zero delta"
+        },
+        {
+          "table": "07",
+          "matched": 33,
+          "total": 54,
+          "max_abs": 0.311657,
+          "max_abs_unit": "percentage points",
+          "max_relative_pct": 5.5208
+        },
+        {
+          "table": "08",
+          "matched": 14,
+          "total": 30,
+          "max_abs": 0.147279,
+          "max_abs_unit": "percentage points",
+          "max_relative_pct": 0.7095
+        },
+        {
+          "table": "09",
+          "matched": 17,
+          "total": 27,
+          "max_abs": 0.066315,
+          "max_abs_unit": "percentage points",
+          "max_relative_pct": 1.883
+        },
+        {
+          "table": "10",
+          "matched": 6,
+          "total": 15,
+          "max_abs": 6.829662,
+          "max_abs_unit": "percentage points",
+          "max_relative_pct": 34.6349,
+          "critical_rho": 0.5
+        },
+        {
+          "table": "12",
+          "matched": 110,
+          "total": 175,
+          "max_abs": 0.000387204,
+          "max_abs_metric": "relative L2",
+          "max_relative_pct": 73.3969,
+          "relative_context": "confidence interval half-width"
+        }
+      ],
+      "diagnostic_status": "TARGETED_READ_ONLY_TABLE10_PENDING",
+      "next": "Resolve magnitude discrepancy in Table 10, check actual observed values, seed-level lineage and effective configs; no new training authorized. Gate C pending review."
+    }
   }
 }
