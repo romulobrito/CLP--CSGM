@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "FIELD_GATE_B_PARTIAL_NUMERIC_MATCH_DIAGNOSTIC_PENDING",
+  "status": "FIELD_GATES_A_B_PARTIAL_NUMERIC_MATCH_TARGETED_REPEATABILITY_CONFIRMED_GATE_C_PENDING",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -1058,11 +1058,10 @@
     }
   },
   "release05d2c": {
-    "status": "GATE_A_PARTIAL_NUMERIC_MATCH_CONCLUSIONS_PRESERVED",
+    "status": "GATES_A_B_PARTIAL_NUMERIC_MATCH_CONCLUSIONS_PRESERVED",
     "runbook": "docs/LOCAL_FIELD_REPRODUCTION.md",
     "first_gate": "Table 4, ten paired seeds, nine step/rho cells; independent fresh checkout",
     "tested_code_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
-    "field_runs_executed": 2,
     "required_input_roles": [
       "F3 development",
       "F3 held-out Vc",
@@ -1071,7 +1070,7 @@
       "Well 861 enriched workbook"
     ],
     "scope": "Local execution only; no restricted inputs or outputs committed. Verify historical settings before Lapa and exact profile claims.",
-    "field_runs_scope": "One ten-seed Table 4 campaign (three step runs), one targeted single-cell single-seed repeatability run; author-reported local evidence",
+    "field_runs_scope": "Three step runs for Table 4, eight Gate B runs, and two targeted repeatability runs (13 launcher runs total, grouped into two benchmark campaigns and two repeats).",
     "evidence": "docs/FIELD_GATE_A_AUDIT.md",
     "gate_a": {
       "comparison_status": "INCOMPLETE_OR_DIFFERENT",
@@ -1103,7 +1102,7 @@
       "max_rmse_difference": 0,
       "canonical_scientific_sha256": "d96267d92561cb992fdbf7c1a6332fc0cb6b215f0ef85c867a7a8140aff1400d"
     },
-    "next": "Gate B targeted Table 10 audit before Gate C",
+    "next": "Gate C, Tables 11 and 13–21; retain partial status for Gates A/B",
     "gate_b": {
       "status": "PARTIAL_NUMERIC_MATCH_CONCLUSIONS_REPORTED_PRESERVED",
       "execution_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
@@ -1164,7 +1163,8 @@
           "max_abs": 6.829662,
           "max_abs_unit": "percentage points",
           "max_relative_pct": 34.6349,
-          "critical_rho": 0.5
+          "critical_rho": 0.5,
+          "max_abs_full_precision_historical": 6.829612487338272
         },
         {
           "table": "12",
@@ -1176,8 +1176,40 @@
           "relative_context": "confidence interval half-width"
         }
       ],
-      "diagnostic_status": "TARGETED_READ_ONLY_TABLE10_PENDING",
-      "next": "Resolve magnitude discrepancy in Table 10, check actual observed values, seed-level lineage and effective configs; no new training authorized. Gate C pending review."
+      "diagnostic_status": "CLOSED_WITH_UNRESOLVED_HISTORICAL_CAUSE",
+      "next": "Gate C",
+      "diagnostic": {
+        "rho": 0.5,
+        "seed": 23,
+        "method": "mlp_prior_csgm",
+        "effective_prior_random_state": 7023,
+        "seed_share_abs_difference_pct": 93.41,
+        "rmse_historical": 0.01678343803225851,
+        "rmse_reproduced": 0.012728246345251985,
+        "rmse_repeat": 0.012728246345251985,
+        "lambda_historical": 0.0003,
+        "lambda_current": 0.0001,
+        "table10_gain_historical_pct": 19.718950950474248,
+        "table10_gain_reproduced_pct": 12.8893384631,
+        "val_score_current": 0.00901529018426415,
+        "ae_recon_train_rmse_current": 0.001620883417264032,
+        "repeatability": "REPEATABILITY_CONFIRMED_FOR_TESTED_CELL",
+        "rmse_exact": 224,
+        "rmse_total": 224,
+        "max_rmse_difference": 0,
+        "rmse_vector_sha256_current": "0980618e08ceddba3e67a220dca4790c5c031311ef71c77f3a542a998ae2f4a1",
+        "rmse_vector_sha256_historical": "2a9ab34a4ac9fd1d0a4d09668ef15ae2550157d5a90b1a031935e2dcbfd6b296",
+        "historical_environment": "NOT_FOUND",
+        "historical_observation_vectors": "NOT_FOUND",
+        "historical_candidate_lambda_scores": "NOT_FOUND",
+        "uncertainty_limitations": "Table 6 SE and CI half-width varied 7.46–38.49%; Table 12 AE rho .50 dispersion and CI decreased 73.56%; reported rankings, paired signs/wins and CI zero inclusion preserved."
+      }
+    },
+    "gate_c": {
+      "status": "NOT_RUN",
+      "scope": "Tables 11 and 13–21; staged protocol in LOCAL_FIELD_REPRODUCTION.md",
+      "historical_runtime_timing": "INFORMATIONAL",
+      "execution_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106"
     }
   }
 }
