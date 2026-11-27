@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "FIELD_REPRODUCTION_PREPARED_AWAITING_AUTHORIZED_LOCAL_INPUTS",
+  "status": "FIELD_GATE_A_PARTIAL_NUMERIC_MATCH_REPEATABILITY_CONFIRMED_GATE_B_PENDING",
   "source_repository": "romulobrito/CS-ML",
   "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
   "destination_repository": "romulobrito/CLP--CSGM",
@@ -1058,11 +1058,11 @@
     }
   },
   "release05d2c": {
-    "status": "NOT_RUN_AWAITING_LOCAL_INPUTS",
+    "status": "GATE_A_PARTIAL_NUMERIC_MATCH_CONCLUSIONS_PRESERVED",
     "runbook": "docs/LOCAL_FIELD_REPRODUCTION.md",
     "first_gate": "Table 4, ten paired seeds, nine step/rho cells; independent fresh checkout",
-    "tested_code_commit": "b4f05405a30566a33f650288d9345b8876725ee1",
-    "field_runs_executed": 0,
+    "tested_code_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
+    "field_runs_executed": 2,
     "required_input_roles": [
       "F3 development",
       "F3 held-out Vc",
@@ -1070,6 +1070,39 @@
       "Lapa workbook",
       "Well 861 enriched workbook"
     ],
-    "scope": "Local execution only; no restricted inputs or outputs committed. Verify historical settings before Lapa and exact profile claims."
+    "scope": "Local execution only; no restricted inputs or outputs committed. Verify historical settings before Lapa and exact profile claims.",
+    "field_runs_scope": "One ten-seed Table 4 campaign (three step runs), one targeted single-cell single-seed repeatability run; author-reported local evidence",
+    "evidence": "docs/FIELD_GATE_A_AUDIT.md",
+    "gate_a": {
+      "comparison_status": "INCOMPLETE_OR_DIFFERENT",
+      "metrics_matched": 55,
+      "metrics_total": 63,
+      "metrics_outside_tolerance": 8,
+      "max_abs_difference_published": 0.0000128594292621,
+      "mean_ranking_cells_clp": 7,
+      "mean_ranking_cells_total": 9,
+      "individual_clp_wins": 68,
+      "individual_pairs": 90,
+      "ci_excludes_zero_cells": 9,
+      "protocol": "CONFIRMED_BY_LOCAL_AUDIT",
+      "observed_sha256": "1081882600c7d5b608096b81b2a942031a0674f8e21e4970030cabce275e4f38",
+      "report_sha256": "1ad3810470a892041f390f0108757c096a2aeef466c83ad934c6587228f11497"
+    },
+    "diagnostic": {
+      "status": "CLOSED_WITH_UNRESOLVED_HISTORICAL_CAUSE",
+      "step": 32,
+      "rho": 0.2,
+      "seed": 53,
+      "lambda": 0.0001,
+      "seed_share_abs_difference_pct": 84.688,
+      "historical_environment": "NOT_FOUND",
+      "historical_omega_and_b": "NOT_FOUND",
+      "repeatability": "REPEATABILITY_CONFIRMED_FOR_TESTED_CELL",
+      "individual_rmse_exact": 50,
+      "individual_rmse_total": 50,
+      "max_rmse_difference": 0,
+      "canonical_scientific_sha256": "d96267d92561cb992fdbf7c1a6332fc0cb6b215f0ef85c867a7a8140aff1400d"
+    },
+    "next": "Gate B, tables 05–10 and 12; no repeat of Table 04; no historical tolerance change"
   }
 }
