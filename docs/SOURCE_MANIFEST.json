@@ -1,0 +1,1506 @@
+{
+  "schema_version": 1,
+  "status": "FINAL_REVIEW_PREPARED_PARTIAL_HISTORICAL_NUMERICAL_AGREEMENT",
+  "source_repository": "romulobrito/CS-ML",
+  "source_commit": "c4df022497f6b4a3438dd8372335df58178cfe89",
+  "destination_repository": "romulobrito/CLP--CSGM",
+  "public_base_commit": "bba1423eac98d1f93375905e9d7e974fcd3a8261",
+  "manuscript_revision": "CAGEO-D-26-01398; 89-page revised manuscript; ten paired seeds primary",
+  "policy": "Explicit allowlist; no raw/processed well data, trained models, unpublished outputs, reviewer correspondence, credentials, or unrelated research. All candidate code must be reviewed for embedded data and paths before transfer. Dependency review entries are not approved for automatic transfer. No claim of numerical reproduction.",
+  "entries": [
+    {
+      "group": "preserve",
+      "source_path": "csgm_m2_module.py",
+      "destination_path": "csgm_m2_module.py",
+      "source_blob": "396fe9d16bf3f95aa5c170a65e9ee3dc1f0cabc8",
+      "public_base_blob": "396fe9d16bf3f95aa5c170a65e9ee3dc1f0cabc8",
+      "status": "identical"
+    },
+    {
+      "group": "preserve",
+      "source_path": "external_benchmarks.py",
+      "destination_path": "external_benchmarks.py",
+      "source_blob": "2d9153d6e74f23112894303ef53eaffbe9fc3f14",
+      "public_base_blob": "2d9153d6e74f23112894303ef53eaffbe9fc3f14",
+      "status": "identical"
+    },
+    {
+      "group": "preserve",
+      "source_path": "real_well_f03.py",
+      "destination_path": "real_well_f03.py",
+      "source_blob": "2234e380f9b0820f9818f8a2c36f43ba344fef9f",
+      "public_base_blob": "2234e380f9b0820f9818f8a2c36f43ba344fef9f",
+      "status": "identical"
+    },
+    {
+      "group": "preserve",
+      "source_path": "sir_cs_benchmark_real_well_direct_ub.py",
+      "destination_path": "sir_cs_benchmark_real_well_direct_ub.py",
+      "source_blob": "e07bb068295fecd30352c098b5767d22c7ff6ca9",
+      "public_base_blob": "e07bb068295fecd30352c098b5767d22c7ff6ca9",
+      "status": "identical"
+    },
+    {
+      "group": "preserve",
+      "source_path": "scripts/auddys_clp_csgm_eda.py",
+      "destination_path": "scripts/auddys_clp_csgm_eda.py",
+      "source_blob": "2f523a069f92efe64fe8a9f7bf714316486132bd",
+      "public_base_blob": "2f523a069f92efe64fe8a9f7bf714316486132bd",
+      "status": "identical"
+    },
+    {
+      "group": "preserve",
+      "source_path": "scripts/clp_csgm_diagnostic_assets.py",
+      "destination_path": "scripts/clp_csgm_diagnostic_assets.py",
+      "source_blob": "bec28127cd616489a5b8dad6496c7d68fb5dd3ea",
+      "public_base_blob": "bec28127cd616489a5b8dad6496c7d68fb5dd3ea",
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "4f1062064c92d09275baa72ba6f7905822a284b8",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
+    },
+    {
+      "group": "preserve",
+      "source_path": "scripts/clp_csgm_quick_figures.py",
+      "destination_path": "scripts/clp_csgm_quick_figures.py",
+      "source_blob": "9501f2a52b1347f58b95d379a7c675a0e1a26bc5",
+      "public_base_blob": "9501f2a52b1347f58b95d379a7c675a0e1a26bc5",
+      "status": "artifact_chain_adapted_pending_runtime_validation",
+      "destination_blob_expected": "71fb904b2ca90ad223f8441c31c7a379174a67d8",
+      "adaptation": "Local regenerated figure inputs with protocol checks; historical and regenerated provenance kept separate; see RELEASE-03b diff."
+    },
+    {
+      "group": "preserve",
+      "source_path": "scripts/clp_csgm_runtime_study.py",
+      "destination_path": "scripts/clp_csgm_runtime_study.py",
+      "source_blob": "d2d977fb01b1681c767954c32d25c2d5911079a4",
+      "public_base_blob": "d2d977fb01b1681c767954c32d25c2d5911079a4",
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "f34e2a3fc8e82cd46161fc5b4c7848b493a63164",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
+    },
+    {
+      "group": "preserve",
+      "source_path": "scripts/clp_csgm_srec_diagnostics.py",
+      "destination_path": "scripts/clp_csgm_srec_diagnostics.py",
+      "source_blob": "34b02432e803fc8ba4c875e83676d9fbe6e6e6ea",
+      "public_base_blob": "34b02432e803fc8ba4c875e83676d9fbe6e6e6ea",
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "74887513822f81a963d4b60f7fea7d4b83764292",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
+    },
+    {
+      "group": "preserve",
+      "source_path": "scripts/clp_csgm_uncertainty_assets.py",
+      "destination_path": "scripts/clp_csgm_uncertainty_assets.py",
+      "source_blob": "14737fb5e9857070c15573aa945830c20378d1b4",
+      "public_base_blob": "14737fb5e9857070c15573aa945830c20378d1b4",
+      "status": "artifact_chain_adapted_pending_runtime_validation",
+      "destination_blob_expected": "59a0d1beb7d4fd00da80c984d79866241abebc51",
+      "adaptation": "Local regenerated figure inputs with protocol checks; historical and regenerated provenance kept separate; see RELEASE-03b diff."
+    },
+    {
+      "group": "preserve",
+      "source_path": "scripts/f03_stress_benchmark_bundle.py",
+      "destination_path": "scripts/f03_stress_benchmark_bundle.py",
+      "source_blob": "4e1be64e38b77aeeb6f12a7273cca698d0b66304",
+      "public_base_blob": "4e1be64e38b77aeeb6f12a7273cca698d0b66304",
+      "status": "identical"
+    },
+    {
+      "group": "preserve",
+      "source_path": "scripts/paper_sparse_reconstruction_figures.py",
+      "destination_path": "scripts/paper_sparse_reconstruction_figures.py",
+      "source_blob": "7afffb895e640115b121444e540980127c999d28",
+      "public_base_blob": "7afffb895e640115b121444e540980127c999d28",
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "d95673fdd5acda297f7a11d208f6774528bf91c7",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
+    },
+    {
+      "group": "release01",
+      "source_path": "direct_ub_baselines.py",
+      "destination_path": "direct_ub_baselines.py",
+      "source_blob": "8a049f51542a858c30d5152203ee4584fad5c614",
+      "public_base_blob": "f8c93f403b3ca6acc5f2595df5448afa94b39ced",
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "8a049f51542a858c30d5152203ee4584fad5c614"
+    },
+    {
+      "group": "release01",
+      "source_path": "multi_well_vc.py",
+      "destination_path": "multi_well_vc.py",
+      "source_blob": "1542470fe21efa2cf7d4cd00116320d38662d702",
+      "public_base_blob": "37b1d156089dcab63c4374ac2b43a7105c6fa9bc",
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "1542470fe21efa2cf7d4cd00116320d38662d702"
+    },
+    {
+      "group": "release01",
+      "source_path": "sir_cs_benchmark_direct_ub.py",
+      "destination_path": "sir_cs_benchmark_direct_ub.py",
+      "source_blob": "55a097b1b9b1c2ec46232cdfc0ee55a26625e6a6",
+      "public_base_blob": "600bbc2545aebb51de1b6c6a85726c25a352981e",
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "55a097b1b9b1c2ec46232cdfc0ee55a26625e6a6"
+    },
+    {
+      "group": "release01",
+      "source_path": "sir_cs_benchmark_multi_well_vc.py",
+      "destination_path": "sir_cs_benchmark_multi_well_vc.py",
+      "source_blob": "f2eda168b331f3e537dd2170cbc032f0224e2f93",
+      "public_base_blob": "6cbaf9e97dd7c9efb9ce58fd96135142f13f6e39",
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "f2eda168b331f3e537dd2170cbc032f0224e2f93"
+    },
+    {
+      "group": "release01",
+      "source_path": "sir_cs_pipeline_optimized.py",
+      "destination_path": "sir_cs_pipeline_optimized.py",
+      "source_blob": "d5baf707cc3f8cbe7fcee6d627c84fe28ac6aeb9",
+      "public_base_blob": "a3de0338034ceb6d566fce806c9491b73606ad70",
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "d5baf707cc3f8cbe7fcee6d627c84fe28ac6aeb9"
+    },
+    {
+      "group": "release01",
+      "source_path": "sir_cs_pipeline.py",
+      "destination_path": "sir_cs_pipeline.py",
+      "source_blob": "d5e41eb89997b3506c06ddcdc68265a743ca0eea",
+      "public_base_blob": null,
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "d5e41eb89997b3506c06ddcdc68265a743ca0eea"
+    },
+    {
+      "group": "release01",
+      "source_path": "bases_extra.py",
+      "destination_path": "bases_extra.py",
+      "source_blob": "15f718df49becdb624224320b6b9813d11d9aeb5",
+      "public_base_blob": null,
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "15f718df49becdb624224320b6b9813d11d9aeb5"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/run_r1m04_seed_panel.sh",
+      "destination_path": "scripts/run_r1m04_seed_panel.sh",
+      "source_blob": "559d23e734642db1c25fc601f664a3cf2a29c977",
+      "public_base_blob": null,
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "edb1a4e30345e4411b7704a59974df417de7f41f",
+      "destination_mode": "100755",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/clp_csgm_r1m04_seed_panel_assets.py",
+      "destination_path": "scripts/clp_csgm_r1m04_seed_panel_assets.py",
+      "source_blob": "57b0104c3d04bce13e9b6291018bc29aa9328896",
+      "public_base_blob": null,
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "14dfe95e2a66bac51851b55ce427f838aa9f87ca",
+      "destination_mode": "100644",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/run_r1m03_step32_dev_splits.sh",
+      "destination_path": "scripts/run_r1m03_step32_dev_splits.sh",
+      "source_blob": "b7cec989c24494319dd0a99f2544ed65e4de1971",
+      "public_base_blob": null,
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "0acf8eb17c676283b7413537abaed964b23e87be",
+      "destination_mode": "100755",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/clp_csgm_r1m03_step32_split_assets.py",
+      "destination_path": "scripts/clp_csgm_r1m03_step32_split_assets.py",
+      "source_blob": "425482701148c3de91437b7f1184adcaade5b75b",
+      "public_base_blob": null,
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "930ee3023ab9be505f5fc16f803391403596465c",
+      "destination_mode": "100644",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/run_r1m08_explicit_mask.sh",
+      "destination_path": "scripts/run_r1m08_explicit_mask.sh",
+      "source_blob": "6b46217c972c4e1e6c358d942039cc72e87a7551",
+      "public_base_blob": null,
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "7e95aea4f05305aafb2de40bdd4e04b615c08f1e",
+      "destination_mode": "100755",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/clp_csgm_r1m08_explicit_mask_assets.py",
+      "destination_path": "scripts/clp_csgm_r1m08_explicit_mask_assets.py",
+      "source_blob": "86e066074c65748dd71a593f1a52dc95f8f1fa36",
+      "public_base_blob": null,
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "e82f8a3335a8801652c0ae2a98797f350d9ee3cd",
+      "destination_mode": "100644",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/run_r2m04_omega_placement.sh",
+      "destination_path": "scripts/run_r2m04_omega_placement.sh",
+      "source_blob": "141350771e903e50631713b02b5a23af15188190",
+      "public_base_blob": null,
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "9a62f6484940f0e85a25c62e20623c372cfce4f8",
+      "destination_mode": "100755",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/clp_csgm_r2m04_omega_assets.py",
+      "destination_path": "scripts/clp_csgm_r2m04_omega_assets.py",
+      "source_blob": "84dd6de90aa7b07e6be5f486b1af9c2c2a60ea98",
+      "public_base_blob": null,
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "84dd6de90aa7b07e6be5f486b1af9c2c2a60ea98",
+      "destination_mode": "100644"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/run_r3m03_simple_baselines.py",
+      "destination_path": "scripts/run_r3m03_simple_baselines.py",
+      "source_blob": "77e27ea9ad02e61c2ba45bca15e2c5f79ebccb24",
+      "public_base_blob": null,
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "5fa4b56c5eb94e63675f86a39dd95589b8ab6547",
+      "destination_mode": "100644",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/run_r3m03_noise_sweep.py",
+      "destination_path": "scripts/run_r3m03_noise_sweep.py",
+      "source_blob": "c386280393750c90932aa6260f18b36658a2702e",
+      "public_base_blob": null,
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "c386280393750c90932aa6260f18b36658a2702e",
+      "destination_mode": "100644"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/run_r3m03_smooth_audit.py",
+      "destination_path": "scripts/run_r3m03_smooth_audit.py",
+      "source_blob": "30a1db89fa0562a18c069800945b9a099ac7cfaf",
+      "public_base_blob": null,
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "30a1db89fa0562a18c069800945b9a099ac7cfaf",
+      "destination_mode": "100644"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/run_r3m03_affine_limit_audit.py",
+      "destination_path": "scripts/run_r3m03_affine_limit_audit.py",
+      "source_blob": "2d220910b3d6dfdaf3fdb236599370b3838bdeed",
+      "public_base_blob": null,
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "2d220910b3d6dfdaf3fdb236599370b3838bdeed",
+      "destination_mode": "100644"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/auddys_smoke_direct_ub.py",
+      "destination_path": "scripts/auddys_smoke_direct_ub.py",
+      "source_blob": "4d8ce4e0cc138c4bd063a66b0af08f92fa452abd",
+      "public_base_blob": "8e4ed0e1ab975e1c168d2c605b21e8088e0aab61",
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "4d8ce4e0cc138c4bd063a66b0af08f92fa452abd",
+      "destination_mode": "100644"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/run_r1m11_861_phi_lab.py",
+      "destination_path": "scripts/run_r1m11_861_phi_lab.py",
+      "source_blob": "90a3c4c9ed4544042af003cd5d37a3ed0c3e88e1",
+      "public_base_blob": null,
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "d449e4d6ddb821fff9bd93a6f1fdae9bfb0566c9",
+      "destination_mode": "100644",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/clp_csgm_r1m06_controlled_assets.py",
+      "destination_path": "scripts/clp_csgm_r1m06_controlled_assets.py",
+      "source_blob": "42d650c2028d9013b381bf0751c237dd84a21be9",
+      "public_base_blob": null,
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "e88193ec8a4d9e245ca2d8bd82bb3b61604edc98",
+      "destination_mode": "100644",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/clp_csgm_ablation_assets.py",
+      "destination_path": "scripts/clp_csgm_ablation_assets.py",
+      "source_blob": "cddf0c946e5733a1202872dc95ee611713bf7631",
+      "public_base_blob": "f15d5e2abc8552c481fd951bbe67ff28a968a125",
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "1ca35d0ef94b5803794b9193f32a948581a7fd64",
+      "destination_mode": "100644",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/clp_csgm_paper_assets.py",
+      "destination_path": "scripts/clp_csgm_paper_assets.py",
+      "source_blob": "8ea0b470dac7d7d8cd9997d5442ca9d135848735",
+      "public_base_blob": "9f52fb06379409173b3c46596008b207c15b1da5",
+      "status": "artifact_chain_adapted_pending_runtime_validation",
+      "destination_blob_expected": "8c85433ea4a062c017c624558927e5d52d69f165",
+      "destination_mode": "100644",
+      "adaptation": "Local regenerated figure inputs with protocol checks; historical and regenerated provenance kept separate; see RELEASE-03b diff."
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/paper_figure_style.py",
+      "destination_path": "scripts/paper_figure_style.py",
+      "source_blob": "e0007528c5919ce4da97528047a1dad7fdcf4521",
+      "public_base_blob": null,
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "e0007528c5919ce4da97528047a1dad7fdcf4521",
+      "destination_mode": "100644"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/plot_r3m03_depth_profiles.py",
+      "destination_path": "scripts/plot_r3m03_depth_profiles.py",
+      "source_blob": "a1c0e3f50420b4b8d808042c8db877f002fb8a2a",
+      "public_base_blob": null,
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "a1c0e3f50420b4b8d808042c8db877f002fb8a2a",
+      "destination_mode": "100644"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/plot_r3m03_noise_panels.py",
+      "destination_path": "scripts/plot_r3m03_noise_panels.py",
+      "source_blob": "0539c42c09aa692ebd393fcbd5cc818c8e12bbfa",
+      "public_base_blob": null,
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "0539c42c09aa692ebd393fcbd5cc818c8e12bbfa",
+      "destination_mode": "100644"
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/plot_r3m03_rmse_vs_noise.py",
+      "destination_path": "scripts/plot_r3m03_rmse_vs_noise.py",
+      "source_blob": "03959755d659b0850f5d4caf3f6c93d3a524877b",
+      "public_base_blob": null,
+      "status": "infrastructure_adapted_pending_runtime_validation",
+      "destination_blob_expected": "1138cd3d9696be9721bb5dba004d1f4f3d5b01d5",
+      "destination_mode": "100644",
+      "adaptation": "Infrastructure only: local paths, output location, CLI and/or launcher orchestration. See RELEASE-03 diff."
+    },
+    {
+      "group": "release02",
+      "source_path": "scripts/plot_r3m06_manuscript_figures.py",
+      "destination_path": "scripts/plot_r3m06_manuscript_figures.py",
+      "source_blob": "071d310fb2e4d65e66f10bf1309eda104046a80e",
+      "public_base_blob": null,
+      "status": "artifact_chain_adapted_pending_runtime_validation",
+      "destination_blob_expected": "89981148c5ba398c360df0cb6be15f743a2d867d",
+      "destination_mode": "100644",
+      "adaptation": "Local regenerated figure inputs with protocol checks; historical and regenerated provenance kept separate; see RELEASE-03b diff."
+    },
+    {
+      "group": "protocol_candidates",
+      "source_path": "paper_clp_csgm/docs/revision/PROTOCOL_R1M03_step32_dev_splits.md",
+      "destination_path": "docs/protocols/PROTOCOL_R1M03_step32_dev_splits.md",
+      "source_blob": "9fc89c1a980ad68fec97f206555386a5f3d2f002",
+      "public_base_blob": null,
+      "status": "public_protocol_adapted_pending_review",
+      "destination_blob_expected": "5a791ef5c681085a185f7ff4807347328db69f05",
+      "adaptation": "Public protocol summary based on source protocol and revised manuscript; excludes correspondence and obsolete editorial instructions."
+    },
+    {
+      "group": "protocol_candidates",
+      "source_path": "paper_clp_csgm/docs/revision/PROTOCOL_R1M04_seed_panel.md",
+      "destination_path": "docs/protocols/PROTOCOL_R1M04_seed_panel.md",
+      "source_blob": "4b17894914d332327958f5ef1d40d5c90fc4858c",
+      "public_base_blob": null,
+      "status": "public_protocol_adapted_pending_review",
+      "destination_blob_expected": "1f765cbcd5b45e17e1059253f5706617db639ee4",
+      "adaptation": "Public protocol summary based on source protocol and revised manuscript; excludes correspondence and obsolete editorial instructions."
+    },
+    {
+      "group": "protocol_candidates",
+      "source_path": "paper_clp_csgm/docs/revision/PROTOCOL_R1M08_explicit_mask.md",
+      "destination_path": "docs/protocols/PROTOCOL_R1M08_explicit_mask.md",
+      "source_blob": "cdc613f1b9852a93db40bb6ddc15d3e017c30311",
+      "public_base_blob": null,
+      "status": "public_protocol_adapted_pending_review",
+      "destination_blob_expected": "a1986f72bf846e0faf5176d0e9b85451d68affd0",
+      "adaptation": "Public protocol summary based on source protocol and revised manuscript; excludes correspondence and obsolete editorial instructions."
+    },
+    {
+      "group": "protocol_candidates",
+      "source_path": "paper_clp_csgm/docs/revision/PROTOCOL_R2M04_omega_placement.md",
+      "destination_path": "docs/protocols/PROTOCOL_R2M04_omega_placement.md",
+      "source_blob": "9bcd64d1859d45977c9a21474c395dac6891cf57",
+      "public_base_blob": null,
+      "status": "public_protocol_adapted_pending_review",
+      "destination_blob_expected": "b3f835c15b4f135be744b5fc1fb2559287221049",
+      "adaptation": "Public protocol summary based on source protocol and revised manuscript; excludes correspondence and obsolete editorial instructions."
+    },
+    {
+      "group": "release01",
+      "source_path": "lfista_module.py",
+      "destination_path": "lfista_module.py",
+      "source_blob": "f9da03483147db26c3c537454398f11d4d9233d8",
+      "public_base_blob": null,
+      "status": "transferred_pending_runtime_validation",
+      "destination_blob_expected": "f9da03483147db26c3c537454398f11d4d9233d8",
+      "reason": "Required import of LFISTATrainConfig by shared pipeline even when LFISTA is disabled; legacy compatibility dependency, not proposed method."
+    },
+    {
+      "group": "dependency_review",
+      "source_path": "sir_cs_lfista.py",
+      "destination_path": "sir_cs_lfista.py",
+      "source_blob": "0d97c2abb2c981421144310035cbdfefc36e543c",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "dependency_review",
+      "source_path": "scripts/csgm_m2_grid.py",
+      "destination_path": "scripts/csgm_m2_grid.py",
+      "source_blob": "2a55b564b0c98cc0634a09097d35be033ed7d0bd",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "dependency_review",
+      "source_path": "scripts/regenerate_paper_eda_figures.py",
+      "destination_path": "scripts/regenerate_paper_eda_figures.py",
+      "source_blob": "c3998afbbeb05d274ef3771eca9b07b60bb9a48a",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "dependency_review",
+      "source_path": "scripts/audit_r1m11_861_depth_masking.py",
+      "destination_path": "scripts/audit_r1m11_861_depth_masking.py",
+      "source_blob": "923de4647db9379319a2722ee95a2ea2303436c6",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "dependency_review",
+      "source_path": "scripts/run_r1m11_861_global_depth_mask.py",
+      "destination_path": "scripts/run_r1m11_861_global_depth_mask.py",
+      "source_blob": "285de849e946917966b617ed7ff62343b78c4ae1",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    },
+    {
+      "group": "dependency_review",
+      "source_path": "scripts/diagnose_r3m03_smooth_edges.py",
+      "destination_path": "scripts/diagnose_r3m03_smooth_edges.py",
+      "source_blob": "68eddfa93ac2746bd32d13dbd15f26b073deffed",
+      "public_base_blob": null,
+      "status": "planned_not_transferred"
+    }
+  ],
+  "preserve_public_only": [
+    "LICENSE",
+    ".gitignore",
+    "README.md",
+    "requirements.txt",
+    "data/README.md",
+    "data/synthetic/",
+    "scripts/make_synthetic_smoke_data.py",
+    "scripts/run_synthetic_smoke.sh",
+    "scripts/run_reproduce_clp_csgm.sh"
+  ],
+  "adaptation_required": [
+    "README and launchers: primary ten seeds vs three-seed ablations; fix --measurement-ratios versus --rhos",
+    "Review runtime imports and legacy optional LFISTA dependencies",
+    "Make protocol and output paths standalone; do not import manuscript/reviewer correspondence",
+    "Review spreadsheet dependencies and Well 861 local authorized input",
+    "Pin versions only after actual environment verification",
+    "Verify figure/table source provenance, including old three-seed assets and final ten-seed Table 4",
+    "Run clean imports and synthetic smoke, then compare authorized data results to reference values"
+  ],
+  "release_gate": "Single final PR; merge only after review and CI. Immutable tag/release and manuscript link remain pending. No full historical numerical agreement claim.",
+  "release02_verification": {
+    "source_blob_matches": 22,
+    "executable_shell_scripts": 4,
+    "scope": "Byte identity only; no numerical tests; existing paths preserved for subsequent adaptation."
+  },
+  "release03": {
+    "parent_commit": "d174185a4fc66571a17d48c31e7eab629b9a3e7f",
+    "changes": [
+      {
+        "path": ".gitignore",
+        "before": "9aaa5e5d83bf62b1dc46506538d6923118b1e58e",
+        "after": "b27fd96527586f44bf5c0cbd22d4147cdfef7530"
+      },
+      {
+        "path": "docs/protocols/PROTOCOL_R1M03_step32_dev_splits.md",
+        "before": null,
+        "after": "5a791ef5c681085a185f7ff4807347328db69f05"
+      },
+      {
+        "path": "docs/protocols/PROTOCOL_R1M04_seed_panel.md",
+        "before": null,
+        "after": "1f765cbcd5b45e17e1059253f5706617db639ee4"
+      },
+      {
+        "path": "docs/protocols/PROTOCOL_R1M08_explicit_mask.md",
+        "before": null,
+        "after": "a1986f72bf846e0faf5176d0e9b85451d68affd0"
+      },
+      {
+        "path": "docs/protocols/PROTOCOL_R2M04_omega_placement.md",
+        "before": null,
+        "after": "b3f835c15b4f135be744b5fc1fb2559287221049"
+      },
+      {
+        "path": "requirements.txt",
+        "before": "408f12734d9a82d15df1062699501dce0b0f17be",
+        "after": "395dae0b645483b87739a0efd276093eccc61791"
+      },
+      {
+        "path": "scripts/clp_csgm_ablation_assets.py",
+        "before": "cddf0c946e5733a1202872dc95ee611713bf7631",
+        "after": "1ca35d0ef94b5803794b9193f32a948581a7fd64"
+      },
+      {
+        "path": "scripts/clp_csgm_diagnostic_assets.py",
+        "before": "bec28127cd616489a5b8dad6496c7d68fb5dd3ea",
+        "after": "4f1062064c92d09275baa72ba6f7905822a284b8"
+      },
+      {
+        "path": "scripts/clp_csgm_paper_assets.py",
+        "before": "8ea0b470dac7d7d8cd9997d5442ca9d135848735",
+        "after": "a9f8e87458e9c8fb2f9030bd659b78b1de0259d5"
+      },
+      {
+        "path": "scripts/clp_csgm_quick_figures.py",
+        "before": "9501f2a52b1347f58b95d379a7c675a0e1a26bc5",
+        "after": "3104b4078d7528dcd7ab2023800f2c5294b05b4a"
+      },
+      {
+        "path": "scripts/clp_csgm_r1m03_step32_split_assets.py",
+        "before": "425482701148c3de91437b7f1184adcaade5b75b",
+        "after": "930ee3023ab9be505f5fc16f803391403596465c"
+      },
+      {
+        "path": "scripts/clp_csgm_r1m04_seed_panel_assets.py",
+        "before": "57b0104c3d04bce13e9b6291018bc29aa9328896",
+        "after": "14dfe95e2a66bac51851b55ce427f838aa9f87ca"
+      },
+      {
+        "path": "scripts/clp_csgm_r1m06_controlled_assets.py",
+        "before": "42d650c2028d9013b381bf0751c237dd84a21be9",
+        "after": "e88193ec8a4d9e245ca2d8bd82bb3b61604edc98"
+      },
+      {
+        "path": "scripts/clp_csgm_r1m08_explicit_mask_assets.py",
+        "before": "86e066074c65748dd71a593f1a52dc95f8f1fa36",
+        "after": "e82f8a3335a8801652c0ae2a98797f350d9ee3cd"
+      },
+      {
+        "path": "scripts/clp_csgm_runtime_study.py",
+        "before": "d2d977fb01b1681c767954c32d25c2d5911079a4",
+        "after": "f34e2a3fc8e82cd46161fc5b4c7848b493a63164"
+      },
+      {
+        "path": "scripts/clp_csgm_srec_diagnostics.py",
+        "before": "34b02432e803fc8ba4c875e83676d9fbe6e6e6ea",
+        "after": "74887513822f81a963d4b60f7fea7d4b83764292"
+      },
+      {
+        "path": "scripts/clp_csgm_uncertainty_assets.py",
+        "before": "14737fb5e9857070c15573aa945830c20378d1b4",
+        "after": "d4f1b19413c4d2b8461ec323c31af8557d83ff96"
+      },
+      {
+        "path": "scripts/paper_sparse_reconstruction_figures.py",
+        "before": "7afffb895e640115b121444e540980127c999d28",
+        "after": "d95673fdd5acda297f7a11d208f6774528bf91c7"
+      },
+      {
+        "path": "scripts/plot_r3m03_rmse_vs_noise.py",
+        "before": "03959755d659b0850f5d4caf3f6c93d3a524877b",
+        "after": "1138cd3d9696be9721bb5dba004d1f4f3d5b01d5"
+      },
+      {
+        "path": "scripts/plot_r3m06_manuscript_figures.py",
+        "before": "071d310fb2e4d65e66f10bf1309eda104046a80e",
+        "after": "aa3b4a17f42aff379fb2fd74a416c0ac85aa936a"
+      },
+      {
+        "path": "scripts/run_r1m03_step32_dev_splits.sh",
+        "before": "b7cec989c24494319dd0a99f2544ed65e4de1971",
+        "after": "0acf8eb17c676283b7413537abaed964b23e87be"
+      },
+      {
+        "path": "scripts/run_r1m04_seed_panel.sh",
+        "before": "559d23e734642db1c25fc601f664a3cf2a29c977",
+        "after": "edb1a4e30345e4411b7704a59974df417de7f41f"
+      },
+      {
+        "path": "scripts/run_r1m08_explicit_mask.sh",
+        "before": "6b46217c972c4e1e6c358d942039cc72e87a7551",
+        "after": "7e95aea4f05305aafb2de40bdd4e04b615c08f1e"
+      },
+      {
+        "path": "scripts/run_r1m11_861_phi_lab.py",
+        "before": "90a3c4c9ed4544042af003cd5d37a3ed0c3e88e1",
+        "after": "d449e4d6ddb821fff9bd93a6f1fdae9bfb0566c9"
+      },
+      {
+        "path": "scripts/run_r2m04_omega_placement.sh",
+        "before": "141350771e903e50631713b02b5a23af15188190",
+        "after": "9a62f6484940f0e85a25c62e20623c372cfce4f8"
+      },
+      {
+        "path": "scripts/run_r3m03_simple_baselines.py",
+        "before": "77e27ea9ad02e61c2ba45bca15e2c5f79ebccb24",
+        "after": "5fa4b56c5eb94e63675f86a39dd95589b8ab6547"
+      },
+      {
+        "path": "scripts/run_reproduce_clp_csgm.sh",
+        "before": "368591b1733d0253728b8a214894dc62e1b33874",
+        "after": "092be7ce219474837961aefa5ce0c70ec13bf45f"
+      }
+    ],
+    "validation": "Git-tree allowlist and CLI option inspection only; no execution.",
+    "pending": [
+      "Verify all imports and run syntax/smoke tests in a clean environment.",
+      "Legacy paper assets still require named m2_grid summaries or no-GR provenance/NPZ bundles; map or generate them from authorized local inputs.",
+      "Confirm launcher configurations and table/figure numerical equivalence against manuscript.",
+      "Exact dependency lock requires measured environment; documentation and remaining diagnostics are RELEASE-04/05."
+    ]
+  },
+  "release03b": {
+    "parent_commit": "d429d8fe3323d21ebbc7e467602f3ddeb4e37b3a",
+    "changes": [
+      {
+        "path": "docs/RESULT_DEPENDENCIES.md",
+        "before": null,
+        "after": "24a7ad79af40ca17f31c47db3a6bdcd47e5b355c"
+      },
+      {
+        "path": "scripts/build_regenerated_figure_inputs.py",
+        "before": null,
+        "after": "bd06de41eeb6e478504bdeaeca13ea68ea6f1e2e"
+      },
+      {
+        "path": "scripts/clp_csgm_paper_assets.py",
+        "before": "a9f8e87458e9c8fb2f9030bd659b78b1de0259d5",
+        "after": "8c85433ea4a062c017c624558927e5d52d69f165"
+      },
+      {
+        "path": "scripts/clp_csgm_quick_figures.py",
+        "before": "3104b4078d7528dcd7ab2023800f2c5294b05b4a",
+        "after": "71fb904b2ca90ad223f8441c31c7a379174a67d8"
+      },
+      {
+        "path": "scripts/clp_csgm_uncertainty_assets.py",
+        "before": "d4f1b19413c4d2b8461ec323c31af8557d83ff96",
+        "after": "59a0d1beb7d4fd00da80c984d79866241abebc51"
+      },
+      {
+        "path": "scripts/plot_r3m06_manuscript_figures.py",
+        "before": "aa3b4a17f42aff379fb2fd74a416c0ac85aa936a",
+        "after": "89981148c5ba398c360df0cb6be15f743a2d867d"
+      },
+      {
+        "path": "scripts/run_regenerate_figure_inputs.sh",
+        "before": null,
+        "after": "21c0a6a76ad1202729cdf52a7160ddc5203610f4"
+      },
+      {
+        "path": "scripts/run_reproduce_clp_csgm.sh",
+        "before": "092be7ce219474837961aefa5ce0c70ec13bf45f",
+        "after": "8b3c2ff7975c6420df8f13e8c741e9f003606fcc"
+      }
+    ],
+    "historical_conflict": "Tracked legacy Ridge run configs are five-channel p_input=320, not the manuscript four-channel p_input=256; never reuse them.",
+    "validation": "Static inspection and Git tree allowlist only.",
+    "pending": [
+      "Execute clean environment and synthetic smoke",
+      "Verify complete appendix producer coverage",
+      "Compare all published metrics and profile to authorized local originals",
+      "Historical profile configuration unavailable; uniform_mean default chosen provisionally"
+    ]
+  },
+  "release04": {
+    "parent_commit": "5f797c5486186bd03811bbeb521306c0d9f63a31",
+    "documents": [
+      {
+        "path": "README.md",
+        "blob": "4923622608b20cc8d3b2a299696ae39bd8ac4cff"
+      },
+      {
+        "path": "docs/EXPERIMENTS.md",
+        "blob": "1ab95f2c695fb751f30bcfa1bda7997f1c88cf8c"
+      },
+      {
+        "path": "docs/DATA_REQUIREMENTS.md",
+        "blob": "441b7dd06622ad9a4e0d81e5195fe400651bcc08"
+      },
+      {
+        "path": "docs/REPRODUCIBILITY.md",
+        "blob": "9bfd02af2feecee3e4b23f7615c9581c69127e8f"
+      }
+    ],
+    "manuscript_reference": "Revised 89-page manuscript (26 Nov 2026), Tables 4–24 and Appendices B–E",
+    "validation": "Documentation and static protocol review; no execution.",
+    "pending": [
+      "Exact historical Lapa seven-channel configuration",
+      "Full appendix/figure producer coverage and extended smoother chain",
+      "Historical profile aggregation confirmation",
+      "Clean Python environment, synthetic execution and field-data comparison",
+      "Validated dependency lock"
+    ]
+  },
+  "release05a": {
+    "parent_commit": "3e8008dbd484bab351eaa7aed39e08dcaf41a50d",
+    "static_inspection": {
+      "python_files": 40,
+      "shell_files": 7,
+      "explicit_import_inventory": "No missing local module observed; regex inspection only.",
+      "launcher_options": "13 matched command invocations; no unrecognized options found in examined launchers."
+    },
+    "execution": {
+      "status": "PASS",
+      "tested_commit": "38da23de0fae4eaec37654be3fc2b2894539d948",
+      "workflow_run": 45893012576,
+      "job_id": 140160027923,
+      "static_checks_passed": 96,
+      "full_checks_passed": 148,
+      "failures": 0,
+      "pip_check": "No broken requirements found.",
+      "artifact_id": 15152142739,
+      "artifact_sha256": "1874a85f2e5dc69d3ae7ae06c9a98fe3ed49fc0f89d4c028e44b2813bb3bb2e7",
+      "versions": {
+        "python": "3.10.22",
+        "numpy": "1.26.4",
+        "pandas": "2.3.3",
+        "matplotlib": "3.7.5",
+        "scikit_learn": "1.6.1",
+        "torch": "2.6.0+cpu",
+        "PyWavelets": "1.4.1",
+        "scipy": "1.15.3",
+        "openpyxl": "3.1.5"
+      }
+    },
+    "check_runner": "scripts/check_release.py",
+    "pending": [],
+    "recheck": {
+      "tested_commit": "b0bc692cacd027d0d86549e24c4b6cd64348e046",
+      "workflow_run": 45896373226,
+      "job_id": 140171167479,
+      "static_checks_passed": 98,
+      "full_checks_passed": 151,
+      "failures": 0,
+      "artifact_id": 15154355835
+    },
+    "latest_recheck": {
+      "status": "PASS",
+      "tested_commit": "c7fd7348b126fd32ebaf2f68532fa502662ef58d",
+      "workflow_run": 45897849839,
+      "job_id": 140176083986,
+      "static_checks_passed": 104,
+      "full_checks_passed": 160,
+      "failures": 0,
+      "pip_check": "No broken requirements found.",
+      "artifact_id": 15154452658,
+      "artifact_sha256": "d64ee76232948c293b1f78a3a2820e0607334457504783da1a4337c4e3ba7172"
+    }
+  },
+  "release05b": {
+    "status": "PASS",
+    "tested_commit": "b0bc692cacd027d0d86549e24c4b6cd64348e046",
+    "workflow_run": 45896373313,
+    "job_id": 140171167873,
+    "benchmarks_passed": 2,
+    "method_cells_verified": 28,
+    "failures": 0,
+    "artifact_id": 15153577182,
+    "scope": "Reduced-budget synthetic benchmarks; no field numerical equivalence.",
+    "latest_recheck": {
+      "status": "PASS",
+      "tested_commit": "c7fd7348b126fd32ebaf2f68532fa502662ef58d",
+      "workflow_run": 45897849853,
+      "job_id": 140176083675,
+      "benchmarks_passed": 2,
+      "method_cells_verified": 28,
+      "failures": 0,
+      "artifact_id": 15154836378,
+      "artifact_sha256": "5ba47d14cf09361f54ce18cb2482b0db48bbd59975bfb76098b924ae85ffe0af",
+      "scope": "Reduced-budget synthetic benchmarks; no field numerical equivalence."
+    }
+  },
+  "release05c": {
+    "status": "AUDIT_CONSOLIDATED_WITH_EXCEPTIONS",
+    "basis": "89-page revised manuscript and Git source checkpoint c4df022497f6b4a3438dd8372335df58178cfe89",
+    "coverage_document": "docs/COVERAGE_AUDIT.md",
+    "new_tools": [
+      "scripts/run_b7_gr_embargo.py",
+      "scripts/audit_861_depth_indices.py"
+    ],
+    "index_only_independent_calculation": {
+      "configurations": 18,
+      "shared_indices": [
+        21,
+        27
+      ],
+      "fraction_scored_ever_measured": [
+        0.8409090909090909,
+        1
+      ],
+      "scope": "Independent local NumPy calculation of published row-index formula, not execution of new repository script."
+    },
+    "pending": [
+      "Exact Lapa configuration (ordered channels, split, noise and other run settings) not supplied in the local audit complement; historical origin non-unique.",
+      "Historical overlap aggregation for cross-well Figures 8 and 24, and original F03 Figure 10 run/seed, not supplied.",
+      "Exact remaining qualitative figure selections and field numerical comparison; no authorized inputs executed here."
+    ],
+    "followup": {
+      "status": "LOCAL_COMPLEMENT_RECEIVED_PARTIAL",
+      "source_table_identity": {
+        "historical_commit": "53190576cd8321d927682c86881927b9d51aacb1",
+        "manuscript_commit": "fa96db0193a12841067de3928db41e1d97115e56",
+        "runtime_blob": "f82700e987d712ba443386155af31c407b3830a4",
+        "srec_blob": "0dedde711400ffab83b482be12ff53a420f4bca0"
+      },
+      "lapa_candidate_channels": [
+        "density",
+        "gr",
+        "res_deep",
+        "res_shallow",
+        "phi_neutron",
+        "phi_sonic",
+        "phi_nd"
+      ],
+      "lapa_status": "EDA candidate, not historical run verification",
+      "new_861_exporter": "scripts/aggregate_861_tables.py",
+      "historical_profile": "local metadata absent; compare overlap modes",
+      "prior_ci": {
+        "commit": "336644a819eb51679e7954bd5587d67c28f62eb1",
+        "technical_run": 45897223809,
+        "synthetic_run": 45897223799,
+        "conclusion": "success"
+      },
+      "pending": [
+        "Exact Lapa configuration (ordered channels, split, noise and other run settings) not supplied in the local audit complement; historical origin non-unique.",
+        "Historical overlap aggregation for cross-well Figures 8 and 24, and original F03 Figure 10 run/seed, not supplied.",
+        "Exact remaining qualitative figure selections and field numerical comparison; no authorized inputs executed here."
+      ]
+    },
+    "final_validation": {
+      "status": "AUDIT_CONSOLIDATED_EXACT_COVERAGE_NOT_CERTIFIED",
+      "tested_commit": "c7fd7348b126fd32ebaf2f68532fa502662ef58d",
+      "technical_run": {
+        "status": "PASS",
+        "tested_commit": "c7fd7348b126fd32ebaf2f68532fa502662ef58d",
+        "workflow_run": 45897849839,
+        "job_id": 140176083986,
+        "static_checks_passed": 104,
+        "full_checks_passed": 160,
+        "failures": 0,
+        "pip_check": "No broken requirements found.",
+        "artifact_id": 15154452658,
+        "artifact_sha256": "d64ee76232948c293b1f78a3a2820e0607334457504783da1a4337c4e3ba7172"
+      },
+      "synthetic_run": {
+        "status": "PASS",
+        "tested_commit": "c7fd7348b126fd32ebaf2f68532fa502662ef58d",
+        "workflow_run": 45897849853,
+        "job_id": 140176083675,
+        "benchmarks_passed": 2,
+        "method_cells_verified": 28,
+        "failures": 0,
+        "artifact_id": 15154836378,
+        "artifact_sha256": "5ba47d14cf09361f54ce18cb2482b0db48bbd59975bfb76098b924ae85ffe0af",
+        "scope": "Reduced-budget synthetic benchmarks; no field numerical equivalence."
+      },
+      "coverage_checks": {
+        "b7_dry_run": "PASS",
+        "well861_index_geometry": {
+          "status": "PASS",
+          "configurations": 18,
+          "shared_indices": [
+            21,
+            27
+          ],
+          "fraction_scored_ever_measured": [
+            0.8409090909090909,
+            1
+          ]
+        },
+        "well861_aggregation_fixture": "PASS"
+      },
+      "local_audit_complement": {
+        "source": "Author-reported local inspection, not independently accessed",
+        "lapa": {
+          "status": "PARTIAL",
+          "equivalent_runs": [
+            "auddys_favorable_u7_step4_ridge_mlp_csgm_20260506",
+            "strict_b_20260510"
+          ],
+          "more_likely_source": "strict_b_20260510",
+          "unique_numerical_identity": false,
+          "split_depth_summary": "NOT_FOUND",
+          "exact_config": "NOT_SUPPLIED"
+        },
+        "profiles": {
+          "shared_npz": "CONFIRMED_BY_AUTHOR",
+          "original_figure8_png_identity": "CONFIRMED_BY_AUTHOR",
+          "historical_overlap_rule": "NOT_SUPPLIED"
+        },
+        "runtime_srec": {
+          "historical_command": "python scripts/clp_csgm_runtime_study.py && python scripts/clp_csgm_srec_diagnostics.py",
+          "status": "CONFIRMED_BY_AUTHOR"
+        }
+      },
+      "pending": [
+        "Exact Lapa configuration (ordered channels, split, noise and other run settings) not supplied in the local audit complement; historical origin non-unique.",
+        "Historical overlap aggregation for cross-well Figures 8 and 24, and original F03 Figure 10 run/seed, not supplied.",
+        "Exact remaining qualitative figure selections and field numerical comparison; no authorized inputs executed here."
+      ],
+      "field_reproduction": "NOT_RUN"
+    }
+  },
+  "release05d1": {
+    "status": "PASS_COMPARATOR_FIXTURE",
+    "source_manuscript_commit": "fa96db0193a12841067de3928db41e1d97115e56",
+    "tables": 21,
+    "rows": 269,
+    "reference": "reference_results/REFERENCE_MANIFEST.json",
+    "comparator": "scripts/compare_manuscript_results.py",
+    "scope": "Published rounded aggregates; no protocol verification or field replay.",
+    "pending": [],
+    "validation": {
+      "tested_commit": "3eeb8b5570aed5c71da3bc94cfd73514905e0a3a",
+      "technical_run": 45900065531,
+      "job_id": 140183387593,
+      "static_checks": 106,
+      "technical_checks": 163,
+      "failures": 0,
+      "reference_tables_verified": 21,
+      "artifact_id": 15155336528,
+      "synthetic_run": 45900065544,
+      "synthetic_conclusion": "success"
+    }
+  },
+  "release05d2a": {
+    "status": "INTEGRATION_PASS_FUNCTIONAL_FIXTURES_PENDING",
+    "adapter": "scripts/normalize_manuscript_results.py",
+    "table_count": 21,
+    "explicit_source_required": [
+      "21",
+      "22"
+    ],
+    "scope": "Normalize independently generated aggregate CSVs, verify row keys/counts where available, preserve source hashes; no field runs or full protocol certification.",
+    "pending": [
+      "Fixture tests for each adapter",
+      "Producer contract checks with real outputs",
+      "Authorized field reproduction"
+    ],
+    "integration": {
+      "status": "PASS",
+      "tested_commit": "364108543d54e082ec3400cf500a5e40db28dea5",
+      "technical_run": 45901451012,
+      "technical_job": 140187940113,
+      "static_checks": 108,
+      "technical_checks": 166,
+      "synthetic_run": 45901451151,
+      "synthetic_job": 140187940406,
+      "benchmarks": 2,
+      "method_cells": 28,
+      "failures": 0
+    }
+  },
+  "release05d2b": {
+    "status": "PASS_INDEPENDENT_ARTIFICIAL_FIXTURES",
+    "test": "scripts/test_manuscript_adapters.py",
+    "scope": "Independent artificial fixtures for all tables; adversarial missing/duplicate rows, missing columns, nonfinite metrics, selected invalid counts and CLI safeguards; no field data.",
+    "changes": [
+      "Reject extra F03 ratios in compact table",
+      "Reject duplicate producer headers and ambiguous columns",
+      "Validate nonnegative integer counts and selected nonnegative metrics",
+      "Remove invalid normalized output on failure"
+    ],
+    "pending": [
+      "Real producer and protocol checks"
+    ],
+    "validation": {
+      "tested_commit": "b4f05405a30566a33f650288d9345b8876725ee1",
+      "technical_run": 45902028961,
+      "technical_job": 140189845252,
+      "static_checks": 110,
+      "technical_checks": 169,
+      "adapter_tables": 21,
+      "adapter_fixture_checks": 124,
+      "failures": 0,
+      "technical_artifact": 15156457528,
+      "synthetic_run": 45902029001,
+      "synthetic_job": 140189845394,
+      "synthetic_benchmarks": 2,
+      "synthetic_method_cells": 28,
+      "synthetic_artifact": 15155573479
+    }
+  },
+  "release05d2c": {
+    "status": "FIELD_TABLE_AND_FIGURE_CAMPAIGN_COMPLETE_WITH_EXPLICIT_EXCEPTIONS",
+    "runbook": "docs/LOCAL_FIELD_REPRODUCTION.md",
+    "first_gate": "Table 4, ten paired seeds, nine step/rho cells; independent fresh checkout",
+    "tested_code_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
+    "required_input_roles": [
+      "F3 development",
+      "F3 held-out Vc",
+      "F3 GR-only porosity",
+      "Lapa workbook",
+      "Well 861 enriched workbook"
+    ],
+    "scope": "Local execution only; no restricted inputs or outputs committed. Verify historical settings before Lapa and exact profile claims.",
+    "field_runs_scope": "Three step runs for Table 4, eight Gate B runs, and two targeted repeatability runs (13 launcher runs total, grouped into two benchmark campaigns and two repeats).",
+    "evidence": "docs/FIELD_GATE_A_AUDIT.md",
+    "gate_a": {
+      "comparison_status": "INCOMPLETE_OR_DIFFERENT",
+      "metrics_matched": 55,
+      "metrics_total": 63,
+      "metrics_outside_tolerance": 8,
+      "max_abs_difference_published": 0.0000128594292621,
+      "mean_ranking_cells_clp": 7,
+      "mean_ranking_cells_total": 9,
+      "individual_clp_wins": 68,
+      "individual_pairs": 90,
+      "ci_excludes_zero_cells": 9,
+      "protocol": "CONFIRMED_BY_LOCAL_AUDIT",
+      "observed_sha256": "1081882600c7d5b608096b81b2a942031a0674f8e21e4970030cabce275e4f38",
+      "report_sha256": "1ad3810470a892041f390f0108757c096a2aeef466c83ad934c6587228f11497"
+    },
+    "diagnostic": {
+      "status": "CLOSED_WITH_UNRESOLVED_HISTORICAL_CAUSE",
+      "step": 32,
+      "rho": 0.2,
+      "seed": 53,
+      "lambda": 0.0001,
+      "seed_share_abs_difference_pct": 84.688,
+      "historical_environment": "NOT_FOUND",
+      "historical_omega_and_b": "NOT_FOUND",
+      "repeatability": "REPEATABILITY_CONFIRMED_FOR_TESTED_CELL",
+      "individual_rmse_exact": 50,
+      "individual_rmse_total": 50,
+      "max_rmse_difference": 0,
+      "canonical_scientific_sha256": "d96267d92561cb992fdbf7c1a6332fc0cb6b215f0ef85c867a7a8140aff1400d"
+    },
+    "next": "Final single PR and release publication; no more field training",
+    "gate_b": {
+      "status": "PARTIAL_NUMERIC_MATCH_CONCLUSIONS_REPORTED_PRESERVED",
+      "execution_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
+      "evidence": "Author-reported local run; raw local artifacts not accessed remotely",
+      "benchmarks_completed": 8,
+      "benchmarks_total": 8,
+      "tables_normalized": 7,
+      "metrics_matched": 215,
+      "metrics_total": 361,
+      "metrics_outside_tolerance": 146,
+      "numeric_match_tables": 0,
+      "report_sha256": "12b1f78faf033fcc72cf63085f5c647a6a475b28b0086e096df60886444d939c",
+      "protocol": "All eight configs passed author audit; cross-well Ridge/MLP masks identical; F03 masks not directly exported",
+      "tables": [
+        {
+          "table": "05",
+          "matched": 24,
+          "total": 35,
+          "max_abs": 0.00010372,
+          "max_relative_pct": 0.8805
+        },
+        {
+          "table": "06",
+          "matched": 11,
+          "total": 25,
+          "max_abs": 0.000395464,
+          "max_relative_pct": 156.956,
+          "relative_context": "near-zero delta"
+        },
+        {
+          "table": "07",
+          "matched": 33,
+          "total": 54,
+          "max_abs": 0.311657,
+          "max_abs_unit": "percentage points",
+          "max_relative_pct": 5.5208
+        },
+        {
+          "table": "08",
+          "matched": 14,
+          "total": 30,
+          "max_abs": 0.147279,
+          "max_abs_unit": "percentage points",
+          "max_relative_pct": 0.7095
+        },
+        {
+          "table": "09",
+          "matched": 17,
+          "total": 27,
+          "max_abs": 0.066315,
+          "max_abs_unit": "percentage points",
+          "max_relative_pct": 1.883
+        },
+        {
+          "table": "10",
+          "matched": 6,
+          "total": 15,
+          "max_abs": 6.829662,
+          "max_abs_unit": "percentage points",
+          "max_relative_pct": 34.6349,
+          "critical_rho": 0.5,
+          "max_abs_full_precision_historical": 6.829612487338272
+        },
+        {
+          "table": "12",
+          "matched": 110,
+          "total": 175,
+          "max_abs": 0.000387204,
+          "max_abs_metric": "relative L2",
+          "max_relative_pct": 73.3969,
+          "relative_context": "confidence interval half-width"
+        }
+      ],
+      "diagnostic_status": "CLOSED_WITH_UNRESOLVED_HISTORICAL_CAUSE",
+      "next": "Gate C",
+      "diagnostic": {
+        "rho": 0.5,
+        "seed": 23,
+        "method": "mlp_prior_csgm",
+        "effective_prior_random_state": 7023,
+        "seed_share_abs_difference_pct": 93.41,
+        "rmse_historical": 0.01678343803225851,
+        "rmse_reproduced": 0.012728246345251985,
+        "rmse_repeat": 0.012728246345251985,
+        "lambda_historical": 0.0003,
+        "lambda_current": 0.0001,
+        "table10_gain_historical_pct": 19.718950950474248,
+        "table10_gain_reproduced_pct": 12.8893384631,
+        "val_score_current": 0.00901529018426415,
+        "ae_recon_train_rmse_current": 0.001620883417264032,
+        "repeatability": "REPEATABILITY_CONFIRMED_FOR_TESTED_CELL",
+        "rmse_exact": 224,
+        "rmse_total": 224,
+        "max_rmse_difference": 0,
+        "rmse_vector_sha256_current": "0980618e08ceddba3e67a220dca4790c5c031311ef71c77f3a542a998ae2f4a1",
+        "rmse_vector_sha256_historical": "2a9ab34a4ac9fd1d0a4d09668ef15ae2550157d5a90b1a031935e2dcbfd6b296",
+        "historical_environment": "NOT_FOUND",
+        "historical_observation_vectors": "NOT_FOUND",
+        "historical_candidate_lambda_scores": "NOT_FOUND",
+        "uncertainty_limitations": "Table 6 SE and CI half-width varied 7.46–38.49%; Table 12 AE rho .50 dispersion and CI decreased 73.56%; reported rankings, paired signs/wins and CI zero inclusion preserved."
+      }
+    },
+    "gate_c": {
+      "status": "PARTIAL_NUMERIC_MATCH_CONCLUSIONS_REPORTED_PRESERVED",
+      "execution_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
+      "evidence": "Author-reported local Gate C comparison; raw local artifacts not accessed remotely",
+      "tables_normalized": 10,
+      "metrics_matched": 463,
+      "metrics_total": 565,
+      "metrics_outside_tolerance": 102,
+      "timing_informational": 20,
+      "numeric_match_tables": [
+        "14"
+      ],
+      "producer_exit_codes": "all zero (reported)",
+      "comparison_exit_code": 1,
+      "report_path": "outputs/validation/gate_c_comparison.json",
+      "tables": [
+        {
+          "table": "11",
+          "matched": 18,
+          "total": 30,
+          "status": "PARTIAL_NUMERIC_MATCH"
+        },
+        {
+          "table": "13",
+          "matched": 57,
+          "total": 72,
+          "status": "PARTIAL_NUMERIC_MATCH"
+        },
+        {
+          "table": "14",
+          "matched": 27,
+          "total": 27,
+          "status": "NUMERIC_MATCH"
+        },
+        {
+          "table": "15",
+          "matched": 42,
+          "total": 63,
+          "status": "PARTIAL_NUMERIC_MATCH"
+        },
+        {
+          "table": "16",
+          "matched": 46,
+          "total": 54,
+          "status": "PARTIAL_NUMERIC_MATCH"
+        },
+        {
+          "table": "17",
+          "matched": 39,
+          "total": 45,
+          "status": "PARTIAL_NUMERIC_MATCH"
+        },
+        {
+          "table": "18",
+          "matched": 104,
+          "total": 108,
+          "status": "PARTIAL_NUMERIC_MATCH"
+        },
+        {
+          "table": "19",
+          "matched": 104,
+          "total": 108,
+          "status": "PARTIAL_NUMERIC_MATCH"
+        },
+        {
+          "table": "20",
+          "matched": 8,
+          "total": 10,
+          "status": "PARTIAL_NUMERIC_MATCH"
+        },
+        {
+          "table": "21",
+          "matched": 18,
+          "total": 48,
+          "status": "PARTIAL_NUMERIC_MATCH"
+        }
+      ],
+      "noise_ordering": {
+        "noise_std": [
+          0.01,
+          0.05,
+          0.1,
+          0.2
+        ],
+        "clp_lower_than_interpolation": [
+          0,
+          7,
+          9,
+          9
+        ],
+        "clp_lower_than_smoothing": [
+          1,
+          5,
+          8,
+          9
+        ],
+        "cells_per_noise": 9,
+        "all_counts_match": true
+      },
+      "table15_exception": {
+        "step": 8,
+        "rho": 0.2,
+        "metric": "clp_wins_mask",
+        "historical": 3,
+        "reproduced": 2,
+        "reported_mean_signs_preserved": 18,
+        "reported_mean_signs_total": 18
+      },
+      "remaining_read_only_checks": [
+        "Full Gate C actual config/mask audit and complete signed discrepancy details not independently retrieved; retain local evidence."
+      ],
+      "timing": "INFORMATIONAL",
+      "next": "Gate D, conditioned on local historical Lapa config recovery; well 861 can execute independently",
+      "report_sha256": "d496d209e75eb34d1545ecf7dcaa4b008480b26eda087899915f108c1d73f136",
+      "read_only_followup": {
+        "table15_step16_32_mask_wins": 17,
+        "table15_step16_32_pairs": 18,
+        "table18_noise_010_020_each_seed_wins": 9,
+        "table18_each_seed_cells": 9,
+        "evidence": "Author-reported local read-only checks; raw artifacts not remotely retrieved"
+      }
+    },
+    "gate_d": {
+      "status": "EXECUTED_TWO_NUMERIC_MATCH_ONE_PARTIAL",
+      "execution_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
+      "evidence": "Author-reported local results; raw files not remotely retrieved",
+      "tables": [
+        {
+          "table": "22",
+          "matched": 105,
+          "total": 105,
+          "status": "NUMERIC_MATCH",
+          "full_precision_matches_may06_run": 105
+        },
+        {
+          "table": "23",
+          "matched": 12,
+          "total": 12,
+          "status": "NUMERIC_MATCH"
+        },
+        {
+          "table": "24",
+          "matched": 17,
+          "total": 18,
+          "status": "PARTIAL_NUMERIC_MATCH",
+          "exception": {
+            "fold_id": 2,
+            "rho": 0.25,
+            "method": "AE",
+            "reference": 0.0691,
+            "observed": 0.0690474994,
+            "signed_difference": -0.0000525006
+          }
+        }
+      ],
+      "metrics_matched": 134,
+      "metrics_total": 135,
+      "lapa_lineage": {
+        "status": "PARTIAL",
+        "historical_runs": [
+          "auddys_favorable_u7_step4_ridge_mlp_csgm_20260506",
+          "strict_b_20260510"
+        ],
+        "difference": "paper_strict_paired_b=True in May 10; flag not exposed in public launcher; full-precision scientific summaries identical for Table 22; CI95 fields differ",
+        "config_details": "Recovered ordered density,gr,res_deep,res_shallow,phi_neutron,phi_sonic,phi_nd; Logs sheet; log10(k_lab); L16 step4 contiguous windows 0.6/0.2/0.2, 10/3/5; seeds7/23/41; rho .20–.60; noise .01; Ridge and MLP. Strict flag remains unavailable."
+      },
+      "well861": {
+        "input_sha256": "4c275a8dcf49042ea9db6f3abb76043a6b2ed622ae226391ffc1c56f7b7a4d7b",
+        "clp_wins": [
+          5,
+          6
+        ],
+        "pairs_each": 9,
+        "pooled_winner": "AE",
+        "block_winners": [
+          "CLP",
+          "CLP",
+          "AE"
+        ],
+        "score": "within-window withheld coordinates",
+        "protocol": "confirmed by local audit"
+      },
+      "next": "Gate E figure audit; no more table training required on current evidence"
+    },
+    "table_campaign": {
+      "tables_executed": 21,
+      "tables_total": 21,
+      "numeric_match_tables": [
+        "14",
+        "22",
+        "23"
+      ],
+      "numeric_metrics_matched": 867,
+      "numeric_metrics_total": 1124,
+      "numeric_metrics_outside_tolerance": 257,
+      "timing_informational": 20,
+      "status": "PARTIAL_NUMERIC_MATCH",
+      "scientific_conclusions": "Reported preserved; individual Table 15 count and magnitude/uncertainty differences retained"
+    },
+    "gate_e": {
+      "status": "COMPLETE_NO_BLOCKED_FIGURES",
+      "execution_commit": "e3bc30027b6bbcb331a08cc620c397e183ae3106",
+      "figures_total": 29,
+      "conceptual": 3,
+      "numeric_input_match": 6,
+      "regenerated_with_differences": 20,
+      "blocked": [],
+      "profile_selection": "Confirmed historical uniform_mean, step16 seed7 rho .20; Fig10 seed7 rho .20 step1 uniform_mean; Figs14–17 selection confirmed",
+      "profile_npz_sha256": "c4cb794a3665196e07281d5465c0a3eafe82efd3c0a8db22948560e8d8215ccf",
+      "blocker": "asdict(cfg) omits dynamically assigned measurement_seed_offset; existing omega_sets.csv and detailed_results.csv provide direct evidence",
+      "evidence": "Author-provided Gate E inventory, local files not retrieved",
+      "next": "Full local pip freeze and environment metadata; final release audit",
+      "infrastructure_commit": "324326d7c0d782cf13f22ec287b4dd3a0acae682",
+      "provenance_schema": 2,
+      "provenance_sha256": "0000da5ea02966587cab4fce83998c7a5181dec6dcc849b01e86e511b91034db",
+      "figure_hashes": {
+        "fig06": "6fa831ddc375892da2d2b9c46452f5d2845b98a1efb68a9c3ff403661b26b3e6",
+        "fig08": "9cdc722bf10ca743d2ad3b16d96486981c2dece523f5e4199cb9b6ce2975a5bf",
+        "fig24": "d7c86368b409db0b89fad4abf855839075644aaa948cfdd0dd245c1a2c82b68d"
+      },
+      "figure6": {
+        "full_rankings_preserved": 9,
+        "cells": 9,
+        "max_mean_abs_diff": {
+          "ml_only": 0,
+          "mlp": 0,
+          "pca": 8.33e-17,
+          "ae": 0.0000190613,
+          "clp": 0.0000120506
+        },
+        "max_mean_relative_pct": {
+          "ae": 0.0733,
+          "clp": 0.0351
+        }
+      },
+      "ci": {
+        "technical_run": 46035970271,
+        "technical_job": 140631342312,
+        "static_checks": 112,
+        "technical_checks_total": 172,
+        "adapter_checks": 124,
+        "figure_regression": "PASS",
+        "synthetic_run": 46035970154,
+        "synthetic_job": 140631342622,
+        "synthetic_benchmarks": 2,
+        "synthetic_method_cells": 28,
+        "conclusion": "success"
+      },
+      "figure29_caveat": "Author classified NUMERIC_INPUT_MATCH on matching aggregate evidence; pooled pointwise parity identity not demonstrated by aggregate match alone"
+    }
+  },
+  "release05e": {
+    "status": "EXACT_VERSION_SNAPSHOT_VALIDATED_IN_CI",
+    "source_record_sha256": "e3946441f4f02519bcde27bd71c750ffda97b00d5dcab10cceceba5784eb8954",
+    "source_record_bytes": 21948,
+    "source_record_lines": 467,
+    "packages": 33,
+    "python": "3.10.22",
+    "platform": "Linux x86_64 Ubuntu 22.04.5 LTS",
+    "pip": "26.3",
+    "torch": "2.6.0+cpu",
+    "package_list": "requirements-release-cpu.txt",
+    "installer": "scripts/install_release_cpu.sh",
+    "checker": "scripts/check_release_environment.py",
+    "documentation": "docs/RELEASE_ENVIRONMENT.md",
+    "wheel_identity": "NOT_RECORDED",
+    "historical_environment": "NOT_FOUND",
+    "fresh_install_ci": "PASS",
+    "field_training": "NOT_REQUIRED",
+    "raw_record": "retained locally; machine-identifying paths omitted",
+    "tested_commit": "19991fc6b4de320b2c7d745bdd0782fd58ab46d9",
+    "ci": {
+      "technical_run": 46042013857,
+      "technical_job": 140651831030,
+      "static_checks": 116,
+      "technical_checks_total": 177,
+      "adapter_checks": 124,
+      "figure_regression": "PASS",
+      "synthetic_run": 46042013860,
+      "synthetic_job": 140651830983,
+      "synthetic_benchmarks": 2,
+      "synthetic_cells": 28,
+      "version_match": 33,
+      "pip_check": "PASS"
+    }
+  },
+  "final_review": {
+    "status": "PREPARED_FOR_PR",
+    "audited_head": "19991fc6b4de320b2c7d745bdd0782fd58ab46d9",
+    "base_main": "bba1423eac98d1f93375905e9d7e974fcd3a8261",
+    "audited_tree_files": 117,
+    "added_vs_main": 86,
+    "modified_vs_main": 19,
+    "removed_vs_main": 0,
+    "scientific_source_changes_since_field_checkout": 0,
+    "scope": "Tracked tree inventory, source blob comparison, validation logs and documentation consistency; not independent field artifact retrieval or exhaustive secret scan.",
+    "remaining": "Final PR CI, review, merge, tag/release, manuscript/correspondence update."
+  }
+}

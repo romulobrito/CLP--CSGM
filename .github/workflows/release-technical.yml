@@ -1,0 +1,62 @@
+name: RELEASE-05a technical checks
+
+on:
+  push:
+    branches:
+      - revision/cageo-d-26-01398-reproducibility
+      - main
+    paths:
+      - '**.py'
+      - '**.sh'
+      - 'requirements*.txt'
+      - '.github/workflows/release-technical.yml'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  technical:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 25
+    env:
+      MPLBACKEND: Agg
+      CUDA_VISIBLE_DEVICES: ""
+      OMP_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10.22'
+      - name: Static validation
+        run: python scripts/check_release.py --static-only --report outputs/validation/static.json
+      - name: Install exact field-replay CPU versions in a fresh virtualenv
+        run: |
+          bash scripts/install_release_cpu.sh
+          echo "$PWD/.venv-release/bin" >> "$GITHUB_PATH"
+      - name: Runtime module and CLI validation
+        run: python scripts/check_release.py --report outputs/validation/technical.json
+      - name: Coverage tool checks without field inputs
+        run: |
+          python scripts/run_b7_gr_embargo.py --dry-run
+          python scripts/audit_861_depth_indices.py --row-count 87
+          python scripts/aggregate_861_tables.py --self-test
+      - name: Published reference integrity and comparison fixture
+        run: python scripts/compare_manuscript_results.py --self-test
+      - name: Validate all 21 producer adapters
+        run: python scripts/test_manuscript_adapters.py
+      - name: Validate figure measurement provenance
+        run: python scripts/test_figure_measurement_evidence.py
+      - name: Preserve technical evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-05a-technical
+          path: outputs/validation/
+          if-no-files-found: warn

@@ -5,7 +5,7 @@ Generate tables and figures for the CLP-CSGM paper.
 
 The script is intentionally read-only with respect to experiment outputs: it
 loads existing raw data and benchmark CSV files, then writes paper-ready assets
-under paper_clp_csgm/.
+under outputs/paper_assets/.
 """
 
 from __future__ import annotations
@@ -33,25 +33,18 @@ _SCRIPTS_DIR = os.path.join(REPO_ROOT, "scripts")
 if _SCRIPTS_DIR not in sys.path:
     sys.path.insert(0, _SCRIPTS_DIR)
 from paper_figure_style import apply_paper_style, save_paper_figure
+from build_regenerated_figure_inputs import checked_step, checked_regenerated_paths, BUNDLE, COUNTS, RHOS
 
 
-PAPER_DIR = os.path.join(REPO_ROOT, "paper_clp_csgm")
+PAPER_DIR = os.path.join(REPO_ROOT, "outputs/paper_assets")
 FIG_DIR = os.path.join(PAPER_DIR, "figures")
 TAB_DIR = os.path.join(PAPER_DIR, "tables")
 
-CROSS_TRAIN = os.path.join(REPO_ROOT, "data", "F02-1,F03-2,F06-1_6logs_30dB.txt")
-CROSS_TEST = os.path.join(REPO_ROOT, "data", "F03-4_6logs_30dB.txt")
-F03_REAL = os.path.join(REPO_ROOT, "data", "F03-4_AC+GR+Porosity.txt")
+CROSS_TRAIN = os.environ.get("CLP_CROSS_TRAIN", os.path.join(REPO_ROOT, "data", "F02-1,F03-2,F06-1_6logs_30dB.txt"))
+CROSS_TEST = os.environ.get("CLP_CROSS_TEST", os.path.join(REPO_ROOT, "data", "F03-4_6logs_30dB.txt"))
+F03_REAL = os.environ.get("CLP_F03_POROSITY", os.path.join(REPO_ROOT, "data", "F03-4_AC+GR+Porosity.txt"))
 
-CROSS_SUMMARY = os.path.join(
-    REPO_ROOT, "outputs", "cross_well_vc", "csgm", "m2_grid", "tables", "summary_focus_clp_csgm_vs_ub.csv"
-)
-CROSS_WINNERS = os.path.join(
-    REPO_ROOT, "outputs", "cross_well_vc", "csgm", "m2_grid", "tables", "csgm_vs_ae_winners.csv"
-)
-CROSS_RANK = os.path.join(
-    REPO_ROOT, "outputs", "cross_well_vc", "csgm", "m2_grid", "tables", "overall_rank.csv"
-)
+CROSS_SUMMARY = str(BUNDLE / "summary_focus_clp_csgm_vs_ub.csv")
 # Per-cell seed statistics for Table tab:crosswell_clp_vs_ae (Ridge ablation runs).
 CROSSWELL_ABLATION_SUMMARIES: Tuple[Tuple[int, str], ...] = (
     (8, "crosswell_step08_clp_csgm_ablation_ridge"),
@@ -298,10 +291,11 @@ def build_crosswell_winners_table() -> pd.DataFrame:
     """
     Cross-well CLP-CSGM Ridge vs AE [u,b] with RMSE mean and std across seeds.
 
-    Cell geometry (step, n_train_approx, rho) follows csgm_vs_ae_winners.csv;
+    Cell geometry follows checked three-seed run configurations;
     RMSE moments are taken from direct_ub ablation Ridge summary_focus CSVs.
     """
-    winners = pd.read_csv(CROSS_WINNERS)
+    checked_regenerated_paths()
+    winners = pd.DataFrame([{"step": step, "measurement_ratio": rho, "n_train_approx": COUNTS[step][0]} for step in COUNTS for rho in RHOS])
     rows: List[Dict[str, Union[float, int]]] = []
     for step, run_name in CROSSWELL_ABLATION_SUMMARIES:
         summary_path = os.path.join(
@@ -466,7 +460,8 @@ def plot_crosswell_target_hist() -> str:
     ax.hist(y_train, bins=50, alpha=0.65, density=True, label="train wells")
     ax.hist(y_test, bins=50, alpha=0.65, density=True, label="held-out F03-4")
     ax.set_xlabel(r"$V_c$ (clay-volume fraction)")
-    ax.set_ylabel("density")
+    # Name the histogram normalization so it is not read as bulk density.
+    ax.set_ylabel("Probability density")
     ax.set_title(r"Cross-well $V_c$ target distribution")
     ax.grid(True, alpha=0.3)
     ax.legend(loc="upper right")
@@ -556,8 +551,9 @@ def plot_eda_target_summary(summary: pd.DataFrame) -> str:
 
 def plot_crosswell_results() -> str:
     """Plot RMSE versus measurement ratio for the cross-well low-data grid."""
+    checked_regenerated_paths()
     df = pd.read_csv(CROSS_SUMMARY)
-    out = os.path.join(FIG_DIR, "results_crosswell_rmse_vs_rho.png")
+    out = os.path.join(FIG_DIR, "results_crosswell_rmse_vs_rho_legacy_3seed.png")
     labels = {
         "ridge_prior_csgm": "CLP-CSGM Ridge",
         "ae_regression_ub": "AE [u,b]",
@@ -697,7 +693,7 @@ def main() -> None:
     tables = [
         TableSpec(dataset_summary, "eda_dataset_summary", "%.4f"),
         TableSpec(corr, "eda_channel_target_correlations", "%.4f"),
-        TableSpec(build_crosswell_winners_table(), "results_crosswell_clp_vs_ae", "%.5f"),
+        TableSpec(build_crosswell_winners_table(), "results_crosswell_clp_vs_ae_3seed", "%.5f"),
         TableSpec(build_crosswell_rank_table(), "results_crosswell_overall_rank", "%.5f"),
         TableSpec(build_f03_table(), "results_f03_gr_only", "%.5f"),
         TableSpec(build_f03_table_compact(), "results_f03_gr_only_compact", "%.5f"),

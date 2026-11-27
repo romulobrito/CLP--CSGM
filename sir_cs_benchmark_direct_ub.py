@@ -174,7 +174,11 @@ def run_direct_ub_from_data(
     Alpha_test, Psi. Shapes must match cfg.n_train, cfg.n_val, cfg.n_test, cfg.p_input, cfg.n_output.
     Third return: optional dict of (n_ex, L) arrays for 08_example_ground_truth_vs_models.png.
     """
-    rng = np.random.default_rng(seed)
+    # Offset 0 keeps the published stream: Omega and measurement noise
+    # come from the model seed. A nonzero offset redraws only that stream.
+    offset = int(getattr(cfg, "measurement_seed_offset", 0) or 0)
+    measurement_seed = int(seed) + offset
+    rng = np.random.default_rng(measurement_seed)
     X_train = data["X_train"]
     X_val = data["X_val"]
     X_test = data["X_test"]
@@ -186,6 +190,19 @@ def run_direct_ub_from_data(
 
     m = max(4, int(round(measurement_ratio * cfg.n_output)))
     M = build_measurement_matrix(m, cfg.n_output, cfg.measurement_kind, rng)
+    omega_records = getattr(cfg, "omega_records", None)
+    if omega_records is not None and str(cfg.measurement_kind) == "subsample":
+        coords = [int(np.flatnonzero(M[row])[0]) for row in range(int(M.shape[0]))]
+        omega_records.append(
+            {
+                "model_seed": int(seed),
+                "measurement_seed": int(measurement_seed),
+                "measurement_seed_offset": int(offset),
+                "measurement_ratio": float(measurement_ratio),
+                "m": int(m),
+                "omega_order": ",".join(str(idx) for idx in coords),
+            }
+        )
     A = M @ Psi
     L_A = power_iteration_lipschitz(A, n_iter=cfg.power_iteration_n_iter)
 
@@ -254,6 +271,26 @@ def run_direct_ub_from_data(
     if run_ae:
         pred_val_ae, pred_test_ae = dub.fit_predict_ae_regression_ub(
             cfg, seed, dub_cfg, Xb_train, Y_train, Xb_val, Y_val, Xb_test, ub_scaler
+        )
+    pred_test_ae_mask: Optional[np.ndarray] = None
+    run_explicit_mask = bool(getattr(cfg, "run_ae_explicit_mask", False))
+    if run_explicit_mask:
+        if str(cfg.measurement_kind) != "subsample":
+            raise ValueError("run_ae_explicit_mask requires measurement_kind=subsample.")
+        mask_train = dub.concat_ub(X_train, dub.embed_sparse_observation(B_train, M))
+        mask_val = dub.concat_ub(X_val, dub.embed_sparse_observation(B_val, M))
+        mask_test = dub.concat_ub(X_test, dub.embed_sparse_observation(B_test, M))
+        mask_scaler = dub.fit_scaler_ub(mask_train)
+        _pred_val_mask, pred_test_ae_mask = dub.fit_predict_ae_regression_ub(
+            cfg,
+            seed + 100,
+            dub_cfg,
+            mask_train,
+            Y_train,
+            mask_val,
+            Y_val,
+            mask_test,
+            mask_scaler,
         )
 
     Ybg_test = baseline.predict(X_test)
@@ -332,6 +369,23 @@ def run_direct_ub_from_data(
                     np.zeros_like(Alpha_test[i]),
                     float(dub_cfg.ae_latent_dim),
                     "ae_mlp",
+                    m,
+                    support_f1_override=nan_f,
+                )
+            )
+        if pred_test_ae_mask is not None:
+            rows.append(
+                extb.per_sample_metrics_row(
+                    seed,
+                    measurement_ratio,
+                    "ae_regression_ub_mask",
+                    i,
+                    Y_test[i],
+                    pred_test_ae_mask[i],
+                    Alpha_test[i],
+                    np.zeros_like(Alpha_test[i]),
+                    float(dub_cfg.ae_latent_dim),
+                    "ae_mlp_mask",
                     m,
                     support_f1_override=nan_f,
                 )

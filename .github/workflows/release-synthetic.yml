@@ -1,0 +1,55 @@
+name: RELEASE-05b synthetic benchmarks
+on:
+  push:
+    branches:
+      - revision/cageo-d-26-01398-reproducibility
+      - main
+    paths:
+      - '.github/workflows/release-synthetic.yml'
+      - 'scripts/check_synthetic_smoke.py'
+      - 'scripts/run_synthetic_smoke.sh'
+      - '**.py'
+      - 'scripts/install_release_cpu.sh'
+      - 'requirements*.txt'
+      - 'data/synthetic/**'
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    env:
+      MPLBACKEND: Agg
+      CUDA_VISIBLE_DEVICES: ""
+      OMP_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+      OPENBLAS_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10.22'
+      - name: Install exact field-replay CPU versions in a fresh virtualenv
+        run: |
+          bash scripts/install_release_cpu.sh
+          echo "$PWD/.venv-release/bin" >> "$GITHUB_PATH"
+      - name: Execute synthetic benchmarks
+        run: bash scripts/run_synthetic_smoke.sh
+      - name: Verify synthetic artifacts and metrics
+        run: python scripts/check_synthetic_smoke.py
+      - name: Preserve synthetic evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-05b-synthetic
+          path: |
+            outputs/validation/
+            outputs/synthetic_smoke/
+          if-no-files-found: warn

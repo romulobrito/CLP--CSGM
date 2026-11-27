@@ -21,9 +21,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from scipy import stats
+from build_regenerated_figure_inputs import checked_regenerated_paths, BUNDLE
 
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-PAPER_DIR = os.path.join(REPO_ROOT, "paper_clp_csgm")
+PAPER_DIR = os.path.join(REPO_ROOT, "outputs/paper_assets")
 TAB_DIR = os.path.join(PAPER_DIR, "tables")
 FIG_DIR = os.path.join(PAPER_DIR, "figures")
 
@@ -47,15 +48,7 @@ F03_SUMMARY = os.path.join(
     "tables",
     "summary_focus_clp_csgm_vs_ub.csv",
 )
-CROSS_SUMMARY = os.path.join(
-    REPO_ROOT,
-    "outputs",
-    "cross_well_vc",
-    "csgm",
-    "m2_grid",
-    "tables",
-    "summary_focus_clp_csgm_vs_ub.csv",
-)
+CROSS_SUMMARY = str(BUNDLE / "summary_focus_clp_csgm_vs_ub.csv")
 CROSSWELL_STEPS: Tuple[Tuple[int, str], ...] = (
     (8, "crosswell_step08_clp_csgm_ablation_ridge"),
     (16, "crosswell_step16_clp_csgm_ablation_ridge"),
@@ -131,7 +124,7 @@ def paired_delta_frame(seed_csv: str) -> pd.DataFrame:
 
 
 def write_latex_table(frame: pd.DataFrame, stem: str, float_format: str = "%.5f") -> str:
-    """Write CSV + ASCII LaTeX table under paper_clp_csgm/tables/."""
+    """Write CSV + ASCII LaTeX table under outputs/paper_assets/tables/."""
     os.makedirs(TAB_DIR, exist_ok=True)
     csv_path = os.path.join(TAB_DIR, "{}.csv".format(stem))
     tex_path = os.path.join(TAB_DIR, "{}.tex".format(stem))
@@ -242,8 +235,9 @@ def plot_f03_results_t() -> str:
 
 def plot_crosswell_results_t() -> str:
     """Regenerate cross-well RMSE figure with Student-t error bars."""
+    checked_regenerated_paths()
     df = pd.read_csv(CROSS_SUMMARY)
-    out = os.path.join(FIG_DIR, "results_crosswell_rmse_vs_rho.png")
+    out = os.path.join(FIG_DIR, "results_crosswell_rmse_vs_rho_legacy_3seed.png")
     labels = {
         "ridge_prior_csgm": "CLP-CSGM Ridge",
         "ae_regression_ub": "AE [u,b]",
@@ -348,7 +342,7 @@ def main() -> None:
 
     generated: Sequence[str] = [
         write_latex_table(f03_paired, "paired_delta_f03_clp_vs_ae", "%.5f"),
-        write_latex_table(cw_paired, "paired_delta_crosswell_clp_vs_ae", "%.5f"),
+        write_latex_table(cw_paired, "paired_delta_crosswell_clp_vs_ae_3seed", "%.5f"),
         write_latex_table(f03_full, "results_f03_gr_only", "%.5f"),
         plot_f03_results_t(),
         plot_crosswell_results_t(),

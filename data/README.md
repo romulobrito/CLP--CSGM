@@ -91,3 +91,7 @@ Do not commit private field tables or redistributed F3 dumps unless you have
 verified redistribution rights. The repository `.gitignore` excludes
 `data/*.txt` by default, while `data/synthetic/**` remains tracked for CAGEO
 offline evaluation.
+
+## Additional supplements
+
+See [Data requirements](../docs/DATA_REQUIREMENTS.md) for the authorized Lapa and well-861 workbook schemas and limitations. The exact historical processed F3 inputs must be verified; linked source archives are starting points, not guaranteed equivalents.

@@ -15,7 +15,7 @@ import pandas as pd
 
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-PAPER = os.path.join(ROOT, "paper_clp_csgm")
+PAPER = os.path.join(ROOT, "outputs/paper_assets")
 FIG = os.path.join(PAPER, "figures")
 TAB = os.path.join(PAPER, "tables")
 
@@ -26,7 +26,7 @@ def _ensure() -> None:
 
 def plot_crosswell() -> str:
     """Plot CLP-CSGM and AE RMSE for the low-data cross-well grid."""
-    df = pd.read_csv(os.path.join(TAB, "results_crosswell_clp_vs_ae.csv"))
+    df = pd.read_csv(os.path.join(TAB, "results_crosswell_clp_vs_ae_3seed.csv"))
     out = os.path.join(FIG, "results_crosswell_clp_vs_ae.png")
     steps = sorted(df["step"].unique())
     fig, axes = plt.subplots(1, len(steps), figsize=(4.2 * len(steps), 3.6), sharey=True)

@@ -1,0 +1,157 @@
+[
+  {
+    "table": "18",
+    "file": "reference_results/table18.csv",
+    "source_path": "tables/robustness_crosswell_noise_sweep.tex",
+    "source_blob": "0f3d6c06610abb0e9c0e3eceaef5285b279e2bdb",
+    "keys": [
+      "step",
+      "rho",
+      "noise_std"
+    ],
+    "metrics": [
+      "interpolation_rmse",
+      "clp_rmse",
+      "clp_wins"
+    ],
+    "rows": 36,
+    "categorical_metrics": [],
+    "exact_metrics": [
+      "clp_wins"
+    ],
+    "informational_metrics": [],
+    "notes": "Noise levels expanded from grouped headers; wins out of three."
+  },
+  {
+    "table": "19",
+    "file": "reference_results/table19.csv",
+    "source_path": "tables/robustness_crosswell_smooth.tex",
+    "source_blob": "77a44ca38b89ebb5e96d99609381c4070b7a6d01",
+    "keys": [
+      "step",
+      "rho",
+      "noise_std"
+    ],
+    "metrics": [
+      "interpolation_rmse",
+      "smooth_rmse",
+      "clp_rmse"
+    ],
+    "rows": 36,
+    "categorical_metrics": [],
+    "exact_metrics": [],
+    "informational_metrics": [],
+    "notes": ""
+  },
+  {
+    "table": "20",
+    "file": "reference_results/table20.csv",
+    "source_path": "tables/runtime_cost_summary.tex",
+    "source_blob": "cb301cca78859a476cbfb2caaa209a3114ae6806",
+    "keys": [
+      "dataset",
+      "method"
+    ],
+    "metrics": [
+      "time_per_window_sec",
+      "relative_time_vs_ae",
+      "rmse"
+    ],
+    "rows": 10,
+    "categorical_metrics": [],
+    "exact_metrics": [],
+    "informational_metrics": [
+      "time_per_window_sec",
+      "relative_time_vs_ae"
+    ],
+    "notes": "Timing is hardware dependent; not a numerical pass criterion."
+  },
+  {
+    "table": "21",
+    "file": "reference_results/table21.csv",
+    "source_path": "tables/results_f03_stress_ridge_vs_ae.tex",
+    "source_blob": "6482093719feda07c3c127f7227d1cc0a4cdfc3b",
+    "keys": [
+      "case",
+      "rho"
+    ],
+    "metrics": [
+      "ae_rmse",
+      "clp_rmse",
+      "relative_gain_pct",
+      "n_test"
+    ],
+    "rows": 12,
+    "categorical_metrics": [],
+    "exact_metrics": [
+      "n_test"
+    ],
+    "informational_metrics": [],
+    "notes": ""
+  },
+  {
+    "table": "22",
+    "file": "reference_results/table22.csv",
+    "source_path": "tables/results_lapa_case_study.tex",
+    "source_blob": "683a1d2466a594885c98584fa5636853ce67e92b",
+    "keys": [
+      "rho",
+      "method"
+    ],
+    "metrics": [
+      "rmse",
+      "mae",
+      "relative_l2"
+    ],
+    "rows": 35,
+    "categorical_metrics": [],
+    "exact_metrics": [],
+    "informational_metrics": [],
+    "notes": ""
+  },
+  {
+    "table": "23",
+    "file": "reference_results/table23.csv",
+    "source_path": "tables/robustness_phi_lab_861_heldout.tex",
+    "source_blob": "2c58f9de3b54b0fa5ab89b21fb1440d22e438896",
+    "keys": [
+      "rho"
+    ],
+    "metrics": [
+      "clp",
+      "ae",
+      "prior_only",
+      "delta_ae_minus_clp",
+      "clp_wins",
+      "n_pairs"
+    ],
+    "rows": 2,
+    "categorical_metrics": [],
+    "exact_metrics": [
+      "clp_wins",
+      "n_pairs"
+    ],
+    "informational_metrics": [],
+    "notes": ""
+  },
+  {
+    "table": "24",
+    "file": "reference_results/table24.csv",
+    "source_path": "tables/robustness_phi_lab_861_by_block.tex",
+    "source_blob": "d10c5c7eaf05918ea23d5a9a76dd3245b6f47bdf",
+    "keys": [
+      "fold_id",
+      "rho"
+    ],
+    "metrics": [
+      "clp",
+      "ae",
+      "prior_only"
+    ],
+    "rows": 6,
+    "categorical_metrics": [],
+    "exact_metrics": [],
+    "informational_metrics": [],
+    "notes": "Fold IDs 0–2 follow ascending published depth intervals."
+  }
+]

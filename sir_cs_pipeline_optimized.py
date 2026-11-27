@@ -226,6 +226,7 @@ class Config:
     # CSGM M2 (conditional generative-prior CS): optional direct-UB branch.
     run_csgm_m2: bool = False
     run_csgm_ablations: bool = False
+    run_ae_explicit_mask: bool = False
     csgm_device: str = ""
     csgm_prior_type: str = "ridge"  # "ridge" or "mlp"
     csgm_latent_dim: int = 16
@@ -1910,6 +1911,7 @@ METHOD_COLORS: Dict[str, str] = {
     "mlp_concat_ub": "#2ca02c",
     "pca_regression_ub": "#9467bd",
     "ae_regression_ub": "#17becf",
+    "ae_regression_ub_mask": "#1a9aa8",
     "ridge_prior_csgm": "#d62728",
     "mlp_prior_csgm": "#8c564b",
     "ridge_prior_only_decoder": "#ff9896",
@@ -1922,6 +1924,7 @@ METHOD_DISPLAY_NAMES: Dict[str, str] = {
     "mlp_concat_ub": "MLP [u,b]",
     "pca_regression_ub": "PCA [u,b]",
     "ae_regression_ub": "AE [u,b]",
+    "ae_regression_ub_mask": "AE [u,b,mask]",
     "ridge_prior_csgm": "CLP-CSGM Ridge",
     "mlp_prior_csgm": "CLP-CSGM MLP",
     "ridge_prior_only_decoder": "Prior-only Ridge",

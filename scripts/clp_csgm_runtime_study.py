@@ -46,7 +46,7 @@ from sir_cs_pipeline_optimized import (
 OUT_DIR = ROOT / "outputs" / "runtime_clp_csgm"
 TAB_DIR = OUT_DIR / "tables"
 FIG_DIR = OUT_DIR / "figures"
-PAPER = ROOT / "paper_clp_csgm"
+PAPER = ROOT / "outputs/paper_assets"
 PAPER_TAB_DIR = PAPER / "tables"
 PAPER_FIG_DIR = PAPER / "figures"
 PAPER_RUNTIME_TABLE = PAPER_TAB_DIR / "runtime_cost_summary.tex"

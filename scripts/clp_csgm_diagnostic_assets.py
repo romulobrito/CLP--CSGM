@@ -24,7 +24,7 @@ import pandas as pd
 
 
 ROOT = Path(__file__).resolve().parents[1]
-PAPER = ROOT / "paper_clp_csgm"
+PAPER = ROOT / "outputs/paper_assets"
 FIG_DIR = PAPER / "figures"
 TAB_DIR = PAPER / "tables"
 

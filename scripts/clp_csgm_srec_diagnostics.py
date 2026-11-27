@@ -43,7 +43,7 @@ from sir_cs_pipeline_optimized import build_measurement_matrix
 OUT_DIR = ROOT / "outputs" / "srec_diagnostics"
 TAB_DIR = OUT_DIR / "tables"
 FIG_DIR = OUT_DIR / "figures"
-PAPER = ROOT / "paper_clp_csgm"
+PAPER = ROOT / "outputs/paper_assets"
 PAPER_TAB_DIR = PAPER / "tables"
 PAPER_FIG_DIR = PAPER / "figures"
 
